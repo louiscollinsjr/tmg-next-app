@@ -14,7 +14,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-[44px]">
           {/* Logo and Desktop Menu */}
           <div className="flex items-center space-x-8">
-            <Link href="/" className="text-white text-lg font-bold hover:text-white transition-colors">
+            <Link href="/" className="text-white text-3xl font-bold hover:text-white transition-colors">
               tmg.
             </Link>
             
@@ -28,6 +28,9 @@ export default function Navigation() {
               </Link>
               <Link href="/start-project" className="text-xs hover:text-gray-200 transition-colors">
                 Start a Project
+              </Link>
+              <Link href="/leave-review" className="text-xs hover:text-gray-200 transition-colors">
+                Leave a Review
               </Link>
             </div>
           </div>

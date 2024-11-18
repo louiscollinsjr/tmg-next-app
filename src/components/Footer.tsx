@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-12">
           {/* About TMG */}
           <div>
-            <h3 className="font-bold mb-4 text-lg">tmg.</h3>
+            <h3 className="font-bold mb-4 text-3xl">tmg.</h3>
             <div className="flex space-x-4">
               <a href="https://instagram.com/trymyguys" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                 <FaInstagram className="w-4 h-4" />
