@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import AuthButton from './AuthButton';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,60 +20,43 @@ export default function Navigation() {
             
             {/* Desktop Menu */}
             <div className="hidden md:flex items-center space-x-8 text-white">
-              <Link href="/explore-designs" className="text-sm font-normal hover:text-white transition-colors">
+              <Link href="/explore-designs" className="text-xs hover:text-gray-200 transition-colors">
                 Explore Designs
               </Link>
-              <Link href="/find-professionals" className="text-sm font-normal hover:text-white transition-colors">
+              <Link href="/find-professionals" className="text-xs hover:text-gray-200 transition-colors">
                 Find Professionals
               </Link>
-              <Link href="/start-project" className="text-sm font-normal hover:text-white transition-colors">
+              <Link href="/start-project" className="text-xs hover:text-gray-200 transition-colors">
                 Start a Project
               </Link>
             </div>
           </div>
 
-          {/* Right Section */}
-          <div className="hidden md:flex items-center space-x-6">
-            <button className="text-white hover:text-white/80 transition-colors">
-              <Image
-                src="/search.svg"
-                alt="Search"
-                width={16}
-                height={16}
-                className="invert opacity-80 hover:opacity-100"
-              />
-            </button>
+          {/* Auth Button and Mobile Menu Button */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:block">
+              <AuthButton />
+            </div>
             <Link
               href="/join-as-pro"
               className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
             >
               Join as a Pro
             </Link>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <button className="text-[#d1d1d1] hover:text-white transition-colors">
-              <Image
-                src="/search.svg"
-                alt="Search"
-                width={16}
-                height={16}
-                className="opacity-80 hover:opacity-100"
-              />
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-[#d1d1d1] hover:text-white transition-colors"
-            >
-              <Image
-                src="/menu.svg"
-                alt="Menu"
-                width={18}
-                height={18}
-                className="opacity-80 hover:opacity-100"
-              />
-            </button>
+            <div className="md:hidden flex items-center space-x-4">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="text-[#d1d1d1] hover:text-white transition-colors"
+              >
+                <Image
+                  src="/menu.svg"
+                  alt="Menu"
+                  width={18}
+                  height={18}
+                  className="opacity-80 hover:opacity-100"
+                />
+              </button>
+            </div>
           </div>
         </div>
 
