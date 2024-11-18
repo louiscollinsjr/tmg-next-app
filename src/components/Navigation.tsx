@@ -19,27 +19,27 @@ export default function Navigation() {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center justify-center flex-1 space-x-8">
-            <Link href="/explore-designs" className="text-[#191919] text-sm font-normal hover:text-white transition-colors">
+          <div className="hidden md:flex items-center justify-center flex-1 space-x-8 text-white">
+            <Link href="/explore-designs" className="text-sm font-normal hover:text-white transition-colors">
               Explore Designs
             </Link>
-            <Link href="/find-professionals" className="text-[#191919] text-sm font-normal hover:text-white transition-colors">
+            <Link href="/find-professionals" className="text-sm font-normal hover:text-white transition-colors">
               Find Professionals
             </Link>
-            <Link href="/start-project" className="text-[#191919] text-sm font-normal hover:text-white transition-colors">
+            <Link href="/start-project" className="text-sm font-normal hover:text-white transition-colors">
               Start a Project
             </Link>
           </div>
 
           {/* Right Section */}
           <div className="hidden md:flex items-center space-x-6">
-            <button className="text-[#d1d1d1] hover:text-white transition-colors">
+            <button className="text-white hover:text-white/80 transition-colors">
               <Image
                 src="/search.svg"
                 alt="Search"
                 width={16}
                 height={16}
-                className="opacity-80 hover:opacity-100"
+                className="invert opacity-80 hover:opacity-100"
               />
             </button>
             <Link

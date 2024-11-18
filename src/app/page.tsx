@@ -42,6 +42,17 @@ export default function Home() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:14px_24px]" />
           </div>
         </main>
+
+        {/* Mission Statement Section */}
+        <section className="bg-primary/80 backdrop-blur-sm py-24">
+          <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center">
+              <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
+                Your home, time, and money are too important to be wasted. We're building a community-driven platform to connect homeowners with trusted local professionals. Backed by real recommendations, it's designed to make finding the right experts for your home services and repairs simple and reliable.
+              </p>
+            </div>
+          </div>
+        </section>
       </div>
       <Footer />
     </>
