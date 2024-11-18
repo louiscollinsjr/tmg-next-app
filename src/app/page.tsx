@@ -18,30 +18,14 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="/find-services"
-              className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out shadow-sm"
+              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-lg text-white bg-black hover:bg-gray-900 transition duration-150 ease-in-out shadow-sm"
             >
-              <Image
-                src="/house.svg"
-                alt=""
-                width={24}
-                height={24}
-                className="mr-2 text-white"
-                aria-hidden="true"
-              />
               Find Services
             </a>
             <a
               href="/post-job"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition duration-150 ease-in-out shadow-sm"
+              className="inline-flex items-center justify-center px-8 py-3 border border-gray-300 text-base font-semibold rounded-lg text-gray-700 bg-white hover:bg-gray-50 transition duration-150 ease-in-out shadow-sm"
             >
-              <Image
-                src="/notepad.svg"
-                alt=""
-                width={24}
-                height={24}
-                className="mr-2"
-                aria-hidden="true"
-              />
               Post a Job
             </a>
           </div>
