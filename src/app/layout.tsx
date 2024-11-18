@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, League_Spartan } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
@@ -28,22 +28,19 @@ export const metadata: Metadata = {
   },
   description:
     "Connect with trusted local home service professionals recommended by your community. Get personalized quotes for home improvement, repairs, and maintenance services.",
-  keywords: [
-    "home services",
-    "local contractors",
-    "home improvement",
-    "home repair",
-    "handyman services",
-    "home maintenance",
-    "professional services",
-    "community recommended",
-    "trusted professionals",
-    "home projects",
-    "local experts",
-    "service quotes",
-    "verified contractors",
-    "home services marketplace",
-  ],
+  manifest: '/manifest.json',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' }
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', type: 'image/png', sizes: '180x180' }
+    ]
+  },
   openGraph: {
     title: "TRYMYGUYS - Community Trusted Home Service Professionals",
     description:
@@ -86,6 +83,12 @@ export const metadata: Metadata = {
     yandex: "add-your-verification-code",
   },
 };
+
+export const viewport: Viewport = {
+  themeColor: '#0a7aff',
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export default function RootLayout({
   children,
