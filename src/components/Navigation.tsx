@@ -14,8 +14,8 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-[44px]">
           {/* Logo and Desktop Menu */}
           <div className="flex items-center space-x-8">
-            <Link href="/" className="text-white text-3xl font-bold hover:text-white transition-colors">
-              tmg.
+            <Link href="/" className="text-white text-2xl font-bold hover:text-white transition-colors">
+              TryMyGuys
             </Link>
             
             {/* Desktop Menu */}

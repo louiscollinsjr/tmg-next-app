@@ -16,7 +16,7 @@ export default function Home() {
         <main className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-44 pb-16 text-center md:min-h-[75vh] flex flex-col justify-center">
           {/* Main Content */}
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-8 font">tmg.com</h1>
+            <h1 className="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-8 font">TryMyGuys</h1>
             <h1 className="text-4xl sm:text-7xl font-bold text-white tracking-tight mb-2">
               Find trusted pros, recommended by our community.
             </h1>

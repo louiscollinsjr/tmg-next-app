@@ -20,7 +20,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
           {/* About TMG */}
           <div className="lg:col-span-1">
-            <h3 className="font-bold mb-4 text-3xl">tmg.</h3>
+            <h3 className="font-bold mb-4 text-3xl">TryMyGuys</h3>
             <p className="text-white/80 mb-4">
               Connecting homeowners with trusted professionals for exceptional home improvements.
             </p>
