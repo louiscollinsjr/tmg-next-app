@@ -27,7 +27,7 @@ export default function AuthButton() {
 
   return (
     <button
-      onClick={() => signIn('github')}
+      onClick={() => signIn(undefined, { callbackUrl: '/' })}
       className="text-xs text-white hover:text-gray-200 transition-colors"
     >
       Sign in
