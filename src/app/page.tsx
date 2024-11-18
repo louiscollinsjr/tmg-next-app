@@ -1,7 +1,7 @@
 // import Image from "next/image";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-// import TypewriterHero from "@/components/TypewriterHero";
+// import ProfessionalCTA from "@/components/ProfessionalCTA";
 
 export default function Home() {
   return (
@@ -43,6 +43,8 @@ export default function Home() {
           </div>
         </main>
 
+        
+
         {/* Mission Statement Section */}
         <section className="bg-primary/80 backdrop-blur-sm py-24">
           <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -53,6 +55,9 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* <ProfessionalCTA />
+         */}
       </div>
       <Footer />
     </>
