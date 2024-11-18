@@ -6,18 +6,18 @@ export default function AuthButton() {
   const { data: session, status } = useSession()
 
   if (status === 'loading') {
-    return <div className="text-sm text-white opacity-80">Loading...</div>
+    return <div className="text-xs text-white opacity-80">Loading...</div>
   }
 
   if (session) {
     return (
       <div className="flex items-center gap-4">
-        <span className="text-sm text-white">
+        <span className="text-xs text-white">
           {session.user?.name}
         </span>
         <button
           onClick={() => signOut()}
-          className="text-sm text-white hover:text-gray-200 transition-colors"
+          className="text-xs text-white hover:text-gray-200 transition-colors"
         >
           Sign out
         </button>
@@ -28,7 +28,7 @@ export default function AuthButton() {
   return (
     <button
       onClick={() => signIn('github')}
-      className="text-sm text-white hover:text-gray-200 transition-colors"
+      className="text-xs text-white hover:text-gray-200 transition-colors"
     >
       Sign in
     </button>
