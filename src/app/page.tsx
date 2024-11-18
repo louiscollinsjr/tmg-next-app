@@ -7,6 +7,7 @@ import CommunityPowerCTA from "@/components/CommunityPowerCTA";
 import MissionStatement from "@/components/MissionStatement";
 // import Testimonials from "@/components/Testimonials";
 // import MissionStatement from "@/components/MissionStatement";
+import AIAssistantDemo from "@/components/AIAssistantDemo";
 
 export default function Home() {
   return (
@@ -48,9 +49,10 @@ export default function Home() {
           </div>
         </main>
         
-        {/* <MissionStatement /> */}
-        <HomeownersCTA />
         <MissionStatement />
+        <AIAssistantDemo />
+        <HomeownersCTA />
+        
         <CommunityPowerCTA />
         
         {/* <ProfessionalCTA />

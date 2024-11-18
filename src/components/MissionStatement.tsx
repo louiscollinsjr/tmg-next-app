@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 
@@ -6,18 +8,12 @@ const MissionStatement = () => {
     <section className="bg-primary/80 backdrop-blur-sm py-12">
       <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto text-center">
-          <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight mb-6">
-            Your home, time, and money matter.
-          </h1>
-          <p className="text-lg font-light text-white mb-8 max-w-3xl mx-auto">
-            We&apos;re on a mission to transform how homeowners find and connect with trusted home service professionals.
-          </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center pb-8">
             <Link 
               href="/get-started"
-              className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-gray-800 rounded-lg transition-all duration-200 group"
+              className="inline-flex items-center px-6 py-2 bg-white/10 hover:bg-white/20 text-gray-800 rounded-lg transition-all duration-200 group"
             >
-              <span className="text-sm font-medium">Get started with your Project</span>
+              <span className="text-sm font-medium"><b>TMG</b> Get started with your project</span>
               <svg 
                 className="ml-2 w-4 h-4 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" 
                 fill="none" 
@@ -33,6 +29,13 @@ const MissionStatement = () => {
               </svg>
             </Link>
           </div>
+
+          <h1 className="text-5xl sm:text-6xl font-bold text-white tracking-tight mb-6 max-w-3xl mx-auto">
+            Your home, time, and money matter.
+          </h1>
+          <p className="text-lg font-light text-white mb-8 max-w-3xl mx-auto">
+            We&apos;re on a mission to transform how homeowners find and connect with trusted home service professionals.
+          </p>
         </div>
       </div>
     </section>
