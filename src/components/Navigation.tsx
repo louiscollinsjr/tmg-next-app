@@ -13,7 +13,7 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-[44px]">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link href="/" className="text-primary text-lg font-bold hover:text-white transition-colors">
+            <Link href="/" className="text-white text-lg font-bold hover:text-white transition-colors">
               tmg.
             </Link>
           </div>
