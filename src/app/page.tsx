@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 // import ProfessionalCTA from "@/components/ProfessionalCTA";
 import HomeownersCTA from "@/components/HomeownersCTA";
 import CommunityPowerCTA from "@/components/CommunityPowerCTA";
+import MissionStatement from "@/components/MissionStatement";
 // import Testimonials from "@/components/Testimonials";
 // import MissionStatement from "@/components/MissionStatement";
 
@@ -49,6 +50,7 @@ export default function Home() {
         
         {/* <MissionStatement /> */}
         <HomeownersCTA />
+        <MissionStatement />
         <CommunityPowerCTA />
         
         {/* <ProfessionalCTA />
