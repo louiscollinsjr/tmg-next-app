@@ -2,19 +2,19 @@ import React from 'react';
 
 const testimonialData = [
   {
-    text: "TryMyGuys connected me with an incredible contractor who transformed my kitchen.",
+    text: &quot;TryMyGuys connected me with an incredible contractor who transformed my kitchen.&quot;,
     name: "Sarah Johnson",
     title: "Homeowner",
     avatar: "/images/avatar-1.jpg"
   },
   {
-    text: "TryMyGuys PRO helped me grow my business through quality leads and a supportive community.",
+    text: &quot;TryMyGuys PRO helped me grow my business through quality leads and a supportive community.&quot;,
     name: "Michael Chen",
     title: "Professional",
     avatar: "/images/avatar-2.jpg"
   },
   {
-    text: "The community reviews were spot-on. Found a great landscaper.",
+    text: &quot;The community reviews were spot-on. Found a great landscaper.&quot;,
     name: "Emily Rodriguez",
     title: "Homeowner",
     avatar: "/images/avatar-3.jpg"
@@ -36,7 +36,7 @@ const Testimonials = () => {
             >
               <div className="h-full p-8 flex flex-col bg-gray-50 backdrop-blur-sm rounded-lg">
                 <p className="text-gray-900 mb-6 text-sm font-light leading-relaxed transition-transform duration-300 ease-in-out group-hover:scale-[1.02]">
-                  "{testimonial.text}"
+                  &ldquo;{testimonial.text}&rdquo;
                 </p>
                 <div className="mt-auto flex items-center">
                   <div className="flex-shrink-0">
