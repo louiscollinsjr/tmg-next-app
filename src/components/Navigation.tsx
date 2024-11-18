@@ -19,7 +19,7 @@ export default function Navigation() {
             </Link>
             
             {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-8 text-white">
+            <div className="hidden md:flex items-center space-x-8 text-white pt-[5px]">
               <Link href="/explore-designs" className="text-xs hover:text-gray-200 transition-colors">
                 Explore Designs
               </Link>
