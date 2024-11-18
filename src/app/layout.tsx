@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, League_Spartan } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -98,9 +99,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.className} ${leagueSpartan.variable} antialiased`}
+        className={`${inter.className} ${leagueSpartan.variable} ${geistSans.variable} ${geistMono.variable}`}
       >
-        {children}
+        <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );
