@@ -8,7 +8,7 @@ export default function SignIn() {
     <div className="min-h-screen flex items-center justify-center bg-primary">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to TMG</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome to TryMyGuys.com</h2>
           <p className="text-gray-600">Sign in to continue</p>
         </div>
 
