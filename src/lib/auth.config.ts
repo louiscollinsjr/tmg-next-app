@@ -1,4 +1,4 @@
-import type { NextAuthOptions } from "next-auth"
+import { NextAuthOptions } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 
@@ -14,14 +14,14 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: '/auth/signin',
+    signIn: "/auth/signin",
   },
   callbacks: {
-    async session({ session, token, user }) {
+    jwt: async ({ _token, _user }) => {
+      return _token
+    },
+    session: async ({ session, _user, _account, _profile }) => {
       return session
     },
-    async jwt({ token, user, account, profile }) {
-      return token
-    }
-  }
+  },
 }
