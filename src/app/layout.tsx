@@ -21,7 +21,11 @@ const leagueSpartan = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: "TRYMYGUYS | Community Recommended Home Service Professionals",
+  metadataBase: new URL('https://trymyguys.com'),
+  title: {
+    template: '%s | TMG',
+    default: 'TMG - Find Trusted Home Service Professionals',
+  },
   description:
     "Connect with trusted local home service professionals recommended by your community. Get personalized quotes for home improvement, repairs, and maintenance services.",
   keywords: [
@@ -79,7 +83,7 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "add-your-verification-code",
-    bing: "add-your-verification-code",
+    yandex: "add-your-verification-code",
   },
 };
 

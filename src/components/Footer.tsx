@@ -1,19 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function Footer() {
-  const [location, setLocation] = useState<string>('');
-
-  useEffect(() => {
-    // In a real app, you'd want to use a geolocation service
-    // This is just a placeholder - you'll need to implement actual geolocation
-    setLocation('San Francisco, CA');
-  }, []);
-
   return (
-    <footer className="bg-[linear-gradient(180deg,rgb(10,122,255)_10%,rgb(86,181,254)_100%)] text-white pt-28">
+    <footer className="bg-[linear-gradient(180deg,rgb(10,122,255)_0%,rgb(86,181,254)_100%)] text-white pt-28">
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Company Info */}
