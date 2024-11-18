@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { SiBluesky } from 'react-icons/si';
 
 export default function Footer() {
   const [location, setLocation] = useState('San Francisco, CA, USA'); // Placeholder location
@@ -15,32 +17,24 @@ export default function Footer() {
     <footer className="bg-[linear-gradient(180deg,rgb(10,122,255)_0%,rgb(60,130,255)_100%)] text-white pt-16 text-xs">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Row - Useful Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 pb-12">
           {/* About TMG */}
           <div>
-            <h3 className="font-semibold mb-4">About TMG</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-white/80 hover:text-white hover:underline transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/careers" className="text-white/80 hover:text-white hover:underline transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="/press" className="text-white/80 hover:text-white hover:underline transition-colors">
-                  Press
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-white/80 hover:text-white hover:underline transition-colors">
-                  Blog
-                </Link>
-              </li>
-            </ul>
+            <h3 className="font-bold mb-4 text-lg">tmg.</h3>
+            <div className="flex space-x-4">
+              <a href="https://instagram.com/trymyguys" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                <FaInstagram className="w-4 h-4" />
+              </a>
+              <a href="https://bsky.app/profile/trymyguys.bsky.social" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                <SiBluesky className="w-4 h-4" />
+              </a>
+              <a href="https://twitter.com/trymyguys" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                <FaTwitter className="w-4 h-4" />
+              </a>
+              <a href="https://linkedin.com/company/trymyguys" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
+                <FaLinkedinIn className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
           {/* For Homeowners */}
@@ -97,6 +91,43 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Explore Designs */}
+          <div>
+            <h3 className="font-semibold mb-4">Explore Designs</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/designs/kitchen-dining" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Kitchen & Dining
+                </Link>
+              </li>
+              <li>
+                <Link href="/designs/living-rooms" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Living Rooms
+                </Link>
+              </li>
+              <li>
+                <Link href="/designs/bed-bath" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Bed & Bath
+                </Link>
+              </li>
+              <li>
+                <Link href="/designs/utility-spaces" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Utility Spaces
+                </Link>
+              </li>
+              <li>
+                <Link href="/designs/outdoor-spaces" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Outdoor Spaces
+                </Link>
+              </li>
+              <li>
+                <Link href="/designs/bar-wine" className="text-white/80 hover:text-white hover:underline transition-colors">
+                  Bar & Wine
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Support */}
           <div>
             <h3 className="font-semibold mb-4">Support</h3>
@@ -130,7 +161,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center text-white/80">
             {/* Copyright */}
             <div className="mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} TMG. All rights reserved.
+              &copy; {new Date().getFullYear()} tmg. All rights reserved.
             </div>
 
             {/* Legal Links */}
