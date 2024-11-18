@@ -15,7 +15,7 @@ export default function Footer() {
   return (
     <footer className="bg-[#f5f5f7] text-[#6e6e73] text-sm">
       {/* Top Row */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="font-semibold mb-4">About TMG</h3>
@@ -54,7 +54,7 @@ export default function Footer() {
 
       {/* Bottom Row */}
       <div className="border-t border-[#d2d2d7]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex flex-col md:flex-row items-center gap-4 text-xs">
             {/* Copyright - Left */}
             <div className="order-2 md:order-1 md:flex-1">

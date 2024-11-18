@@ -8,7 +8,7 @@ export default function Home() {
       <Navigation />
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
         {/* Hero Section */}
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
+        <main className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16 text-center">
           {/* Main Content */}
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 tracking-tight mb-6">
