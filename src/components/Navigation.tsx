@@ -11,24 +11,24 @@ export default function Navigation() {
     <nav className="sticky top-0 z-50 bg-primary">
       <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[44px]">
-          {/* Logo */}
-          <div className="flex-shrink-0">
+          {/* Logo and Desktop Menu */}
+          <div className="flex items-center space-x-8">
             <Link href="/" className="text-white text-lg font-bold hover:text-white transition-colors">
               tmg.
             </Link>
-          </div>
-
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center justify-center flex-1 space-x-8 text-white">
-            <Link href="/explore-designs" className="text-sm font-normal hover:text-white transition-colors">
-              Explore Designs
-            </Link>
-            <Link href="/find-professionals" className="text-sm font-normal hover:text-white transition-colors">
-              Find Professionals
-            </Link>
-            <Link href="/start-project" className="text-sm font-normal hover:text-white transition-colors">
-              Start a Project
-            </Link>
+            
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8 text-white">
+              <Link href="/explore-designs" className="text-sm font-normal hover:text-white transition-colors">
+                Explore Designs
+              </Link>
+              <Link href="/find-professionals" className="text-sm font-normal hover:text-white transition-colors">
+                Find Professionals
+              </Link>
+              <Link href="/start-project" className="text-sm font-normal hover:text-white transition-colors">
+                Start a Project
+              </Link>
+            </div>
           </div>
 
           {/* Right Section */}

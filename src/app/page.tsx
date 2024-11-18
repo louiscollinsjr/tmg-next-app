@@ -47,9 +47,9 @@ export default function Home() {
         <section className="bg-primary/80 backdrop-blur-sm py-24">
           <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
-                Your home, time, and money are too important to be wasted. We're building a community-driven platform to connect homeowners with trusted local professionals. Backed by real recommendations, it's designed to make finding the right experts for your home services and repairs simple and reliable.
-              </p>
+              <p className="text-lg sm:text-2xl text-white/90 leading-relaxed">
+              Your home, time, and money matter. We’re creating a community-driven platform that connects homeowners with trusted local professionals. With real recommendations, finding the right experts for your home services and repairs is simple and reliable.
+                  </p>
             </div>
           </div>
         </section>
