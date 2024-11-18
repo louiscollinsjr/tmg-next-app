@@ -2,22 +2,22 @@ import React from 'react';
 
 const testimonialData = [
   {
-    text: &quot;TryMyGuys connected me with an incredible contractor who transformed my kitchen.&quot;,
-    name: "Sarah Johnson",
-    title: "Homeowner",
-    avatar: "/images/avatar-1.jpg"
+    text: 'TryMyGuys connected me with an incredible contractor who transformed my kitchen.',
+    name: 'Sarah Johnson',
+    title: 'Homeowner',
+    avatar: '/images/avatar-1.jpg'
   },
   {
-    text: &quot;TryMyGuys PRO helped me grow my business through quality leads and a supportive community.&quot;,
-    name: "Michael Chen",
-    title: "Professional",
-    avatar: "/images/avatar-2.jpg"
+    text: 'TryMyGuys PRO helped me grow my business through quality leads and a supportive community.',
+    name: 'Michael Chen',
+    title: 'Professional',
+    avatar: '/images/avatar-2.jpg'
   },
   {
-    text: &quot;The community reviews were spot-on. Found a great landscaper.&quot;,
-    name: "Emily Rodriguez",
-    title: "Homeowner",
-    avatar: "/images/avatar-3.jpg"
+    text: 'The community reviews were spot-on. Found a great landscaper.',
+    name: 'Emily Rodriguez',
+    title: 'Homeowner',
+    avatar: '/images/avatar-3.jpg'
   }
 ];
 

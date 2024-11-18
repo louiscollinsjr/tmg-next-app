@@ -8,8 +8,8 @@ const MissionStatement = () => {
           <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-6">
             Your home, time, and money matter.
           </h1>
-          <p className="text-lg sm:text-xl text-white/90 leading-relaxed">
-            We're creating a community-driven platform that connects homeowners with trusted local professionals. With real recommendations, finding the right experts for your home services and repairs is simple and reliable.
+          <p className="text-lg font-light text-white mb-8">
+            We&apos;re on a mission to transform how homeowners find and connect with trusted home service professionals.
           </p>
         </div>
       </div>
