@@ -2,6 +2,10 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 // import ProfessionalCTA from "@/components/ProfessionalCTA";
+import HomeownersCTA from "@/components/HomeownersCTA";
+import CommunityPowerCTA from "@/components/CommunityPowerCTA";
+// import Testimonials from "@/components/Testimonials";
+// import MissionStatement from "@/components/MissionStatement";
 
 export default function Home() {
   return (
@@ -9,7 +13,7 @@ export default function Home() {
       <Navigation />
       <div className="min-h-screen bg-primary">
         {/* Hero Section */}
-        <main className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-32 pb-16 text-center">
+        <main className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-44 pb-16 text-center md:min-h-[75vh] flex flex-col justify-center">
           {/* Main Content */}
           <div className="max-w-3xl mx-auto">
             <h1 className="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-8 font">tmg.com</h1>
@@ -42,20 +46,11 @@ export default function Home() {
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:14px_24px]" />
           </div>
         </main>
-
         
-
-        {/* Mission Statement Section */}
-        <section className="bg-primary/80 backdrop-blur-sm py-24">
-          <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-3xl mx-auto text-center">
-              <p className="text-lg sm:text-2xl text-white/90 leading-relaxed">
-              Your home, time, and money matter. We’re creating a community-driven platform that connects homeowners with trusted local professionals. With real recommendations, finding the right experts for your home services and repairs is simple and reliable.
-                  </p>
-            </div>
-          </div>
-        </section>
-
+        {/* <MissionStatement /> */}
+        <HomeownersCTA />
+        <CommunityPowerCTA />
+        
         {/* <ProfessionalCTA />
          */}
       </div>
