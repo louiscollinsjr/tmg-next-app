@@ -13,70 +13,56 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#f5f5f7] text-[#6e6e73] text-sm">
-      {/* Top Row */}
-      <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-[linear-gradient(180deg,rgb(10,122,255)_10%,rgb(86,181,254)_100%)] text-white pt-28">
+      <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Company Info */}
           <div>
-            <h3 className="font-semibold mb-4">About TMG</h3>
-            <ul className="space-y-3">
-              <li><Link href="/about" className="hover:underline">About Us</Link></li>
-              <li><Link href="/careers" className="hover:underline">Careers</Link></li>
-              <li><Link href="/press" className="hover:underline">Press</Link></li>
+            <h3 className="text-lg font-semibold mb-4">TMG</h3>
+            <p className="text-white/80">
+              Connecting homeowners with trusted local service professionals.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/about" className="text-white/80 hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/services" className="text-white/80 hover:text-white transition-colors">
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-white/80 hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
+
+          {/* Contact Info */}
           <div>
-            <h3 className="font-semibold mb-4">For Homeowners</h3>
-            <ul className="space-y-3">
-              <li><Link href="/how-it-works" className="hover:underline">How It Works</Link></li>
-              <li><Link href="/safety" className="hover:underline">Safety Center</Link></li>
-              <li><Link href="/reviews" className="hover:underline">Customer Reviews</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">For Professionals</h3>
-            <ul className="space-y-3">
-              <li><Link href="/pro" className="hover:underline">Join as Pro</Link></li>
-              <li><Link href="/success" className="hover:underline">Success Stories</Link></li>
-              <li><Link href="/pro-resources" className="hover:underline">Pro Resources</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold mb-4">Support</h3>
-            <ul className="space-y-3">
-              <li><Link href="/help" className="hover:underline">Help Center</Link></li>
-              <li><Link href="/contact" className="hover:underline">Contact Us</Link></li>
-              <li><Link href="/feedback" className="hover:underline">Give Feedback</Link></li>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <ul className="space-y-2">
+              <li className="text-white/80">
+                Email: info@trymyguys.com
+              </li>
+              <li className="text-white/80">
+                Phone: (555) 123-4567
+              </li>
             </ul>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Row */}
-      <div className="border-t border-[#d2d2d7]">
-        <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex flex-col md:flex-row items-center gap-4 text-xs">
-            {/* Copyright - Left */}
-            <div className="order-2 md:order-1 md:flex-1">
-              Copyright 2024 TryMyGuys.com All rights reserved.
-            </div>
-
-            {/* Center Links */}
-            <div className="order-1 md:order-2 flex flex-wrap justify-center gap-x-6">
-              <Link href="/privacy" className="hover:underline whitespace-nowrap">Privacy Policy</Link>
-              <span className="text-[#d2d2d7]">|</span>
-              <Link href="/terms" className="hover:underline whitespace-nowrap">Terms of Use</Link>
-              <span className="text-[#d2d2d7]">|</span>
-              <Link href="/legal" className="hover:underline whitespace-nowrap">Legal</Link>
-              <span className="text-[#d2d2d7]">|</span>
-              <Link href="/sitemap" className="hover:underline whitespace-nowrap">Site Map</Link>
-            </div>
-
-            {/* Location - Right */}
-            <div className="order-3 md:text-right md:flex-1">
-              {location}
-            </div>
-          </div>
+        {/* Copyright */}
+        <div className="mt-8 pt-8 border-t border-white/10 text-center text-white/60">
+          <p>&copy; {new Date().getFullYear()} TMG. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -1,0 +1,3 @@
+}
+
+generateOGImage().catch(console.error);
