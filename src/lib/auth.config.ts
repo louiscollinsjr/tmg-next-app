@@ -17,10 +17,10 @@ export const authOptions: NextAuthOptions = {
     signIn: "/auth/signin",
   },
   callbacks: {
-    jwt: async ({ _token, _user }) => {
-      return _token
+    jwt: async ({ token, user: _user }) => {
+      return token
     },
-    session: async ({ session, _user, _account, _profile }) => {
+    session: async ({ session, user: _user }) => {
       return session
     },
   },
