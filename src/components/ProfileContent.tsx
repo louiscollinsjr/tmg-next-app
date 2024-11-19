@@ -4,6 +4,15 @@ interface Project {
   _id: string;
   title: string;
   description: string;
+  owner: {
+    _id: string;
+    name?: string;
+  };
+  professional: {
+    _id: string;
+    name?: string;
+    companyName?: string;
+  };
   status: 'planning' | 'in_progress' | 'on_hold' | 'completed' | 'cancelled';
   tags: string[];
   metadata?: {
@@ -11,6 +20,9 @@ interface Project {
     timeline?: string;
     location?: string;
   };
+  images: string[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface Review {
@@ -23,8 +35,9 @@ interface Review {
     count: number;
     users: string[];
   };
-  author: {
+  professional: {
     name: string;
+    companyName: string;
   };
   createdAt: string;
 }
@@ -91,14 +104,25 @@ export default function ProfileContent({ userId }: { userId: string }) {
     cancelled: projects.filter(p => p.status === 'cancelled')
   };
 
+  const formatStatus = (status: string): string => {
+    const statusMap: { [key: string]: string } = {
+      in_progress: 'IN PROGRESS',
+      on_hold: 'ON HOLD',
+      planning: 'PLANNING',
+      completed: 'COMPLETED',
+      cancelled: 'CANCELLED'
+    };
+    return statusMap[status] || status.toUpperCase();
+  };
+
   return (
     <div className="space-y-8">
       {/* Projects */}
-      <div className="mb-12">
-        <div className="mb-2">
-          <h2 className="text-2xl font-bold">Projects</h2>
+      <div className="mb-12 pt-8">
+        <div className="mb-2 pl-2">
+          <h2 className="text-2xl font-bold">Your Projects</h2>
         </div>
-        <div className="text-xs flex space-x-4 mb-6">
+        <div className="text-xs flex space-x-4 mb-6  pl-2">
           <div>
             <span className="text-gray-500">In Progress:</span>
             <span className="text-black ml-1">{projectsByStatus.in_progress.length}</span>
@@ -120,36 +144,25 @@ export default function ProfileContent({ userId }: { userId: string }) {
         {Object.entries(projectsByStatus).map(([status, statusProjects]) => (
           statusProjects.length > 0 && (
             <div key={status} className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 capitalize">{status.replace('_', ' ')}</h3>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="space-y-4">
                 {statusProjects.map((project) => (
-                  <div key={project._id} className="bg-gray-50 p-4 rounded-lg">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-semibold">{project.title}</h3>
-                      <div className={`text-sm px-2 py-1 rounded-full ${
-                        status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
-                        status === 'planning' ? 'bg-yellow-100 text-yellow-800' :
-                        status === 'on_hold' ? 'bg-orange-100 text-orange-800' :
-                        status === 'completed' ? 'bg-green-100 text-green-800' :
-                        'bg-gray-100 text-gray-800'
-                      }`}>
-                        {status.replace('_', ' ')}
-                      </div>
+                  <div key={project._id} className="py-2">
+                    <div className="text-lg font-semibold">{project.title}</div>
+                    <div className="text-xs text-gray-500 mt-1">{formatStatus(status)}</div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      {project.professional?.name || project.professional?.companyName}
                     </div>
-                    <p className="text-gray-600 mb-4">{project.description}</p>
-                    {project.metadata && (
-                      <div className="text-sm text-gray-500">
-                        {project.metadata.budget && (
-                          <div>Budget: ${project.metadata.budget}</div>
-                        )}
-                        {project.metadata.timeline && (
-                          <div>Timeline: {project.metadata.timeline}</div>
-                        )}
-                        {project.metadata.location && (
-                          <div>Location: {project.metadata.location}</div>
-                        )}
-                      </div>
-                    )}
+                    <div className="text-sm mt-1">{project.description}</div>
+                    <div className="text-xs mt-1">
+                      <span className="text-gray-500">Budget:</span>
+                      <span className="text-black ml-1">${project.metadata?.budget}</span>
+                      <span className="mx-2 text-gray-300">|</span>
+                      <span className="text-gray-500">Timeline:</span>
+                      <span className="text-black ml-1">{project.metadata?.timeline}</span>
+                      <span className="mx-2 text-gray-300">|</span>
+                      <span className="text-gray-500">Location:</span>
+                      <span className="text-black ml-1">{project.metadata?.location}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -160,34 +173,33 @@ export default function ProfileContent({ userId }: { userId: string }) {
 
       {/* Reviews */}
       <div>
-        <h2 className="text-2xl font-bold mb-6">Reviews</h2>
-        <div className="space-y-6">
+        <div className="mb-1 pl-2">
+          <h2 className="text-2xl font-bold">Your Reviews</h2>
+        </div>
+        <div className="space-y-4">
           {reviews.map((review) => (
-            <div key={review._id} className="bg-gray-50 p-4 rounded-lg">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="font-semibold">{review.title}</h3>
-                <div className="flex items-center gap-2">
-                  <div className="text-sm">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className={i < review.rating ? 'text-yellow-400' : 'text-gray-300'}>
-                        ★
-                      </span>
-                    ))}
-                  </div>
-                  {review.isVerified && (
-                    <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">
-                      Verified
-                    </span>
-                  )}
+            <div key={review._id} className="py-8 space-y-2">
+              <div className="flex items-center">
+                <div className="flex text-yellow-400">
+                  {[...Array(5)].map((_, i) => (
+                    <svg
+                      key={i}
+                      className={`h-5 w-5 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
                 </div>
+                <div className="ml-2 font-semibold">{review.title}</div>
               </div>
-              <p className="text-gray-600 mb-2">{review.content}</p>
-              <div className="flex justify-between items-center text-sm text-gray-500">
-                <span>{review.author.name}</span>
-                <span>{new Date(review.createdAt).toLocaleDateString()}</span>
+              <div className="text-xs text-gray-500">
+                {/* Review for {review.professional.name || review.professional.companyName} • {new Date(review.createdAt).toLocaleDateString()} */}
               </div>
-              <div className="mt-2 text-sm text-gray-500">
-                {review.helpful.count} people found this helpful
+              <div className="text-sm">{review.content}</div>
+              <div className="text-xs text-gray-500">
+                {review.helpful.count} {review.helpful.count === 1 ? 'person' : 'people'} found this review helpful
               </div>
             </div>
           ))}
