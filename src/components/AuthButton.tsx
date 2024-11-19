@@ -30,11 +30,19 @@ export default function AuthButton() {
   }
 
   return (
-    <button
-      onClick={() => signIn(undefined, { callbackUrl: '/' })}
-      className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
-    >
-      Get Started
-    </button>
+    <div className="flex items-center gap-4">
+      <button
+        onClick={() => signIn(undefined, { callbackUrl: '/' })}
+        className="text-xs text-white hover:text-gray-200 transition-colors"
+      >
+        Sign in
+      </button>
+      <button
+        onClick={() => signIn(undefined, { callbackUrl: '/account' })}
+        className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
+      >
+        Get Started
+      </button>
+    </div>
   )
 }
