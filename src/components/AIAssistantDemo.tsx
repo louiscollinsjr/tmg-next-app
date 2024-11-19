@@ -50,8 +50,20 @@ const AIAssistantDemo = () => {
   return (
     <section className="bg-primary/80 backdrop-blur-sm py-12">
       <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="w-full h-[298px] bg-white/10 rounded-lg">
-          <div className="flex flex-col items-center justify-center h-full px-4">
+        <div className="w-full h-[298px] bg-white/10 rounded-lg relative overflow-hidden shadow-md">
+          <div className="absolute inset-0 z-0">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover opacity-20"
+            >
+              <source src="/videos/ai-background.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/60 to-primary/80 mix-blend-multiply backdrop-blur-sm" />
+          </div>
+          <div className="flex flex-col items-center justify-center h-full px-4 relative z-10">
             <div className="flex w-full max-w-2xl">
               <input
                 type="text"
