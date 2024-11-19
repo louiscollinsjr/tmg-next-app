@@ -75,52 +75,120 @@ async function seed() {
   await dbConnect();
   
   try {
+    // Clear existing data
+    console.log('Clearing existing data...');
+    await Project.deleteMany({});
+    await Review.deleteMany({});
+    console.log('✅ Existing data cleared');
+
     // Create projects for normal user (as a customer)
     const customerProjects = await Project.create([
-      createProject(NORMAL_USER_ID, 'published'),
-      createProject(NORMAL_USER_ID, 'published'),
-      createProject(NORMAL_USER_ID, 'draft')
+      {
+        title: 'Kitchen Renovation',
+        description: 'Complete kitchen remodel including new cabinets, countertops, and appliances',
+        status: 'in_progress',
+        tags: ['kitchen', 'renovation', 'appliances'],
+        metadata: {
+          budget: 25000,
+          timeline: '3 months',
+          location: 'Kitchen'
+        },
+        owner: new mongoose.Types.ObjectId(NORMAL_USER_ID)
+      },
+      {
+        title: 'Bathroom Plumbing Fix',
+        description: 'Fix leaking pipes and replace old fixtures in master bathroom',
+        status: 'completed',
+        tags: ['bathroom', 'plumbing', 'repair'],
+        metadata: {
+          budget: 2000,
+          timeline: '1 week',
+          location: 'Master Bathroom'
+        },
+        owner: new mongoose.Types.ObjectId(NORMAL_USER_ID)
+      },
+      {
+        title: 'Deck Extension',
+        description: 'Add 200 sq ft to existing deck with new railing and stairs',
+        status: 'planning',
+        tags: ['outdoor', 'deck', 'construction'],
+        metadata: {
+          budget: 8000,
+          timeline: '2 weeks',
+          location: 'Backyard'
+        },
+        owner: new mongoose.Types.ObjectId(NORMAL_USER_ID)
+      },
+      {
+        title: 'Roof Repair',
+        description: 'Fix leak and replace damaged shingles',
+        status: 'on_hold',
+        tags: ['roof', 'repair', 'exterior'],
+        metadata: {
+          budget: 3500,
+          timeline: '3-4 days',
+          location: 'Roof'
+        },
+        owner: new mongoose.Types.ObjectId(NORMAL_USER_ID)
+      }
     ]);
     
     console.log(`✅ Created ${customerProjects.length} projects for normal user`);
 
-    // Create projects that the pro user is working on
-    const proProjects = await Project.create([
-      createProject(PRO_USER_ID, 'published'),
-      createProject(PRO_USER_ID, 'published'),
-      createProject(PRO_USER_ID, 'archived')
-    ]);
-    
-    console.log(`✅ Created ${proProjects.length} projects for pro user`);
-
-    // Create reviews for completed projects
-    const reviews = [];
-    
-    // Reviews from normal user for pro's work
-    for (const project of proProjects) {
-      if (project.status === 'published' || project.status === 'archived') {
-        reviews.push(createReview(project._id, NORMAL_USER_ID));
-      }
-    }
-
-    // Reviews from other users for pro's work
-    for (const project of proProjects) {
-      if (project.status === 'published' || project.status === 'archived') {
-        const reviewCount = faker.number.int({ min: 1, max: 3 });
-        for (let i = 0; i < reviewCount; i++) {
-          reviews.push(createReview(project._id, NORMAL_USER_ID));
+    // Create some reviews for the completed project
+    const completedProject = customerProjects.find(p => p.status === 'completed');
+    if (completedProject) {
+      await Review.create({
+        project: completedProject._id,
+        author: new mongoose.Types.ObjectId(NORMAL_USER_ID),
+        rating: 5,
+        title: 'Excellent work on the bathroom',
+        content: 'The plumbing work was done quickly and professionally. No more leaks and the new fixtures look great!',
+        isVerified: true,
+        helpful: {
+          count: 3,
+          users: []
         }
-      }
+      });
+      console.log('✅ Created review for completed project');
     }
 
-    await Review.create(reviews);
-    console.log(`✅ Created ${reviews.length} reviews`);
+    // Create projects for pro user
+    const proProjects = await Project.create([
+      {
+        title: 'Master Bedroom Addition',
+        description: 'Adding a 400 sq ft master bedroom suite with walk-in closet and ensuite bathroom',
+        status: 'in_progress',
+        tags: ['construction', 'bedroom', 'bathroom'],
+        metadata: {
+          budget: 75000,
+          timeline: '2 months',
+          location: 'Second Floor'
+        },
+        owner: new mongoose.Types.ObjectId(PRO_USER_ID)
+      },
+      {
+        title: 'Garage Door Replacement',
+        description: 'Replace old garage door with modern automatic door and smart controls',
+        status: 'completed',
+        tags: ['garage', 'exterior', 'smart-home'],
+        metadata: {
+          budget: 2500,
+          timeline: '1 day',
+          location: 'Garage'
+        },
+        owner: new mongoose.Types.ObjectId(PRO_USER_ID)
+      }
+    ]);
 
-    console.log('✨ Seeding completed successfully!');
+    console.log(`✅ Created ${proProjects.length} projects for pro user`);
+    
   } catch (error) {
-    console.error('❌ Error during seeding:', error);
+    console.error('❌ Error seeding data:', error);
+    throw error;
   } finally {
     await mongoose.disconnect();
+    console.log('✅ Database connection closed');
   }
 }
 

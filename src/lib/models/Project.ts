@@ -4,13 +4,17 @@ export interface IProject extends Document {
   title: string;
   description: string;
   owner: mongoose.Types.ObjectId;
-  status: 'draft' | 'published' | 'archived';
+  status: 'planning' | 'in_progress' | 'on_hold' | 'completed' | 'cancelled';
   tags: string[];
   images: {
     url: string;
     caption?: string;
   }[];
-  metadata?: Record<string, any>;
+  metadata?: {
+    budget?: number;
+    timeline?: string;
+    location?: string;
+  };
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,15 +25,19 @@ const ProjectSchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   status: {
     type: String,
-    enum: ['draft', 'published', 'archived'],
-    default: 'draft'
+    enum: ['planning', 'in_progress', 'on_hold', 'completed', 'cancelled'],
+    default: 'planning'
   },
   tags: [String],
   images: [{
     url: { type: String, required: true },
     caption: String
   }],
-  metadata: Schema.Types.Mixed
+  metadata: {
+    budget: Number,
+    timeline: String,
+    location: String
+  }
 }, {
   timestamps: true
 });

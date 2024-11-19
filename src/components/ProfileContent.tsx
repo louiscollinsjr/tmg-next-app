@@ -4,7 +4,7 @@ interface Project {
   _id: string;
   title: string;
   description: string;
-  status: 'draft' | 'published' | 'archived';
+  status: 'planning' | 'in_progress' | 'on_hold' | 'completed' | 'cancelled';
   tags: string[];
   metadata?: {
     budget?: number;
@@ -84,45 +84,56 @@ export default function ProfileContent({ userId }: { userId: string }) {
 
   // Group projects by status
   const projectsByStatus = {
-    published: projects.filter(p => p.status === 'published'),
-    draft: projects.filter(p => p.status === 'draft'),
-    archived: projects.filter(p => p.status === 'archived')
+    in_progress: projects.filter(p => p.status === 'in_progress'),
+    planning: projects.filter(p => p.status === 'planning'),
+    on_hold: projects.filter(p => p.status === 'on_hold'),
+    completed: projects.filter(p => p.status === 'completed'),
+    cancelled: projects.filter(p => p.status === 'cancelled')
   };
 
   return (
     <div className="space-y-8">
       {/* Projects */}
       <div className="mb-12">
-        <div className="flex justify-between items-center mb-6">
+        <div className="mb-2">
           <h2 className="text-2xl font-bold">Projects</h2>
-          <div className="flex gap-2">
-            <div className="text-sm px-3 py-1 rounded-full bg-green-100 text-green-800">
-              {projectsByStatus.published.length} Published
-            </div>
-            <div className="text-sm px-3 py-1 rounded-full bg-yellow-100 text-yellow-800">
-              {projectsByStatus.draft.length} Draft
-            </div>
-            <div className="text-sm px-3 py-1 rounded-full bg-gray-100 text-gray-800">
-              {projectsByStatus.archived.length} Archived
-            </div>
+        </div>
+        <div className="text-xs flex space-x-4 mb-6">
+          <div>
+            <span className="text-gray-500">In Progress:</span>
+            <span className="text-black ml-1">{projectsByStatus.in_progress.length}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Planning:</span>
+            <span className="text-black ml-1">{projectsByStatus.planning.length}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">On Hold:</span>
+            <span className="text-black ml-1">{projectsByStatus.on_hold.length}</span>
+          </div>
+          <div>
+            <span className="text-gray-500">Completed:</span>
+            <span className="text-black ml-1">{projectsByStatus.completed.length}</span>
           </div>
         </div>
 
         {Object.entries(projectsByStatus).map(([status, statusProjects]) => (
           statusProjects.length > 0 && (
             <div key={status} className="mb-8">
-              <h3 className="text-xl font-semibold mb-4 capitalize">{status} Projects</h3>
+              <h3 className="text-xl font-semibold mb-4 capitalize">{status.replace('_', ' ')}</h3>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {statusProjects.map((project) => (
                   <div key={project._id} className="bg-gray-50 p-4 rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <h3 className="text-xl font-semibold">{project.title}</h3>
-                      <div className="flex gap-2">
-                        {project.tags.map((tag) => (
-                          <span key={tag} className="text-xs px-2 py-1 bg-gray-100 rounded-full">
-                            {tag}
-                          </span>
-                        ))}
+                      <div className={`text-sm px-2 py-1 rounded-full ${
+                        status === 'in_progress' ? 'bg-blue-100 text-blue-800' :
+                        status === 'planning' ? 'bg-yellow-100 text-yellow-800' :
+                        status === 'on_hold' ? 'bg-orange-100 text-orange-800' :
+                        status === 'completed' ? 'bg-green-100 text-green-800' :
+                        'bg-gray-100 text-gray-800'
+                      }`}>
+                        {status.replace('_', ' ')}
                       </div>
                     </div>
                     <p className="text-gray-600 mb-4">{project.description}</p>
