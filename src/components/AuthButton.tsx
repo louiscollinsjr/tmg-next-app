@@ -1,6 +1,7 @@
 'use client'
 
 import { signIn, signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
 
 export default function AuthButton() {
   const { data: session, status } = useSession()
@@ -11,16 +12,19 @@ export default function AuthButton() {
 
   if (session) {
     return (
-      <div className="flex items-center gap-4">
-        <span className="text-xs text-white">
-          {session.user?.name}
-        </span>
+      <div className="flex items-center gap-6">
         <button
           onClick={() => signOut()}
           className="text-xs text-white hover:text-gray-200 transition-colors"
         >
           Sign out
         </button>
+        <Link 
+          href="/account" 
+          className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
+        >
+          Dashboard
+        </Link>
       </div>
     )
   }
@@ -28,9 +32,9 @@ export default function AuthButton() {
   return (
     <button
       onClick={() => signIn(undefined, { callbackUrl: '/' })}
-      className="text-xs text-white hover:text-gray-200 transition-colors"
+      className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
     >
-      Sign in
+      Get Started
     </button>
   )
 }
