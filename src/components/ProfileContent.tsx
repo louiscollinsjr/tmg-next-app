@@ -50,7 +50,11 @@ interface ProfileData {
   reviews: Review[];
 }
 
-export default function ProfileContent({ userId }: { userId: string }) {
+interface ProfileContentProps {
+  userId: string; // This will be the user's email
+}
+
+export default function ProfileContent({ userId }: ProfileContentProps) {
   const [loading, setLoading] = useState(true);
   const [profileData, setProfileData] = useState<ProfileData | null>(null);
   const [error, setError] = useState<string | null>(null);

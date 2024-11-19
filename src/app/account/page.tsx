@@ -6,9 +6,24 @@ import { useState, useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ProfileContent from '@/components/ProfileContent';
+import type { Session } from 'next-auth';
+
+// Extend the built-in session types
+interface ExtendedSession extends Session {
+  user: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    id?: string;
+    isPro?: boolean;
+  }
+}
 
 export default function AccountPage() {
-  const { data: session, status } = useSession();
+  const { data: session, status } = useSession() as { 
+    data: ExtendedSession | null;
+    status: "loading" | "authenticated" | "unauthenticated";
+  };
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('profile');
   

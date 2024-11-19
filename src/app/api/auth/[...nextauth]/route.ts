@@ -1,5 +1,6 @@
 import NextAuth from "next-auth"
 import type { NextAuthOptions } from "next-auth"
+import type { Session, User } from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
@@ -7,6 +8,17 @@ import { createOrUpdateUser } from "@/lib/auth/utils"
 import { verifyPassword } from "@/lib/auth/password"
 import dbConnect from "@/lib/db/mongodb"
 import User from "@/lib/models/User"
+
+// Extend the built-in session types
+interface ExtendedSession extends Session {
+  user: {
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
+    id?: string;
+    isPro?: boolean;
+  }
+}
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -71,7 +83,7 @@ const authOptions: NextAuthOptions = {
       }
       return false;
     },
-    async session({ session, token }) {
+    async session({ session, token }): Promise<ExtendedSession> {
       if (session.user) {
         // Find the user in the database to get their MongoDB _id
         await dbConnect();
