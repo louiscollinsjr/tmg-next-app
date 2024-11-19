@@ -84,7 +84,17 @@ const authOptions: NextAuthOptions = {
       return false;
     },
     async session({ session, token }): Promise<ExtendedSession> {
-      if (session.user) {
+      // Cast the session to our extended type
+      const extendedSession = session as ExtendedSession;
+      
+      if (!extendedSession.user.id) {
+        extendedSession.user.id = '';
+      }
+      if (!extendedSession.user.isPro) {
+        extendedSession.user.isPro = false;
+      }
+      
+      if (extendedSession.user) {
         // Find the user in the database to get their MongoDB _id
         await dbConnect();
         let dbUser;
@@ -98,17 +108,17 @@ const authOptions: NextAuthOptions = {
               dbUser = await User.findById(token.sub);
             } catch (error) {
               // If token.sub is not a valid ObjectId, try to find by email
-              dbUser = await User.findOne({ email: session.user.email });
+              dbUser = await User.findOne({ email: extendedSession.user.email });
             }
           }
         }
 
         if (dbUser) {
-          session.user.id = dbUser._id.toString();
-          session.user.isPro = dbUser.isPro;
+          extendedSession.user.id = dbUser._id.toString();
+          extendedSession.user.isPro = dbUser.isPro;
         }
       }
-      return session;
+      return extendedSession;
     },
     async jwt({ token, user, account, profile }) {
       if (user) {
