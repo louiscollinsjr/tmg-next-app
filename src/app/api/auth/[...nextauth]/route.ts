@@ -73,7 +73,28 @@ const authOptions: NextAuthOptions = {
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.sub;
+        // Find the user in the database to get their MongoDB _id
+        await dbConnect();
+        let dbUser;
+        
+        if (token.sub) {
+          // First try to find by providerId (for OAuth users)
+          dbUser = await User.findOne({ providerId: token.sub });
+          if (!dbUser) {
+            // If not found, try to find by _id (for credentials users)
+            try {
+              dbUser = await User.findById(token.sub);
+            } catch (error) {
+              // If token.sub is not a valid ObjectId, try to find by email
+              dbUser = await User.findOne({ email: session.user.email });
+            }
+          }
+        }
+
+        if (dbUser) {
+          session.user.id = dbUser._id.toString();
+          session.user.isPro = dbUser.isPro;
+        }
       }
       return session;
     },
