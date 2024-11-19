@@ -13,12 +13,13 @@ export async function GET(
     console.log('Fetching profile data for user:', params.id);
     await dbConnect();
     
-    // Fetch user data - try both ObjectId and providerId
+    // Fetch user data - try both ObjectId and email
     let user;
     if (mongoose.Types.ObjectId.isValid(params.id)) {
       user = await User.findById(params.id).select('-password -__v');
     } else {
-      user = await User.findOne({ providerId: params.id }).select('-password -__v');
+      // Try to find by email
+      user = await User.findOne({ email: params.id }).select('-password -__v');
     }
 
     if (!user) {

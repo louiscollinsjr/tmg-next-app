@@ -87,7 +87,7 @@ export default function AccountPage() {
 
             {/* Content */}
             <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-              {activeTab === 'profile' && session?.user?.id && (
+              {activeTab === 'profile' && session?.user?.email && (
                 <div className="bg-gray-50 rounded-lg p-6">
                   {/* Basic Profile Info */}
                   <div className="space-y-6 mb-8">
@@ -125,7 +125,7 @@ export default function AccountPage() {
                       </button>
                     </div>
                   </div>
-                  <ProfileContent userId={session.user.id} />
+                  <ProfileContent userId={session.user.email} />
                 </div>
               )}
               
