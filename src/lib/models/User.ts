@@ -4,40 +4,38 @@ export interface IUser extends Document {
   email: string;
   name: string;
   image?: string;
-  password?: string;
-  providers: string[];
+  providers?: string[];
   providerId?: string;
   isPro: boolean;
-  contact: {
-    phone?: string;
-    address?: {
-      street: string;
-      city: string;
-      state: string;
-      zip: string;
-      country: string;
-    };
-  };
-  business?: {
-    name: string;
-    description: string;
+  businessInfo?: {
+    companyName?: string;
+    yearsInBusiness?: number;
+    license?: string;
+    insurance?: string;
+    specialties?: string[];
+    serviceArea?: string[];
     website?: string;
-    socialMedia?: {
-      facebook?: string;
-      twitter?: string;
-      instagram?: string;
-      linkedin?: string;
-    };
+    phone?: string;
   };
   createdAt: Date;
   updatedAt: Date;
 }
 
+const businessInfoSchema = new Schema({
+  companyName: String,
+  yearsInBusiness: Number,
+  license: String,
+  insurance: String,
+  specialties: [String],
+  serviceArea: [String],
+  website: String,
+  phone: String
+});
+
 const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true },
   image: String,
-  password: { type: String, select: false },
   providers: [String],
   providerId: String,
   isPro: { type: Boolean, default: false },
@@ -51,17 +49,7 @@ const UserSchema = new Schema({
       country: String,
     },
   },
-  business: {
-    name: String,
-    description: String,
-    website: String,
-    socialMedia: {
-      facebook: String,
-      twitter: String,
-      instagram: String,
-      linkedin: String,
-    },
-  },
+  businessInfo: businessInfoSchema
 }, {
   timestamps: true,
   strict: false // Allows for flexible schema expansion

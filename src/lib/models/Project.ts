@@ -4,6 +4,7 @@ export interface IProject extends Document {
   title: string;
   description: string;
   owner: mongoose.Types.ObjectId;
+  contractor: mongoose.Types.ObjectId;
   status: 'planning' | 'in_progress' | 'on_hold' | 'completed' | 'cancelled';
   tags: string[];
   images: {
@@ -23,6 +24,7 @@ const ProjectSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   owner: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  contractor: { type: Schema.Types.ObjectId, ref: 'User' },
   status: {
     type: String,
     enum: ['planning', 'in_progress', 'on_hold', 'completed', 'cancelled'],

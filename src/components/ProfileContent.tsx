@@ -35,9 +35,11 @@ interface Review {
     count: number;
     users: string[];
   };
-  professional: {
+  contractor: {
     name: string;
-    companyName: string;
+    businessInfo: {
+      companyName: string;
+    };
   };
   createdAt: string;
 }
@@ -195,7 +197,7 @@ export default function ProfileContent({ userId }: { userId: string }) {
                 <div className="ml-2 font-semibold">{review.title}</div>
               </div>
               <div className="text-xs text-gray-500">
-                {/* Review for {review.professional.name || review.professional.companyName} • {new Date(review.createdAt).toLocaleDateString()} */}
+                Work done by {review.contractor?.name} • {review.contractor?.businessInfo?.companyName} • {new Date(review.createdAt).toLocaleDateString()}
               </div>
               <div className="text-sm">{review.content}</div>
               <div className="text-xs text-gray-500">
