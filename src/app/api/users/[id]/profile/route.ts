@@ -29,6 +29,7 @@ export async function GET(
 
     // Fetch user's projects
     const projects = await Project.find({ owner: user._id })
+      .populate('contractor', 'name businessInfo')
       .select('-__v')
       .sort({ createdAt: -1 });
     console.log('Found projects:', projects.length);
@@ -37,7 +38,8 @@ export async function GET(
     const reviews = await Review.find({
       project: { $in: projects.map(p => p._id) }
     })
-      .populate('author', 'name')
+      .populate('owner', 'name')
+      .populate('contractor', 'name businessInfo')
       .select('-__v')
       .sort({ createdAt: -1 });
     console.log('Found reviews:', reviews.length);
