@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { FaHeart, FaRegHeart, FaStar } from 'react-icons/fa';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
@@ -34,16 +35,18 @@ export default function ProfessionalCard({
   const [isSaved, setIsSaved] = useState(isFavorite);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const nextImage = () => {
+  const nextImage = (e: React.MouseEvent) => {
+    e.preventDefault();
     setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
-  const previousImage = () => {
+  const previousImage = (e: React.MouseEvent) => {
+    e.preventDefault();
     setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   return (
-    <div className="group relative">
+    <Link href={`/professionals/${id}`} className="block group relative">
       {/* Image Container */}
       <div className="relative w-[312px] h-[298px] overflow-hidden rounded-xl bg-gray-200">
         <Image
@@ -59,7 +62,7 @@ export default function ProfessionalCard({
           <>
             {currentImageIndex > 0 && (
               <button
-                onClick={(e) => { e.preventDefault(); previousImage(); }}
+                onClick={previousImage}
                 className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white"
               >
                 <IoIosArrowBack className="w-5 h-5 text-gray-800" />
@@ -67,7 +70,7 @@ export default function ProfessionalCard({
             )}
             {currentImageIndex < images.length - 1 && (
               <button
-                onClick={(e) => { e.preventDefault(); nextImage(); }}
+                onClick={nextImage}
                 className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white"
               >
                 <IoIosArrowForward className="w-5 h-5 text-gray-800" />
@@ -133,6 +136,6 @@ export default function ProfessionalCard({
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
