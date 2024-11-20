@@ -10,11 +10,11 @@ export default function LeaveReview() {
         <section className="relative overflow-hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-[22px] py-24">
             <div className="text-center">
-              <h1 className="font-roboto text-4xl md:text-6xl font-medium text-gray-900 tracking-tight mb-6">
+              <h1 className="text-4xl font-bold text-gray-900 mb-4">
                 Share Your Experience
               </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-12 font-roboto">
-                Help your community by reviewing the professionals you've worked with
+              <p className="text-xl text-gray-600 mb-8">
+                Let&apos;s build a stronger community through honest feedback
               </p>
               
               {/* Review Form */}
@@ -82,6 +82,9 @@ export default function LeaveReview() {
         </section>
 
         {/* Content will go here */}
+        <p className="text-gray-600 mb-8">
+          Your review helps others make informed decisions and encourages professionals to maintain high standards. Let&apos;s work together to build trust!
+        </p>
       </div>
       <Footer />
     </>
