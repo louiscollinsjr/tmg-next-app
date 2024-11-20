@@ -30,11 +30,13 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
       "https://images.unsplash.com/photo-1621905252762-09b7be9d9e8c?w=800&h=600&fit=crop"
     ],
     detailedRatings: {
+      overall: 4.9,
       timeliness: 4.8,
       cleanliness: 4.9,
       communication: 5.0,
       value: 4.7,
-      responsiveness: 4.9
+      quality: 4.9,
+      expertise: 4.8
     },
     reviews: [
       {
@@ -142,22 +144,6 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
                   <p className="text-gray-600">{professional.serviceArea}</p>
                 </div>
               </div>
-
-              {/* Detailed Ratings */}
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Detailed Ratings</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {Object.entries(professional.detailedRatings).map(([category, rating]) => (
-                    <div key={category} className="flex items-center justify-between">
-                      <span className="text-gray-600 capitalize">{category}</span>
-                      <div className="flex items-center gap-2">
-                        <RatingStars rating={rating} />
-                        <span className="text-gray-600">{rating}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Column - Contact Card */}
@@ -200,34 +186,60 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
         </div>
       </div>
 
-        {/* Reviews */}
-        <div className=" bg-zinc-50 py-12">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ maxWidth: '980px' }}>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-                  {professional.reviews.map((review) => (
-                    <div key={review.id} className="">
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-start gap-3">
-                          <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-medium">
-                            {review.author.split(' ').map(name => name[0]).join('')}
-                          </div>
-                          <div>
-                            <h4 className="font-medium text-gray-900">{review.author}</h4>
-                            <div className="text-sm text-gray-500">{review.workType}</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="text-sm text-gray-500 flex items-center gap-2 pt-2">
-                              <RatingStars rating={review.rating} size='sm'/>
-                              <span>{formatDate(review.date)}</span>
-                            </div>
-                      <p className="text-gray-600 font-normal">{review.content}</p>
-                    </div>
-                  ))}
+        {/* Detailed Ratings */}
+        <div className="bg-zinc-50 py-12">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-zinc-50" style={{ maxWidth: '980px' }}>
+          <div className="grid grid-cols-7 gap-0 mb-2  rounded-lg p-6 pl0">
+            {Object.entries({
+              'Overall rating': professional.detailedRatings.overall,
+              'Timeliness': professional.detailedRatings.timeliness,
+              'Cleanliness': professional.detailedRatings.cleanliness,
+              'Communication': professional.detailedRatings.communication,
+              'Value': professional.detailedRatings.value,
+              'Quality': professional.detailedRatings.quality,
+              'Expertise': professional.detailedRatings.expertise
+            }).map(([category, rating], index) => (
+              <div key={category} className={`px-4 py-2 ${index < 6 ? 'border-r border-gray-200' : ''}`}>
+                <div className="text-xs text-gray-500 mb-1 text-left">{category}</div>
+                <div className="flex items-center gap-1">
+                  <RatingStars rating={rating} size="xs" />
+                  <span className="text-xs text-gray-600">{rating}</span>
                 </div>
               </div>
+            ))}
+          </div>
         </div>
+</div>
+        {/* Reviews */}
+        <div className="bg-zinc-50 py-12">
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-200" style={{ maxWidth: '980px' }}>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              {professional.reviews.map((review) => (
+                <div key={review.id} className="">
+                  <div className="flex items-start justify-between mb-2">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-medium">
+                        {review.author.split(' ').map(name => name[0]).join('')}
+                      </div>
+                      <div>
+                        <h4 className="font-medium text-gray-900">{review.author}</h4>
+                        <div className="text-sm text-gray-500">{review.workType}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-sm text-gray-500 flex items-center gap-2 pt-2">
+                    <RatingStars rating={review.rating} size='sm'/>
+                    <span>{formatDate(review.date)}</span>
+                  </div>
+                  <p className="text-gray-600 font-normal">{review.content}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        
       <Footer />
 
       {/* Full Screen Photo Gallery Modal */}
