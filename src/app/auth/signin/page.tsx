@@ -70,18 +70,18 @@ export default function SignIn() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-primary">
-      <div className="flex-grow flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md mt-20 px-12">
+    <div className="min-h-screen flex flex-col bg-zinc-50">
+      <div className="flex-grow flex items-center justify-center py-24">
+        <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-200 w-full max-w-md px-12">
           <div className="text-center mb-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-2">Sign in to TryMyGuys</h2>
-            <p className="text-gray-500 font-normal">{isSignUp ? 'Create your account to get started' : 'Welcome back! Please sign in to continue'}</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 font-roboto">{isSignUp ? 'Create Account' : 'Welcome Back'}</h2>
+            <p className="text-xl text-gray-600 font-roboto">{isSignUp ? 'Create your account to get started' : 'Sign in to continue'}</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+          <form onSubmit={handleSubmit} className="space-y-6 mb-6">
             {isSignUp && (
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 font-roboto">
                   Name
                 </label>
                 <input
@@ -89,14 +89,14 @@ export default function SignIn() {
                   name="name"
                   id="name"
                   required
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                   placeholder="John Doe"
                 />
               </div>
             )}
             
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 font-roboto">
                 Email
               </label>
               <input
@@ -104,13 +104,13 @@ export default function SignIn() {
                 name="email"
                 id="email"
                 required
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                 placeholder="you@example.com"
               />
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2 font-roboto">
                 Password
               </label>
               <input
@@ -119,19 +119,19 @@ export default function SignIn() {
                 id="password"
                 required
                 minLength={8}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                 placeholder="••••••••"
               />
             </div>
 
             {error && (
-              <div className="text-red-500 text-sm">{error}</div>
+              <div className="text-red-500 text-sm font-roboto">{error}</div>
             )}
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-black text-white py-2 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50"
+              className="w-full bg-black text-white font-roboto px-8 py-3 rounded-xl hover:bg-gray-800 transition-colors disabled:opacity-50"
             >
               {loading ? 'Loading...' : isSignUp ? 'Create Account' : 'Sign In'}
             </button>
@@ -139,17 +139,17 @@ export default function SignIn() {
 
           <div className="relative mb-6">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
+              <div className="w-full border-t border-gray-200"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 py-4 bg-white text-gray-400 font-semibold">or</span>
+              <span className="px-2 py-4 bg-white text-gray-500 font-roboto">or</span>
             </div>
           </div>
 
           <div className="space-y-4">
             <button
               onClick={() => signIn('google', { callbackUrl: '/' })}
-              className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-roboto"
             >
               <Image
                 src="/google.svg"
@@ -163,7 +163,7 @@ export default function SignIn() {
 
             <button
               onClick={() => signIn('github', { callbackUrl: '/' })}
-              className="w-full flex items-center justify-center gap-3 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-roboto"
             >
               <Image
                 src="/github.svg"
@@ -177,12 +177,12 @@ export default function SignIn() {
           </div>
 
           <div className="mt-6 text-center">
-            <span className="text-gray-500 font-normal">
+            <span className="text-gray-600 font-roboto">
               {isSignUp ? 'Already have an account? ' : "Don't have an account? "}
               <button
                 type="button"
                 onClick={() => setIsSignUp(!isSignUp)}
-                className="text-blue-600 hover:underline font-medium"
+                className="text-black hover:underline font-medium"
               >
                 {isSignUp ? 'Sign in' : 'Sign up'}
               </button>
@@ -191,15 +191,20 @@ export default function SignIn() {
         </div>
       </div>
 
+      {/* Background Pattern */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#0000000A_1px,transparent_1px),linear-gradient(to_bottom,#0000000A_1px,transparent_1px)] bg-[size:24px_24px]" />
+      </div>
+
       <footer className="py-6">
-        <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-white/80">
-          <div className="text-white/60">&copy; {new Date().getFullYear()} TryMyGuys.com</div>
+        <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-gray-500">
+          <div className="text-gray-400">&copy; {new Date().getFullYear()} TryMyGuys.com</div>
           <div className="flex gap-4">
-            <Link href="/privacy" className="hover:text-white hover:underline">Privacy Policy</Link>
-            <span className="hidden md:inline text-white/50">|</span>
-            <Link href="/terms" className="hover:text-white hover:underline">Terms of Use</Link>
-            <span className="hidden md:inline text-white/50">|</span>
-            <Link href="/legal" className="hover:text-white hover:underline">Legal</Link>
+            <Link href="/privacy" className="hover:text-gray-900 hover:underline">Privacy Policy</Link>
+            <span className="hidden md:inline text-gray-400">|</span>
+            <Link href="/terms" className="hover:text-gray-900 hover:underline">Terms of Use</Link>
+            <span className="hidden md:inline text-gray-400">|</span>
+            <Link href="/legal" className="hover:text-gray-900 hover:underline">Legal</Link>
           </div>
         </div>
       </footer>
