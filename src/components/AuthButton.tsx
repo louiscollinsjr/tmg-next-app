@@ -7,7 +7,7 @@ export default function AuthButton() {
   const { data: session, status } = useSession()
 
   if (status === 'loading') {
-    return <div className="text-xs text-white opacity-80">Loading...</div>
+    return <div className="text-xs text-gray-400 opacity-80">Loading...</div>
   }
 
   if (session) {
@@ -15,13 +15,13 @@ export default function AuthButton() {
       <div className="flex items-center gap-6">
         <button
           onClick={() => signOut()}
-          className="text-xs text-white hover:text-gray-200 transition-colors"
+          className="text-xs  text-gray-600 hover:text-gray-900 transition-colors"
         >
           Sign out
         </button>
         <Link 
           href="/account" 
-          className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
+          className="bg-black text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-gray-700 transition-colors"
         >
           Dashboard
         </Link>
@@ -30,16 +30,16 @@ export default function AuthButton() {
   }
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-6">
       <button
         onClick={() => signIn(undefined, { callbackUrl: '/' })}
-        className="text-xs text-white hover:text-gray-200 transition-colors"
+        className="text-sm  text-gray-600 hover:text-gray-900 transition-colors"
       >
         Sign in
       </button>
       <button
         onClick={() => signIn(undefined, { callbackUrl: '/account' })}
-        className="bg-[#0071e3] text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-[#0077ed] transition-colors"
+        className="bg-black text-white text-sm font-normal px-6 py-2 rounded-xl hover:bg-gray-700 transition-colors"
       >
         Get Started
       </button>

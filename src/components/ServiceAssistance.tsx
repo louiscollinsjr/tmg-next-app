@@ -24,13 +24,13 @@ export default function ServiceAssistance() {
   ];
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 font-open-sans">
       <div className="max-w-[980px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Heading */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl max-w-3xl mx-auto font-bold text-gray-900 mb-4 flex flex-col gap-2">
-            <span>Need assistance with home services?</span>
-            <span>Find trusted local professionals</span>
+          <h2 className="text-4xl sm:text-5xl font-semibold max-w-4xl mx-auto text-gray-900 mb-4 flex flex-col gap-2 tracking-tight">
+            <span>Need home services?</span>
+            <span>TryMyGuys</span>
           </h2>
           
         </div>
@@ -57,11 +57,11 @@ export default function ServiceAssistance() {
         </div>
 
         {/* Footer Text */}
-        <div className="mt-12 text-center text-xl text-gray-600 max-w-5xl mx-auto">
+        <div className="mt-12 text-center text-2xl text-gray-600 max-w-5xl mx-auto">
           <p>
             We&apos;ve partnered with trusted local service providers to bring you reliable home maintenance and improvement solutions. Our average service provider has over 8 years of experience.
           </p>
-          <button className="mt-12 px-8 py-3 text-sm font-semibold border-2 border-black text-black rounded-full hover:bg-black hover:text-white transition-colors">
+          <button className="mt-12 px-8 py-3 text-sm border border-black text-black rounded-xl hover:bg-black hover:text-white transition-colors">
             Meet our Pros
           </button>
         </div>

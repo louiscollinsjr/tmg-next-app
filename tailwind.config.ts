@@ -20,7 +20,10 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)'],
         mono: ['var(--font-geist-mono)'],
-        spartan: ['var(--font-league-spartan)'],
+        montserrat: ['var(--font-montserrat)'],
+        'open-sans': ['var(--font-opensans)'],
+        lato: ['var(--font-lato)'],
+        roboto: ['var(--font-roboto)'],
       },
     },
   },

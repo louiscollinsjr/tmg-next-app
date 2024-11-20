@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, League_Spartan } from "next/font/google";
+import { Inter, League_Spartan, Montserrat, Figtree, Lato, Open_Sans, Roboto } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
@@ -15,10 +15,26 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const inter = Inter({ subsets: ["latin"] });
-const leagueSpartan = League_Spartan({
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+});
+
+const openSans = Open_Sans({
+  subsets: ['latin'],
+  variable: '--font-opensans',
+});
+
+const lato = Lato({
+  weight: ['100', '300', '400', '700', '900'],
+  subsets: ['latin'],
+  variable: '--font-lato',
+});
+
+const roboto = Roboto({
   subsets: ["latin"],
-  variable: "--font-league-spartan",
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
 });
 
 export const metadata: Metadata = {
@@ -97,10 +113,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className} ${leagueSpartan.variable} ${geistSans.variable} ${geistMono.variable}`}
-      >
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${openSans.variable} ${lato.variable} ${roboto.variable}`}>
+      <body>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

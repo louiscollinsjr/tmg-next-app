@@ -9,51 +9,55 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-primary">
-      <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-[64px]">
-          {/* Logo and Desktop Menu */}
-          <div className="flex items-center space-x-8">
-            <Link href="/" className="text-white text-2xl font-bold hover:text-white transition-colors">
-              TryMyGuys
+    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md">
+      <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
+        <div className="flex items-center h-[64px]">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="text-[#f93a16] text-3xl font-bold hover:text-gray-700 transition-colors">
+              tmg.
             </Link>
-            
-            {/* Desktop Menu */}
-            <div className="hidden md:flex items-center space-x-10 text-white">
-              <Link href="/explore-designs" className="text-xs hover:text-gray-200 transition-colors">
+          </div>
+          
+          {/* Desktop Menu - Centered */}
+          <div className="hidden md:flex flex-grow justify-center">
+            <div className="flex items-center space-x-10">
+              <Link href="/explore-designs" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Explore Designs
               </Link>
-              <Link href="/find-professionals" className="text-xs hover:text-gray-200 transition-colors">
+              <Link href="/find-professionals" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Find Professionals
               </Link>
-              <Link href="/start-project" className="text-xs hover:text-gray-200 transition-colors">
+              <Link href="/start-project" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Start a Project
               </Link>
-              <Link href="/leave-review" className="text-xs hover:text-gray-200 transition-colors">
+              <Link href="/leave-review" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Leave a Review
               </Link>
-              <div>
-                <AuthButton />
-              </div>
             </div>
           </div>
 
-          {/* Auth Button and Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
-            <div className="md:hidden flex items-center space-x-4">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-[#d1d1d1] hover:text-white transition-colors p-2"
-              >
-                <Image
-                  src="/menu.svg"
-                  alt="Menu"
-                  width={20}
-                  height={20}
-                  className="opacity-80 hover:opacity-100"
-                />
-              </button>
+          {/* Auth Button */}
+          <div className="flex-shrink-0">
+            <div className="md:block">
+              <AuthButton />
             </div>
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <div className="md:hidden ml-4">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-gray-600 hover:text-gray-900 transition-colors p-2"
+            >
+              <Image
+                src="/menu.svg"
+                alt="Menu"
+                width={20}
+                height={20}
+                className="opacity-80 hover:opacity-100"
+              />
+            </button>
           </div>
         </div>
 

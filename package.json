@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "bun next dev --port 3003",
-    "build": "bun next build",
-    "start": "bun next start",
-    "lint": "bun next lint",
+    "dev": "next dev --port 3003",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "cleanup": "bash ./scripts/cleanup.sh",
     "fresh": "bun run cleanup && bun run dev"
   },
