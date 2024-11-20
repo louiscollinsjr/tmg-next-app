@@ -21,10 +21,10 @@ export default function LeaveReview() {
               <div className="max-w-xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
                 <form className="space-y-6">
                   <div className="text-left">
-                    <label className="block text-sm font-medium text-gray-700 mb-2 font-roboto">Professional's Name</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-2 font-roboto">Professional&apos;s Name</label>
                     <input
                       type="text"
-                      placeholder="Enter the professional's name"
+                      placeholder="Enter the professional&apos;s name"
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                     />
                   </div>
