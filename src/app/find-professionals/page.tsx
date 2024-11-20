@@ -1,5 +1,6 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ProfessionalsGrid from "@/components/ProfessionalsGrid";
 
 export default function FindProfessionals() {
   return (
@@ -45,7 +46,9 @@ export default function FindProfessionals() {
           </div>
         </section>
 
-        {/* Content will go here */}
+        {/* Professionals Grid Section */}
+        <ProfessionalsGrid />
+        
       </div>
       <Footer />
     </>

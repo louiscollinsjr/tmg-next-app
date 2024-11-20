@@ -6,7 +6,7 @@ import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import { SiBluesky } from 'react-icons/si';
 
 export default function Footer() {
-  const [location, setLocation] = useState('San Francisco, CA, USA'); // Placeholder location
+  const [location, setLocation] = useState('United States'); // Placeholder location
 
   // TODO: Implement actual geolocation
   useEffect(() => {
@@ -14,7 +14,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="bg-zinc-100 text-gray-800 pt-16 text-xs">
+    <footer className="bg-zinc-100 text-gray-800 pt-24 text-xs">
       <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
         {/* Top Row - Useful Links */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-12">
