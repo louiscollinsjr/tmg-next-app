@@ -4,7 +4,7 @@ export default function Hero() {
       {/* Main Content */}
       <div className="max-w-3xl mx-auto">
         {/* <h1 className="text-lg sm:text-lg font-normal text-black tracking-tight mb-8">trymyguys.com</h1> */}
-        <h1 className="text-4xl sm:text-7xl font-normal text-black mb-2">
+        <h1 className="text-4xl sm:text-6xl font-normal text-black mb-2">
           Find trusted pros, recommended by our community.
         </h1>
         <p className="text-xl text-gray-600 my-8">

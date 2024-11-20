@@ -10,6 +10,7 @@ import MissionStatement from "@/components/MissionStatement";
 import AIAssistantDemo from "@/components/AIAssistantDemo";
 import Hero from "@/components/Hero";
 import ServiceAssistance from "@/components/ServiceAssistance";
+import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         <CommunityPowerCTA />
         <MissionStatement />
         <AIAssistantDemo />
+        <FAQ />
       </div>
       <Footer />
     </>
