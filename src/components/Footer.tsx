@@ -17,9 +17,9 @@ export default function Footer() {
     <footer className="bg-zinc-100 text-gray-800 pt-16 text-xs">
       <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
         {/* Top Row - Useful Links */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-12">
           {/* About TMG */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-3">
             <h3 className="font-bold mb-4 text-3xl">tmg.</h3>
             <p className="text-gray-800 mb-4">
               Connecting homeowners with trusted professionals.
@@ -40,114 +40,117 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services & Support */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="font-semibold mb-4">For Homeowners</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/services" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Our Services
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pricing" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/reviews" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Reviews
-                  </Link>
-                </li>
-              </ul>
+          {/* Links Columns Container */}
+          <div className="lg:col-span-9 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:justify-items-center">
+            {/* For Homeowners & Support */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-semibold mb-4">For Homeowners</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/services" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Our Services
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/pricing" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Pricing
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/reviews" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Reviews
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-4">Support</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/help" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Help Center
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/safety" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Safety Center
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Support</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/help" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Help Center
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/safety" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Safety Center
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
 
-          {/* Professionals & Resources */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="font-semibold mb-4">For Professionals</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/join" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Join Our Network
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pro-resources" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Resources
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/pro-tools" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Pro Tools
-                  </Link>
-                </li>
-              </ul>
+            {/* For Professionals & Contact */}
+            <div className="space-y-8">
+              <div>
+                <h3 className="font-semibold mb-4">For Professionals</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/join" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Join Our Network
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/pro-resources" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Resources
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/pro-tools" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Pro Tools
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="font-semibold mb-4">Contact</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/contact" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      Contact Us
+                    </Link>
+                  </li>
+                  <li>
+                    <a href="mailto:support@trymyguys.com" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                      support@trymyguys.com
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div>
-              <h3 className="font-semibold mb-4">Contact</h3>
-              <ul className="space-y-2">
-                <li>
-                  <Link href="/contact" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <a href="mailto:support@trymyguys.com" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                    support@trymyguys.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
 
-          {/* Explore Designs */}
-          <div>
-            <h3 className="font-semibold mb-4">Explore Designs</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/designs/kitchen-dining" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                  Kitchen & Dining
-                </Link>
-              </li>
-              <li>
-                <Link href="/designs/living-rooms" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                  Living Rooms
-                </Link>
-              </li>
-              <li>
-                <Link href="/designs/bed-bath" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                  Bed & Bath
-                </Link>
-              </li>
-              <li>
-                <Link href="/designs/outdoor-spaces" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                  Outdoor Spaces
-                </Link>
-              </li>
-              <li>
-                <Link href="/designs/bar-wine" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
-                  Bar & Wine
-                </Link>
-              </li>
-            </ul>
+            {/* Explore Designs */}
+            <div>
+              <h3 className="font-semibold mb-4">Explore Designs</h3>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/designs/kitchen-dining" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    Kitchen & Dining
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/designs/living-rooms" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    Living Rooms
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/designs/bed-bath" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    Bed & Bath
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/designs/outdoor-spaces" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    Outdoor Spaces
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/designs/bar-wine" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    Bar & Wine
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
