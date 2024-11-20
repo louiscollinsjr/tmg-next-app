@@ -14,7 +14,7 @@ export default function LeaveReview() {
                 Share Your Experience
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Let{'\''}s build a stronger community through honest feedback
+                Let&apos;s build a stronger community through honest feedback
               </p>
               
               {/* Review Form */}
@@ -83,7 +83,7 @@ export default function LeaveReview() {
 
         {/* Content will go here */}
         <p className="text-gray-600 mb-8">
-          Your review helps others make informed decisions and encourages professionals to maintain high standards. Let{'\''}s work together to build trust!
+          Your review helps others make informed decisions and encourages professionals to maintain high standards. Let&apos;s work together to build trust!
         </p>
       </div>
       <Footer />
