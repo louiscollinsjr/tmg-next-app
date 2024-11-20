@@ -38,7 +38,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 font-roboto">
+    <section className="mx-auto px-4 sm:px-[22px] py-16 font-roboto">
       <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left Column */}
@@ -73,7 +73,7 @@ export default function FAQ() {
                   </button>
                   {openIndex === index && (
                     <div className="pb-4">
-                      <p className="text-lg text-gray-600">{item.answer}</p>
+                      <p className="text-lg font-light text-gray-800">{item.answer}</p>
                     </div>
                   )}
                 </div>
