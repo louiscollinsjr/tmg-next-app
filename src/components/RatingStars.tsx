@@ -25,7 +25,7 @@ export default function RatingStars({ rating, size = 'md' }: RatingStarsProps) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className={`${starSize} text-yellow-400`}
+          className={`${starSize} text-black`}
         >
           <path
             fillRule="evenodd"
@@ -41,7 +41,7 @@ export default function RatingStars({ rating, size = 'md' }: RatingStarsProps) {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className={`${starSize} text-yellow-400`}
+          className={`${starSize} text-black`}
         >
           <path
             fillRule="evenodd"

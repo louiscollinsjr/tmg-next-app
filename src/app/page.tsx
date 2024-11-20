@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-zinc-50 -mt-[64px] pt-[64px]">
+      <div className="min-h-screen bg-zinc-50">
         <Hero />
         <ServiceAssistance />
         <HomeownersCTA />

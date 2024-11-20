@@ -40,6 +40,7 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
       {
         id: 1,
         author: "Sarah Johnson",
+        workType: "Kitchen Remodeling",
         rating: 5,
         date: "2024-01-15",
         content: "John did an amazing job installing new electrical panels in our home. He was professional, punctual, and thoroughly explained everything he was doing. Highly recommend!"
@@ -47,6 +48,7 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
       {
         id: 2,
         author: "Mike Chen",
+        workType: "Electrical Installation",
         rating: 5,
         date: "2024-01-10",
         content: "Very impressed with John's work. He helped us upgrade our outdated wiring and install new lighting fixtures. His attention to detail and cleanliness were outstanding."
@@ -54,6 +56,7 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
       {
         id: 3,
         author: "Emily Rodriguez",
+        workType: "Home Renovation",
         rating: 4,
         date: "2024-01-05",
         content: "Great experience working with John. He was able to diagnose and fix our electrical issues quickly and efficiently. Fair pricing and excellent communication throughout."
@@ -64,21 +67,21 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-zinc-50 -mt-[64px] pt-[64px]">
+      <div className="min-h-screen bg-zinc-50 pt-24">
         {/* Header */}
         <div>
           <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ maxWidth: '980px' }}>
             <div className="flex items-center justify-between">
               <div>
-                <h1 className="text-4xl font-bold text-gray-900 font-roboto">{professional.name}</h1>
+                <h1 className="text-4xl font-medium text-gray-900 font-roboto">{professional.name}</h1>
                 <div className="flex items-center gap-4 mt-2">
-                  <h2 className="text-xl text-gray-600 font-roboto">{professional.title}</h2>
+                  <h2 className="text-lg text-gray-600 font-roboto">{professional.title}</h2>
                   <span className="text-gray-400">•</span>
                   <span className="text-gray-600">{professional.location}</span>
                 </div>
                 <div className="flex items-center gap-2 mt-2">
-                  <RatingStars rating={professional.rating} />
-                  <span className="text-gray-600">{professional.rating} ({professional.reviewCount} reviews)</span>
+                  <RatingStars rating={professional.rating} size='sm' />
+                  <span className="text-gray-600">{professional.rating}</span>
                 </div>
               </div>
               <button
@@ -155,25 +158,6 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
                   ))}
                 </div>
               </div>
-
-              {/* Reviews */}
-              <div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3>
-                <div className="space-y-8">
-                  {professional.reviews.map((review) => (
-                    <div key={review.id} className="border-b border-gray-200 pb-8">
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h4 className="font-medium text-gray-900 mb-1">{review.author}</h4>
-                          <div className="text-sm text-gray-500">{formatDate(review.date)}</div>
-                        </div>
-                        <RatingStars rating={review.rating} />
-                      </div>
-                      <p className="text-gray-600">{review.content}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </div>
 
             {/* Right Column - Contact Card */}
@@ -215,6 +199,35 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
           </div>
         </div>
       </div>
+
+        {/* Reviews */}
+        <div className=" bg-zinc-50 py-12">
+        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ maxWidth: '980px' }}>
+                <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+                  {professional.reviews.map((review) => (
+                    <div key={review.id} className="">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 rounded-full bg-black text-white flex items-center justify-center text-sm font-medium">
+                            {review.author.split(' ').map(name => name[0]).join('')}
+                          </div>
+                          <div>
+                            <h4 className="font-medium text-gray-900">{review.author}</h4>
+                            <div className="text-sm text-gray-500">{review.workType}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="text-sm text-gray-500 flex items-center gap-2 pt-2">
+                              <RatingStars rating={review.rating} size='sm'/>
+                              <span>{formatDate(review.date)}</span>
+                            </div>
+                      <p className="text-gray-600 font-normal">{review.content}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+        </div>
       <Footer />
 
       {/* Full Screen Photo Gallery Modal */}

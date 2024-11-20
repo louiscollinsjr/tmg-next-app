@@ -6,7 +6,7 @@ export default function FindProfessionals() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen bg-zinc-50 -mt-[64px] pt-[64px]">
+      <div className="min-h-screen bg-zinc-50">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
           <div className="max-w-5xl mx-auto px-4 sm:px-[22px] py-24">
