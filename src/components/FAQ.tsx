@@ -38,31 +38,27 @@ export default function FAQ() {
   };
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 font-roboto">
       <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
         <div className="grid md:grid-cols-2 gap-12 items-start">
           {/* Left Column */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-normal text-black">
-              Professional services, <br />
-              delivered with care.
+            <h2 className="text-5xl font-normal text-black">
+              Your questions,<br/> answered
             </h2>
-            <p className="text-gray-600">
-              Connect with skilled professionals who are committed to delivering exceptional service. Our community-driven platform ensures quality and reliability.
-            </p>
+            
           </div>
 
           {/* Right Column - FAQ */}
           <div>
-            <h3 className="text-xl font-normal text-black mb-8">Your questions answered</h3>
-            <div className="space-y-4">
+            <div className="space-y-4 tracking-wide font-roboto">
               {faqItems.map((item, index) => (
-                <div key={index} className="border-b border-gray-200">
+                <div key={index} className={`${index !== faqItems.length - 1 ? 'border-b border-gray-200' : ''}`}>
                   <button
                     onClick={() => toggleAccordion(index)}
                     className="flex justify-between items-center w-full py-4 text-left"
                   >
-                    <span className="text-sm font-medium text-black">{item.question}</span>
+                    <span className="text-xl font-normal text-black">{item.question}</span>
                     <span className="ml-6 flex-shrink-0">
                       {openIndex === index ? (
                         <svg className="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -77,7 +73,7 @@ export default function FAQ() {
                   </button>
                   {openIndex === index && (
                     <div className="pb-4">
-                      <p className="text-sm text-gray-600">{item.answer}</p>
+                      <p className="text-lg text-gray-600">{item.answer}</p>
                     </div>
                   )}
                 </div>

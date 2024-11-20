@@ -2,18 +2,18 @@ import React from 'react';
 
 const CommunityPowerCTA = () => {
   return (
-    <section className="py-24">
+    <section className="py-24 font-roboto">
       <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Column - Content */}
           <div>
-            <div className="text-xs font-normal tracking-[0.1em] mb-4 text-white">
+            <div className="text-sm font-normal tracking-[0.1em] mb-4 text-gray-800">
               Our Platform
             </div>
             <h2 className="text-3xl sm:text-4xl font-semibold text-gray-900 tracking-tight mb-6">
               Community-powered home services
             </h2>
-            <p className="text-lg font-light text-white mb-8">
+            <p className="text-lg font-light text-gray-800 mb-8">
               Experience the power of trusted recommendations from your community. Our platform leverages local insights and real experiences to connect you with the most reliable home service professionals in your area.
             </p>
             <div className="mt-10">
