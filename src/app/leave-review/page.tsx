@@ -59,7 +59,7 @@ export default function LeaveReview() {
                     <label className="block text-sm font-medium text-gray-700 mb-2 font-roboto">Your Review</label>
                     <textarea 
                       rows={4}
-                      placeholder="Share your experience working with this professional..."
+                      placeholder="Share your experience working with this professional&apos;s work..."
                       className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                     />
                   </div>
