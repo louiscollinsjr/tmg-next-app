@@ -16,6 +16,11 @@ interface LeanUser {
     specialties?: string[];
     serviceArea?: string[];
   };
+  selectedServices?: Array<{
+    categoryId: string;
+    optionId: string;
+    _id?: Types.ObjectId;
+  }>;
   isFavorite?: boolean;
 }
 
@@ -37,6 +42,10 @@ interface DisplayProfessional {
   specialty: string;
   location: string;
   isFavorite: boolean;
+  selectedServices?: Array<{
+    categoryId: string;
+    optionId: string;
+  }>;
 }
 
 async function getProfessionals(): Promise<DisplayProfessional[]> {
@@ -53,7 +62,8 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
       image: 1,
       businessInfo: 1,
       status: 1,
-      isFavorite: 1
+      isFavorite: 1,
+      selectedServices: 1
     }).lean<LeanUser[]>();
 
     console.log('Found professionals:', professionals.length);
@@ -116,6 +126,19 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
       const projectImages = projectImagesMap.get(pro._id.toString()) || [];
       const allImages = pro.image ? [pro.image, ...projectImages] : projectImages;
       
+      // Get unique category IDs and serialize the selectedServices
+      const serializedServices = pro.selectedServices?.map(service => ({
+        categoryId: service.categoryId,
+        optionId: service.optionId
+      })) || [];
+      const uniqueCategories = [...new Set(serializedServices.map(service => service.categoryId))];
+      const firstCategory = uniqueCategories[0] || '';
+      const additionalCategories = uniqueCategories.length > 1 ? uniqueCategories.length - 1 : 0;
+      
+      // Capitalize first letter of specialty
+      const capitalizedCategory = firstCategory.charAt(0).toUpperCase() + firstCategory.slice(1);
+      const specialty = capitalizedCategory + (additionalCategories > 0 ? ` (+${additionalCategories})` : '');
+      
       return {
         id: pro._id.toString(),
         name: pro.name,
@@ -123,9 +146,10 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
         images: allImages,
         rating: proRating?.rating || 0,
         reviewCount: proRating?.count || 0,
-        specialty: pro.businessInfo?.specialties?.[0] || '',
+        specialty,
         location: pro.businessInfo?.serviceArea?.[0] || '',
-        isFavorite: pro.isFavorite || false
+        isFavorite: pro.isFavorite || false,
+        selectedServices: serializedServices
       };
     });
   } catch (error) {
