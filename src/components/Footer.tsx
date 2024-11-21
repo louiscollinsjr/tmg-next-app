@@ -48,17 +48,17 @@ export default function Footer() {
                 <h3 className="font-semibold mb-4">For Homeowners</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/services" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Our Services
                     </Link>
                   </li>
                   <li>
-                    <Link href="/pricing" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Pricing
                     </Link>
                   </li>
                   <li>
-                    <Link href="/reviews" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Reviews
                     </Link>
                   </li>
@@ -68,12 +68,12 @@ export default function Footer() {
                 <h3 className="font-semibold mb-4">Support</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/help" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Help Center
                     </Link>
                   </li>
                   <li>
-                    <Link href="/safety" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Safety Center
                     </Link>
                   </li>
@@ -87,17 +87,17 @@ export default function Footer() {
                 <h3 className="font-semibold mb-4">For Professionals</h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/join" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Join Our Network
                     </Link>
                   </li>
                   <li>
-                    <Link href="/pro-resources" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Resources
                     </Link>
                   </li>
                   <li>
-                    <Link href="/pro-tools" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                    <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                       Pro Tools
                     </Link>
                   </li>
@@ -125,27 +125,27 @@ export default function Footer() {
               <h3 className="font-semibold mb-4">Explore Designs</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="/designs/kitchen-dining" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                  <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                     Kitchen & Dining
                   </Link>
                 </li>
                 <li>
-                  <Link href="/designs/living-rooms" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                  <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                     Living Rooms
                   </Link>
                 </li>
                 <li>
-                  <Link href="/designs/bed-bath" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                  <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                     Bed & Bath
                   </Link>
                 </li>
                 <li>
-                  <Link href="/designs/outdoor-spaces" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                  <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                     Outdoor Spaces
                   </Link>
                 </li>
                 <li>
-                  <Link href="/designs/bar-wine" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
+                  <Link href="#" className="text-gray-700/80 hover:text-white hover:underline transition-colors">
                     Bar & Wine
                   </Link>
                 </li>
