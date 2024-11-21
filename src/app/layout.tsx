@@ -45,6 +45,7 @@ export const metadata: Metadata = {
   },
   description:
     "Connect with trusted local home service professionals recommended by your community. Get personalized quotes for home improvement, repairs, and maintenance services.",
+  manifest: '/manifest.json',
   icons: {
     icon: [
       { url: '/favicon.ico' },
