@@ -5,6 +5,7 @@ import dbConnect from "@/lib/dbConnect";
 import User, { IUser } from "@/lib/models/User";
 import Review from "@/lib/models/Review";
 import Project, { IProject } from "@/lib/models/Project";
+import ServiceCategory from '@/lib/models/ServiceCategory';
 import { Document, Types } from 'mongoose';
 
 interface LeanUser {
@@ -67,6 +68,23 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
     }).lean<LeanUser[]>();
 
     console.log('Found professionals:', professionals.length);
+
+    // Get all unique category slugs from all professionals
+    const allCategorySlugs = [...new Set(
+      professionals.flatMap(pro => 
+        pro.selectedServices?.map(service => service.categoryId) || []
+      )
+    )];
+
+    // Fetch all relevant service categories
+    const serviceCategories = await ServiceCategory.find({
+      slug: { $in: allCategorySlugs }
+    }).lean();
+
+    // Create a map of category slugs to names
+    const categoryNameMap = new Map(
+      serviceCategories.map(cat => [cat.slug, cat.name])
+    );
 
     // Get all reviews for these professionals
     const professionalIds = professionals.map(pro => pro._id);
@@ -135,9 +153,9 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
       const firstCategory = uniqueCategories[0] || '';
       const additionalCategories = uniqueCategories.length > 1 ? uniqueCategories.length - 1 : 0;
       
-      // Capitalize first letter of specialty
-      const capitalizedCategory = firstCategory.charAt(0).toUpperCase() + firstCategory.slice(1);
-      const specialty = capitalizedCategory + (additionalCategories > 0 ? ` (+${additionalCategories})` : '');
+      // Get category name from the map
+      const categoryName = categoryNameMap.get(firstCategory) || '';
+      const specialty = categoryName + (additionalCategories > 0 ? ` (+${additionalCategories})` : '');
       
       return {
         id: pro._id.toString(),
