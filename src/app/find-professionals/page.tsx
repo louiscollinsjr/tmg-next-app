@@ -19,6 +19,14 @@ interface LeanUser {
   isFavorite?: boolean;
 }
 
+interface ProjectWithImages {
+  contractor: Types.ObjectId;
+  images: Array<{
+    url: string;
+    caption?: string;
+  }>;
+}
+
 interface DisplayProfessional {
   id: string;
   name: string;
@@ -59,7 +67,7 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
       status: { $in: ['completed', 'in_progress'] }
     })
     .select('contractor images')
-    .lean();
+    .lean<ProjectWithImages[]>();
 
     // Create a map of professional project images
     const projectImagesMap = new Map<string, string[]>();
