@@ -1,6 +1,7 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProfessionalsGrid from "@/components/ProfessionalsGrid";
+import ServiceCategoryFilter from "@/components/ServiceCategoryFilter";
 import dbConnect from "@/lib/dbConnect";
 import User, { IUser } from "@/lib/models/User";
 import Review from "@/lib/models/Review";
@@ -49,11 +50,21 @@ interface DisplayProfessional {
   }>;
 }
 
-async function getProfessionals(): Promise<DisplayProfessional[]> {
+async function getProfessionals(): Promise<{
+  professionals: DisplayProfessional[];
+  categories: Array<{ slug: string; name: string; }>;
+}> {
   try {
     await dbConnect();
     console.log('Fetching professionals...');
     
+    // Get all service categories
+    const allCategories = await ServiceCategory.find().select('slug name').lean();
+    const categories = allCategories.map(cat => ({
+      slug: cat.slug,
+      name: cat.name
+    }));
+
     // First get all professionals
     const professionals = await User.find({ 
       isPro: true,
@@ -139,45 +150,51 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
       }])
     );
 
-    return professionals.map(pro => {
-      const proRating = ratingsMap.get(pro._id.toString());
-      const projectImages = projectImagesMap.get(pro._id.toString()) || [];
-      const allImages = pro.image ? [pro.image, ...projectImages] : projectImages;
-      
-      // Get unique category IDs and serialize the selectedServices
-      const serializedServices = pro.selectedServices?.map(service => ({
-        categoryId: service.categoryId,
-        optionId: service.optionId
-      })) || [];
-      const uniqueCategories = [...new Set(serializedServices.map(service => service.categoryId))];
-      const firstCategory = uniqueCategories[0] || '';
-      const additionalCategories = uniqueCategories.length > 1 ? uniqueCategories.length - 1 : 0;
-      
-      // Get category name from the map
-      const categoryName = categoryNameMap.get(firstCategory) || '';
-      const specialty = categoryName + (additionalCategories > 0 ? ` (+${additionalCategories})` : '');
-      
-      return {
-        id: pro._id.toString(),
-        name: pro.name,
-        businessName: pro.businessInfo?.companyName || pro.name,
-        images: allImages,
-        rating: proRating?.rating || 0,
-        reviewCount: proRating?.count || 0,
-        specialty,
-        location: pro.businessInfo?.serviceArea?.[0] || '',
-        isFavorite: pro.isFavorite || false,
-        selectedServices: serializedServices
-      };
-    });
+    return {
+      professionals: professionals.map(pro => {
+        const proRating = ratingsMap.get(pro._id.toString());
+        const projectImages = projectImagesMap.get(pro._id.toString()) || [];
+        const allImages = pro.image ? [pro.image, ...projectImages] : projectImages;
+        
+        // Get unique category IDs and serialize the selectedServices
+        const serializedServices = pro.selectedServices?.map(service => ({
+          categoryId: service.categoryId,
+          optionId: service.optionId
+        })) || [];
+        const uniqueCategories = [...new Set(serializedServices.map(service => service.categoryId))];
+        const firstCategory = uniqueCategories[0] || '';
+        const additionalCategories = uniqueCategories.length > 1 ? uniqueCategories.length - 1 : 0;
+        
+        // Get category name from the map
+        const categoryName = categoryNameMap.get(firstCategory) || '';
+        const specialty = categoryName + (additionalCategories > 0 ? ` (+${additionalCategories})` : '');
+        
+        return {
+          id: pro._id.toString(),
+          name: pro.name,
+          businessName: pro.businessInfo?.companyName || pro.name,
+          images: allImages,
+          rating: proRating?.rating || 0,
+          reviewCount: proRating?.count || 0,
+          specialty,
+          location: pro.businessInfo?.serviceArea?.[0] || '',
+          isFavorite: pro.isFavorite || false,
+          selectedServices: serializedServices
+        };
+      }),
+      categories
+    };
   } catch (error) {
     console.error('Error fetching professionals:', error);
-    return [];
+    return {
+      professionals: [],
+      categories: []
+    };
   }
 }
 
 export default async function FindProfessionals() {
-  const professionals = await getProfessionals();
+  const { professionals, categories } = await getProfessionals();
   console.log('Rendering professionals:', professionals.length);
 
   return (
@@ -223,9 +240,11 @@ export default async function FindProfessionals() {
           </div>
         </section>
 
-        {/* Professionals Grid Section */}
-        <ProfessionalsGrid professionals={professionals} />
-        
+        {/* Service Categories and Professionals Grid */}
+        <div className="container mx-auto px-4">
+          <ServiceCategoryFilter categories={categories} />
+          <ProfessionalsGrid professionals={professionals} />
+        </div>
       </div>
       <Footer />
     </>
