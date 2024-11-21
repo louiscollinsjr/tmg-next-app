@@ -25,7 +25,10 @@ export interface IUser extends Document {
     yearsInBusiness?: number;
     license?: string;
     insurance?: string;
-    specialties?: string[];
+    specialties?: Array<{
+      category: mongoose.Types.ObjectId;  // Reference to ServiceCategory
+      options: mongoose.Types.ObjectId[];  // Selected options within the category
+    }>;
     serviceArea?: string[];
     website?: string;
     phone?: string;
@@ -72,7 +75,10 @@ const UserSchema = new Schema({
     yearsInBusiness: Number,
     license: String,
     insurance: String,
-    specialties: [String],
+    specialties: [{
+      category: { type: Schema.Types.ObjectId, ref: 'ServiceCategory' },
+      options: [{ type: Schema.Types.ObjectId }]
+    }],
     serviceArea: [String],
     website: String,
     phone: String
@@ -106,7 +112,7 @@ const UserSchema = new Schema({
 UserSchema.index({ email: 1 }, { unique: true });
 UserSchema.index({ 'providers.providerId': 1 });
 UserSchema.index({ isPro: 1, lastActive: -1 });
-UserSchema.index({ 'businessInfo.specialties': 1 });
+UserSchema.index({ 'businessInfo.specialties.category': 1 });
 UserSchema.index({ 'businessInfo.serviceArea': 1 });
 UserSchema.index({ status: 1 });
 

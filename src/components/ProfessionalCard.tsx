@@ -116,7 +116,7 @@ export default function ProfessionalCard({
         
         {/* Community Pick Badge */}
         {isFavorite && (
-          <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1">
+          <div className="absolute top-3 left-3 bg-white/50 backdrop-blur-sm px-3 py-1 rounded-full flex items-center gap-1">
             <span className="text-xs font-medium">Community pick</span>
           </div>
         )}
