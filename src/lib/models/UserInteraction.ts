@@ -20,7 +20,9 @@ const UserInteractionSchema = new Schema({
   targetModel: {
     type: String,
     enum: ['Project', 'User'],
-    required: function() { return this.targetId != null }
+    required: function(this: any): boolean {
+      return this.targetId != null;
+    }
   },
   metadata: Schema.Types.Mixed,
   createdAt: { type: Date, default: Date.now, expires: '90d' } // TTL index

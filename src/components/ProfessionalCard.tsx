@@ -15,12 +15,11 @@ interface ProfessionalCardProps {
   reviewCount: number;
   specialty: string;
   location: string;
-  isVerified: boolean;
   isFavorite: boolean;
 }
 
 // Default image if no profile image is available
-const DEFAULT_IMAGE = 'https://randomuser.me/api/portraits/men/1.jpg';
+const DEFAULT_IMAGE = '/images/default-profile.jpg';
 
 export default function ProfessionalCard({
   id,
@@ -31,7 +30,6 @@ export default function ProfessionalCard({
   reviewCount,
   specialty,
   location,
-  isVerified,
   isFavorite,
 }: ProfessionalCardProps) {
   const [isSaved, setIsSaved] = useState(isFavorite);
@@ -39,7 +37,12 @@ export default function ProfessionalCard({
   const [imageError, setImageError] = useState(false);
 
   // Use default image if no images are provided or if there's an error
-  const displayImages = imageError || !images.length ? [DEFAULT_IMAGE] : images;
+  const displayImages = imageError || !images.length || images[0] === null ? [DEFAULT_IMAGE] : images;
+
+  const handleImageError = () => {
+    console.warn('Image failed to load, using default image');
+    setImageError(true);
+  };
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -67,7 +70,8 @@ export default function ProfessionalCard({
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
           sizes="312px"
-          onError={() => setImageError(true)}
+          priority={currentImageIndex === 0}
+          onError={handleImageError}
         />
         
         {/* Navigation Arrows */}

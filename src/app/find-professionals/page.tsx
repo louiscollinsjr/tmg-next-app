@@ -2,10 +2,35 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProfessionalsGrid from "@/components/ProfessionalsGrid";
 import dbConnect from "@/lib/dbConnect";
-import User from "@/lib/models/User";
+import User, { IUser } from "@/lib/models/User";
 import Review from "@/lib/models/Review";
+import { Document, Types } from 'mongoose';
 
-async function getProfessionals() {
+interface LeanUser {
+  _id: Types.ObjectId;
+  name: string;
+  image?: string;
+  businessInfo?: {
+    companyName?: string;
+    specialties?: string[];
+    serviceArea?: string[];
+  };
+  isFavorite?: boolean;
+}
+
+interface DisplayProfessional {
+  id: string;
+  name: string;
+  businessName: string;
+  images: string[];
+  rating: number;
+  reviewCount: number;
+  specialty: string;
+  location: string;
+  isFavorite: boolean;
+}
+
+async function getProfessionals(): Promise<DisplayProfessional[]> {
   try {
     await dbConnect();
     console.log('Fetching professionals...');
@@ -20,7 +45,7 @@ async function getProfessionals() {
       businessInfo: 1,
       status: 1,
       isFavorite: 1
-    }).lean();
+    }).lean<LeanUser[]>();
 
     console.log('Found professionals:', professionals.length);
 
@@ -45,7 +70,7 @@ async function getProfessionals() {
     // Create a map of professional ratings
     const ratingsMap = new Map(
       reviews.map(review => [review._id.toString(), {
-        rating: Math.round(review.averageRating * 10) / 10, // Round to 1 decimal
+        rating: Math.round(review.averageRating * 10) / 10,
         count: review.reviewCount
       }])
     );
@@ -56,13 +81,12 @@ async function getProfessionals() {
         id: pro._id.toString(),
         name: pro.name,
         businessName: pro.businessInfo?.companyName || pro.name,
-        images: [pro.image], // The image field from the database is already a URL
-        rating: proRating?.rating || 0, // Use actual rating or 0 if no reviews
-        reviewCount: proRating?.count || 0, // Use actual count
+        images: pro.image ? [pro.image] : [],
+        rating: proRating?.rating || 0,
+        reviewCount: proRating?.count || 0,
         specialty: pro.businessInfo?.specialties?.[0] || '',
         location: pro.businessInfo?.serviceArea?.[0] || '',
-        isVerified: true, // All active pros are verified for now
-        isFavorite: pro.isFavorite || false // Use the value from database
+        isFavorite: pro.isFavorite || false
       };
     });
   } catch (error) {

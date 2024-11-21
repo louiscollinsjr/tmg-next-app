@@ -12,7 +12,6 @@ interface Professional {
   reviewCount: number;
   specialty: string;
   location: string;
-  isVerified: boolean;
   isFavorite: boolean;
 }
 
