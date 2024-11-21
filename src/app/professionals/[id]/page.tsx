@@ -122,9 +122,10 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
         </div>
 
         <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12" style={{ maxWidth: '980px' }}>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-24">
+            
             {/* Left Column - Professional Details */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-3 space-y-8">
               {/* Description */}
               <div className="prose max-w-none">
                 <p className="text-gray-600">{professional.description}</p>
@@ -132,27 +133,27 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
 
               {/* Business Details */}
               <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 font-roboto">Certifications</h3>
-                  <ul className="list-disc list-inside text-gray-600 space-y-1">
+                <div className='border-y border-gray-200 py-10'>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Certifications</h3>
+                  <ul className="list-none list-inside text-gray-600 space-y-6">
                     {professional.certifications.map((cert, index) => (
                       <li key={index}>{cert}</li>
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 font-roboto">Experience</h3>
+                <div className='border-b border-gray-200 pb-10'>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto ">Experience</h3>
                   <p className="text-gray-600">{professional.yearsExperience} years in business</p>
                 </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 font-roboto">Service Area</h3>
+                <div className='border-0 border-gray-200 pb-10'>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Service Area</h3>
                   <p className="text-gray-600">{professional.serviceArea}</p>
                 </div>
               </div>
             </div>
 
             {/* Right Column - Contact Card */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-2">
               <div className="sticky top-24">
                 <div id="request-form" className="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
                   <h3 className="text-xl font-semibold text-gray-900 mb-6 font-roboto">Request an Estimate</h3>
@@ -192,8 +193,8 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
       </div>
 
         {/* Detailed Ratings */}
-        <div className="bg-zinc-50">
-        <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6 bg-zinc-50" style={{ maxWidth: '980px' }}>
+        <div className="bg-zinc-50 ">
+        <div className="mx-auto py-10 pt-10 bg-zinc-50 border-t border-gray-200" style={{ maxWidth: '980px' }}>
           <div className="grid grid-cols-7 gap-0 mb-1  rounded-lg">
             {Object.entries({
               'Overall rating': professional.detailedRatings.overall,
@@ -204,7 +205,7 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
               'Quality': professional.detailedRatings.quality,
               'Expertise': professional.detailedRatings.expertise
             }).map(([category, rating], index) => (
-              <div key={category} className={`px-4 py-2 ${index < 6 ? 'border-r border-gray-200' : ''}`}>
+              <div key={category} className={`px-4 py-4 ${index < 6 ? 'border-r border-gray-200' : ''}`}>
                 <div className="text-sm tracking-wide font-medium text-black mb-1 text-left">{category}</div>
                 <div className="flex items-center gap-1">
                   {/* <RatingStars rating={rating} size="sm" /> */}
