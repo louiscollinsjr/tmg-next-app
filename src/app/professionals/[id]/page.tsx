@@ -73,17 +73,22 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
         {/* Header */}
         <div>
           <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ maxWidth: '980px' }}>
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-4xl font-medium text-gray-900 font-roboto">{professional.name}</h1>
-                <div className="flex items-center gap-4 mt-2">
-                  <h2 className="text-lg text-gray-600 font-roboto">{professional.title}</h2>
-                  <span className="text-gray-400">•</span>
-                  <span className="text-gray-600">{professional.location}</span>
+            <div className="flex items-start justify-between">
+              <div className="flex items-start gap-6">
+                <div className="w-20 h-20 rounded-full bg-black text-white flex items-center justify-center text-2xl font-medium">
+                  {professional.name.split(' ').map(name => name[0]).join('')}
                 </div>
-                <div className="flex items-center gap-2 mt-2">
-                  <RatingStars rating={professional.rating} size='sm' />
-                  <span className="text-gray-600">{professional.rating}</span>
+                <div>
+                  <h1 className="text-4xl font-medium text-gray-900 font-roboto">{professional.name}</h1>
+                  <div className="flex items-center gap-4 mt-2">
+                    <h2 className="text-lg text-gray-600 font-roboto">{professional.title}</h2>
+                    <span className="text-gray-400">•</span>
+                    <span className="text-gray-600">{professional.location}</span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-2">
+                    <RatingStars rating={professional.rating} size='sm' />
+                    <span className="text-gray-600">{professional.rating}</span>
+                  </div>
                 </div>
               </div>
               <button
@@ -203,7 +208,7 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
                 <div className="text-sm tracking-wide font-medium text-black mb-1 text-left">{category}</div>
                 <div className="flex items-center gap-1">
                   {/* <RatingStars rating={rating} size="sm" /> */}
-                  <span className="text-sm text-gray-600">{rating}</span>
+                  <span className="text-base text-gray-600">{rating}</span>
                 </div>
               </div>
             ))}
@@ -212,8 +217,8 @@ export default function ProfessionalProfile({ params }: { params: { id: string }
 </div>
         {/* Reviews */}
         <div className="bg-zinc-50">
-          <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-gray-200" style={{ maxWidth: '980px' }}>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3>
+          <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200" style={{ maxWidth: '980px' }}>
+            {/* <h3 className="text-2xl font-semibold text-gray-900 mb-6 font-roboto">Reviews</h3> */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
               {professional.reviews.map((review) => (
                 <div key={review.id} className="">
