@@ -4,6 +4,7 @@ import ProfessionalsGrid from "@/components/ProfessionalsGrid";
 import dbConnect from "@/lib/dbConnect";
 import User, { IUser } from "@/lib/models/User";
 import Review from "@/lib/models/Review";
+import Project, { IProject } from "@/lib/models/Project";
 import { Document, Types } from 'mongoose';
 
 interface LeanUser {
@@ -51,6 +52,33 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
 
     // Get all reviews for these professionals
     const professionalIds = professionals.map(pro => pro._id);
+    
+    // Fetch projects and their images for each professional
+    const projects = await Project.find({
+      contractor: { $in: professionalIds },
+      status: { $in: ['completed', 'in_progress'] }
+    })
+    .select('contractor images')
+    .lean();
+
+    // Create a map of professional project images
+    const projectImagesMap = new Map<string, string[]>();
+    projects.forEach(project => {
+      const contractorId = project.contractor.toString();
+      const projectImages = project.images.map(img => img.url).slice(0, 4); // Get up to 4 images
+      
+      if (!projectImagesMap.has(contractorId)) {
+        projectImagesMap.set(contractorId, projectImages);
+      } else {
+        const existingImages = projectImagesMap.get(contractorId) || [];
+        projectImagesMap.set(
+          contractorId, 
+          [...existingImages, ...projectImages].slice(0, 4)
+        );
+      }
+    });
+
+    // Get reviews data 
     const reviews = await Review.aggregate([
       {
         $match: {
@@ -77,11 +105,14 @@ async function getProfessionals(): Promise<DisplayProfessional[]> {
 
     return professionals.map(pro => {
       const proRating = ratingsMap.get(pro._id.toString());
+      const projectImages = projectImagesMap.get(pro._id.toString()) || [];
+      const allImages = pro.image ? [pro.image, ...projectImages] : projectImages;
+      
       return {
         id: pro._id.toString(),
         name: pro.name,
         businessName: pro.businessInfo?.companyName || pro.name,
-        images: pro.image ? [pro.image] : [],
+        images: allImages,
         rating: proRating?.rating || 0,
         reviewCount: proRating?.count || 0,
         specialty: pro.businessInfo?.specialties?.[0] || '',
