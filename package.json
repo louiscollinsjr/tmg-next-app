@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "cleanup": "bash ./scripts/cleanup.sh",
-    "fresh": "bun run cleanup && bun run dev"
+    "fresh": "bun run cleanup && bun run dev",
+    "update-images": "bun run scripts/updateUserImages.ts",
+    "update-favorites": "bun run scripts/updateUserFavorites.ts"
   },
   "dependencies": {
     "@swc/helpers": "^0.5.3",

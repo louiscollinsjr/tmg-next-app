@@ -1,8 +1,80 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProfessionalsGrid from "@/components/ProfessionalsGrid";
+import dbConnect from "@/lib/dbConnect";
+import User from "@/lib/models/User";
+import Review from "@/lib/models/Review";
 
-export default function FindProfessionals() {
+async function getProfessionals() {
+  try {
+    await dbConnect();
+    console.log('Fetching professionals...');
+    
+    // First get all professionals
+    const professionals = await User.find({ 
+      isPro: true,
+      status: 'active'
+    }).select({
+      name: 1,
+      image: 1,
+      businessInfo: 1,
+      status: 1,
+      isFavorite: 1
+    }).lean();
+
+    console.log('Found professionals:', professionals.length);
+
+    // Get all reviews for these professionals
+    const professionalIds = professionals.map(pro => pro._id);
+    const reviews = await Review.aggregate([
+      {
+        $match: {
+          contractor: { $in: professionalIds },
+          status: 'published'
+        }
+      },
+      {
+        $group: {
+          _id: '$contractor',
+          averageRating: { $avg: '$rating' },
+          reviewCount: { $sum: 1 }
+        }
+      }
+    ]);
+
+    // Create a map of professional ratings
+    const ratingsMap = new Map(
+      reviews.map(review => [review._id.toString(), {
+        rating: Math.round(review.averageRating * 10) / 10, // Round to 1 decimal
+        count: review.reviewCount
+      }])
+    );
+
+    return professionals.map(pro => {
+      const proRating = ratingsMap.get(pro._id.toString());
+      return {
+        id: pro._id.toString(),
+        name: pro.name,
+        businessName: pro.businessInfo?.companyName || pro.name,
+        images: [pro.image], // The image field from the database is already a URL
+        rating: proRating?.rating || 0, // Use actual rating or 0 if no reviews
+        reviewCount: proRating?.count || 0, // Use actual count
+        specialty: pro.businessInfo?.specialties?.[0] || '',
+        location: pro.businessInfo?.serviceArea?.[0] || '',
+        isVerified: true, // All active pros are verified for now
+        isFavorite: pro.isFavorite || false // Use the value from database
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching professionals:', error);
+    return [];
+  }
+}
+
+export default async function FindProfessionals() {
+  const professionals = await getProfessionals();
+  console.log('Rendering professionals:', professionals.length);
+
   return (
     <>
       <Navigation />
@@ -47,7 +119,7 @@ export default function FindProfessionals() {
         </section>
 
         {/* Professionals Grid Section */}
-        <ProfessionalsGrid />
+        <ProfessionalsGrid professionals={professionals} />
         
       </div>
       <Footer />
