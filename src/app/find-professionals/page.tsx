@@ -55,22 +55,22 @@ async function getProfessionals(): Promise<{
   categories: Array<{ slug: string; name: string; }>;
 }> {
   try {
-    console.log('Starting database connection...');
+    console.warn('[API] Starting to fetch professionals');
     await dbConnect();
-    console.log('Database connected successfully');
-    
+    console.warn('[API] Database connected, fetching categories');
+
     // Get all service categories
-    console.log('Fetching service categories...');
+    console.warn('[API] Fetching service categories...');
     const allCategories = await ServiceCategory.find().select('slug name').lean();
-    console.log('Found categories:', allCategories.length);
-    
+    console.warn('[API] Categories fetched:', { count: allCategories.length });
+
     const categories = allCategories.map(cat => ({
       slug: cat.slug,
       name: cat.name
     }));
 
     // First get all professionals
-    console.log('Fetching professionals...');
+    console.warn('[API] Fetching professionals...');
     const professionals = await User.find({ 
       isPro: true,
       status: 'active'
@@ -83,10 +83,13 @@ async function getProfessionals(): Promise<{
       selectedServices: 1
     }).lean<LeanUser[]>();
 
-    console.log('Found professionals:', professionals.length);
-    
+    console.warn('[API] Professionals fetched:', { 
+      count: professionals.length,
+      sampleIds: professionals.slice(0, 2).map(p => p._id),
+    });
+
     if (professionals.length === 0) {
-      console.log('No professionals found in database');
+      console.warn('[API] No professionals found in database');
       return { professionals: [], categories };
     }
 
@@ -96,13 +99,13 @@ async function getProfessionals(): Promise<{
         pro.selectedServices?.map(service => service.categoryId) || []
       )
     )];
-    console.log('Unique category slugs:', allCategorySlugs.length);
+    console.warn('[API] Unique category slugs:', { count: allCategorySlugs.length });
 
     // Fetch all relevant service categories
     const serviceCategories = await ServiceCategory.find({
       slug: { $in: allCategorySlugs }
     }).lean();
-    console.log('Found service categories:', serviceCategories.length);
+    console.warn('[API] Service categories fetched:', { count: serviceCategories.length });
 
     // Create a map of category slugs to names
     const categoryNameMap = new Map(
@@ -111,7 +114,7 @@ async function getProfessionals(): Promise<{
 
     // Get all reviews for these professionals
     const professionalIds = professionals.map(pro => pro._id);
-    console.log('Fetching projects for professionals:', professionalIds.length);
+    console.warn('[API] Fetching projects for professionals:', { count: professionalIds.length });
     
     // Fetch projects and their images for each professional
     const projects = await Project.find({
@@ -121,7 +124,7 @@ async function getProfessionals(): Promise<{
     .select('contractor images')
     .lean<ProjectWithImages[]>();
 
-    console.log('Found projects:', projects.length);
+    console.warn('[API] Projects fetched:', { count: projects.length });
 
     // Create a map of professional project images
     const projectImagesMap = new Map<string, string[]>();
@@ -140,7 +143,7 @@ async function getProfessionals(): Promise<{
       }
     });
 
-    console.log('Fetching reviews...');
+    console.warn('[API] Fetching reviews...');
     // Get reviews data 
     const reviews = await Review.aggregate([
       {
@@ -158,7 +161,7 @@ async function getProfessionals(): Promise<{
       }
     ]);
 
-    console.log('Found reviews:', reviews.length);
+    console.warn('[API] Reviews fetched:', { count: reviews.length });
 
     // Create a map of professional ratings
     const ratingsMap = new Map(
@@ -198,20 +201,22 @@ async function getProfessionals(): Promise<{
       };
     });
 
-    console.log('Successfully processed all professionals');
+    console.warn('[API] Processed professionals:', { 
+      count: processedProfessionals.length,
+      firstProfessionalCategories: processedProfessionals[0]?.selectedServices || []
+    });
+
     return {
       professionals: processedProfessionals,
       categories
     };
-  } catch (error) {
-    console.error('Error fetching professionals:', error);
-    if (error instanceof Error) {
-      console.error('Error details:', {
-        message: error.message,
-        stack: error.stack,
-        name: error.name
-      });
-    }
+  } catch (error: any) {
+    console.warn('[API] Error in getProfessionals:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+      mongooseError: error.toString()
+    });
     return {
       professionals: [],
       categories: []

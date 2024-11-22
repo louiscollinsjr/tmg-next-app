@@ -38,7 +38,7 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://trymyguys.com'),
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
   title: {
     template: '%s | TMG',
     default: 'TMG - Find Trusted Home Service Professionals',
