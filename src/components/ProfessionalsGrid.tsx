@@ -50,12 +50,8 @@ export default function ProfessionalsGrid({ professionals, selectedCategory }: P
         {/* Grid Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-2xl font-medium text-gray-900">
-              {selectedCategory ? `${selectedCategory} Professionals` : 'Featured Professionals'}
-            </h2>
-            <p className="text-gray-500">
-              {`Showing ${filteredProfessionals.length} professional${filteredProfessionals.length === 1 ? '' : 's'}`}
-            </p>
+            <h2 className="text-2xl font-medium text-gray-900">Featured Professionals</h2>
+            <p className="text-gray-500">Discover top-rated professionals in your area</p>
           </div>
           {hasMore && (
             <button 
