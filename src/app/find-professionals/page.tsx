@@ -1,13 +1,13 @@
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import ProfessionalsGrid from "@/components/ProfessionalsGrid";
-import ServiceCategoryFilter from "@/components/ServiceCategoryFilter";
+import ClientProfessionals from "@/components/ClientProfessionals";
 import dbConnect from "@/lib/dbConnect";
-import User, { IUser } from "@/lib/models/User";
+import User from "@/lib/models/User";
 import Review from "@/lib/models/Review";
-import Project, { IProject } from "@/lib/models/Project";
+import Project from "@/lib/models/Project";
 import ServiceCategory from '@/lib/models/ServiceCategory';
-import { Document, Types } from 'mongoose';
+import { Types } from 'mongoose';
+import { DisplayProfessional } from '@/types/professional';
 
 interface LeanUser {
   _id: Types.ObjectId;
@@ -34,32 +34,18 @@ interface ProjectWithImages {
   }>;
 }
 
-interface DisplayProfessional {
-  id: string;
-  name: string;
-  businessName: string;
-  images: string[];
-  rating: number;
-  reviewCount: number;
-  specialty: string;
-  location: string;
-  isFavorite: boolean;
-  selectedServices?: Array<{
-    categoryId: string;
-    optionId: string;
-  }>;
-}
-
 async function getProfessionals(): Promise<{
   professionals: DisplayProfessional[];
   categories: Array<{ slug: string; name: string; }>;
 }> {
   try {
     await dbConnect();
-    console.log('Fetching professionals...');
+    console.log('Connected to database, fetching professionals...');
     
     // Get all service categories
     const allCategories = await ServiceCategory.find().select('slug name').lean();
+    console.log('Found categories:', allCategories.length);
+
     const categories = allCategories.map(cat => ({
       slug: cat.slug,
       name: cat.name
@@ -78,7 +64,20 @@ async function getProfessionals(): Promise<{
       selectedServices: 1
     }).lean<LeanUser[]>();
 
-    console.log('Found professionals:', professionals.length);
+    console.log('Found professionals:', {
+      count: professionals.length,
+      sample: professionals.slice(0, 2).map(pro => ({
+        id: pro._id.toString(),
+        name: pro.name,
+        image: pro.image || 'none',
+        businessInfo: pro.businessInfo || 'none'
+      }))
+    });
+
+    if (professionals.length === 0) {
+      console.log('No professionals found. Database query returned empty array.');
+      return { professionals: [], categories };
+    }
 
     // Get all unique category slugs from all professionals
     const allCategorySlugs = [...new Set(
@@ -154,7 +153,38 @@ async function getProfessionals(): Promise<{
       professionals: professionals.map(pro => {
         const proRating = ratingsMap.get(pro._id.toString());
         const projectImages = projectImagesMap.get(pro._id.toString()) || [];
-        const allImages = pro.image ? [pro.image, ...projectImages] : projectImages;
+        
+        // Debug log for image data
+        console.log('Processing professional:', {
+          id: pro._id.toString(),
+          name: pro.name,
+          profileImage: pro.image || 'none',
+          projectImagesCount: projectImages.length
+        });
+        
+        // Extract URLs from project images and ensure they are valid URLs
+        const projectImageUrls = projectImages
+          .filter(img => img && typeof img === 'string' && img.trim() !== '')
+          .slice(0, 4); // Limit to 4 project images
+        
+        // Create array of valid images
+        const images: string[] = [];
+        
+        // Add profile image if it exists and is valid
+        if (pro.image && typeof pro.image === 'string' && pro.image.trim() !== '') {
+          images.push(pro.image);
+        }
+        
+        // Add project images
+        images.push(...projectImageUrls);
+        
+        console.log('Final images array:', {
+          professional: pro.name,
+          imagesCount: images.length,
+          hasProfileImage: !!pro.image,
+          projectImagesCount: projectImageUrls.length,
+          images
+        });
         
         // Get unique category IDs and serialize the selectedServices
         const serializedServices = pro.selectedServices?.map(service => ({
@@ -173,7 +203,7 @@ async function getProfessionals(): Promise<{
           id: pro._id.toString(),
           name: pro.name,
           businessName: pro.businessInfo?.companyName || pro.name,
-          images: allImages,
+          images, // This will be an empty array if no valid images are found
           rating: proRating?.rating || 0,
           reviewCount: proRating?.count || 0,
           specialty,
@@ -195,7 +225,6 @@ async function getProfessionals(): Promise<{
 
 export default async function FindProfessionals() {
   const { professionals, categories } = await getProfessionals();
-  console.log('Rendering professionals:', professionals.length);
 
   return (
     <>
@@ -242,8 +271,7 @@ export default async function FindProfessionals() {
 
         {/* Service Categories and Professionals Grid */}
         <div className="container mx-auto px-4">
-          <ServiceCategoryFilter categories={categories} />
-          <ProfessionalsGrid professionals={professionals} />
+          <ClientProfessionals professionals={professionals} categories={categories} />
         </div>
       </div>
       <Footer />

@@ -2,28 +2,24 @@
 
 import { useState } from 'react';
 import ProfessionalCard from './ProfessionalCard';
-
-interface Professional {
-  id: string;
-  name: string;
-  businessName: string;
-  images: string[];
-  rating: number;
-  reviewCount: number;
-  specialty: string;
-  location: string;
-  isFavorite: boolean;
-}
+import { DisplayProfessional } from '@/types/professional';
 
 interface ProfessionalsGridProps {
-  professionals: Professional[];
+  professionals: DisplayProfessional[];
+  selectedCategory: string | null;
 }
 
-export default function ProfessionalsGrid({ professionals }: ProfessionalsGridProps) {
+export default function ProfessionalsGrid({ professionals, selectedCategory }: ProfessionalsGridProps) {
   const [showAll, setShowAll] = useState(false);
-  console.log('Number of professionals:', professionals?.length || 0);
+
+  // Filter professionals based on selected category
+  const filteredProfessionals = selectedCategory
+    ? professionals.filter(professional => 
+        professional.selectedServices?.some(service => service.categoryId === selectedCategory)
+      )
+    : professionals;
   
-  if (!professionals?.length) {
+  if (!filteredProfessionals?.length) {
     return (
       <section className="py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
@@ -34,15 +30,19 @@ export default function ProfessionalsGrid({ professionals }: ProfessionalsGridPr
             </div>
           </div>
           <div className="text-center py-12">
-            <p className="text-gray-600">No professionals found. Please try again later.</p>
+            <p className="text-gray-600">
+              {selectedCategory 
+                ? 'No professionals found for this category. Please try another category.'
+                : 'No professionals found. Please try again later.'}
+            </p>
           </div>
         </div>
       </section>
     );
   }
 
-  const displayedProfessionals = showAll ? professionals : professionals.slice(0, 9);
-  const hasMore = professionals.length > 9;
+  const displayedProfessionals = showAll ? filteredProfessionals : filteredProfessionals.slice(0, 9);
+  const hasMore = filteredProfessionals.length > 9;
 
   return (
     <section className="py-12">
@@ -50,8 +50,12 @@ export default function ProfessionalsGrid({ professionals }: ProfessionalsGridPr
         {/* Grid Header */}
         <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-2xl font-medium text-gray-900">Featured Professionals</h2>
-            <p className="text-gray-500">Discover top-rated professionals in your area</p>
+            <h2 className="text-2xl font-medium text-gray-900">
+              {selectedCategory ? `${selectedCategory} Professionals` : 'Featured Professionals'}
+            </h2>
+            <p className="text-gray-500">
+              {`Showing ${filteredProfessionals.length} professional${filteredProfessionals.length === 1 ? '' : 's'}`}
+            </p>
           </div>
           {hasMore && (
             <button 
@@ -68,7 +72,15 @@ export default function ProfessionalsGrid({ professionals }: ProfessionalsGridPr
           {displayedProfessionals.map((professional) => (
             <ProfessionalCard
               key={professional.id}
-              {...professional}
+              id={professional.id}
+              name={professional.name}
+              businessName={professional.businessName}
+              images={professional.images}
+              rating={professional.rating}
+              reviewCount={professional.reviewCount}
+              specialty={professional.specialty}
+              location={professional.location}
+              isFavorite={professional.isFavorite}
             />
           ))}
         </div>

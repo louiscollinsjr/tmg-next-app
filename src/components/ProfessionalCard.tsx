@@ -36,16 +36,31 @@ export default function ProfessionalCard({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imageError, setImageError] = useState(false);
 
-  // Use default image if no images are provided or if there's an error
-  const displayImages = imageError || !images.length || images[0] === null ? [DEFAULT_IMAGE] : images;
+  // Filter out invalid images and ensure we always have the default image
+  const validImages = images?.filter(img => img !== undefined && img !== null && img !== '') || [];
+  const displayImages = validImages.length > 0 ? validImages : [DEFAULT_IMAGE];
+  
+  console.log('ProfessionalCard images:', {
+    originalImages: images,
+    validImages,
+    displayImages,
+    currentIndex: currentImageIndex,
+    hasError: imageError,
+    defaultImage: DEFAULT_IMAGE
+  });
 
   const handleImageError = () => {
-    console.warn('Image failed to load, using default image');
+    console.warn('Image failed to load:', {
+      failedImage: displayImages[currentImageIndex],
+      currentIndex: currentImageIndex,
+      totalImages: displayImages.length
+    });
     setImageError(true);
   };
 
   const nextImage = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (displayImages.length > 1) {
       setCurrentImageIndex((prev) => (prev + 1) % displayImages.length);
       setImageError(false);
@@ -54,24 +69,30 @@ export default function ProfessionalCard({
 
   const previousImage = (e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     if (displayImages.length > 1) {
       setCurrentImageIndex((prev) => (prev - 1 + displayImages.length) % displayImages.length);
       setImageError(false);
     }
   };
 
+  // Get the current image to display
+  const currentImage = imageError ? DEFAULT_IMAGE : displayImages[currentImageIndex];
+
   return (
     <Link href={`/professionals/${id}`} className="block group relative">
       {/* Image Container */}
       <div className="relative w-[312px] h-[298px] overflow-hidden rounded-xl bg-gray-200">
         <Image
-          src={displayImages[currentImageIndex]}
+          src={currentImage}
           alt={`${businessName || name}'s profile or work`}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
-          sizes="312px"
+          sizes="(max-width: 768px) 100vw, 312px"
           priority={currentImageIndex === 0}
           onError={handleImageError}
+          loading={currentImageIndex === 0 ? "eager" : "lazy"}
+          quality={75}
         />
         
         {/* Navigation Arrows */}
