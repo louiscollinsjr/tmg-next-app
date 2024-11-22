@@ -40,11 +40,9 @@ async function getProfessionals(): Promise<{
 }> {
   try {
     await dbConnect();
-    console.log('Connected to database, fetching professionals...');
     
     // Get all service categories
     const allCategories = await ServiceCategory.find().select('slug name').lean();
-    console.log('Found categories:', allCategories.length);
 
     const categories = allCategories.map(cat => ({
       slug: cat.slug,
@@ -63,21 +61,6 @@ async function getProfessionals(): Promise<{
       isFavorite: 1,
       selectedServices: 1
     }).lean<LeanUser[]>();
-
-    console.log('Found professionals:', {
-      count: professionals.length,
-      sample: professionals.slice(0, 2).map(pro => ({
-        id: pro._id.toString(),
-        name: pro.name,
-        image: pro.image || 'none',
-        businessInfo: pro.businessInfo || 'none'
-      }))
-    });
-
-    if (professionals.length === 0) {
-      console.log('No professionals found. Database query returned empty array.');
-      return { professionals: [], categories };
-    }
 
     // Get all unique category slugs from all professionals
     const allCategorySlugs = [...new Set(
@@ -154,14 +137,6 @@ async function getProfessionals(): Promise<{
         const proRating = ratingsMap.get(pro._id.toString());
         const projectImages = projectImagesMap.get(pro._id.toString()) || [];
         
-        // Debug log for image data
-        console.log('Processing professional:', {
-          id: pro._id.toString(),
-          name: pro.name,
-          profileImage: pro.image || 'none',
-          projectImagesCount: projectImages.length
-        });
-        
         // Extract URLs from project images and ensure they are valid URLs
         const projectImageUrls = projectImages
           .filter(img => img && typeof img === 'string' && img.trim() !== '')
@@ -177,14 +152,6 @@ async function getProfessionals(): Promise<{
         
         // Add project images
         images.push(...projectImageUrls);
-        
-        console.log('Final images array:', {
-          professional: pro.name,
-          imagesCount: images.length,
-          hasProfileImage: !!pro.image,
-          projectImagesCount: projectImageUrls.length,
-          images
-        });
         
         // Get unique category IDs and serialize the selectedServices
         const serializedServices = pro.selectedServices?.map(service => ({
@@ -215,7 +182,6 @@ async function getProfessionals(): Promise<{
       categories
     };
   } catch (error) {
-    console.error('Error fetching professionals:', error);
     return {
       professionals: [],
       categories: []
