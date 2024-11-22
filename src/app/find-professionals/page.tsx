@@ -24,6 +24,8 @@ interface LeanUser {
     _id?: Types.ObjectId;
   }>;
   isFavorite?: boolean;
+  isPro?: boolean;
+  status?: string;
 }
 
 interface ProjectWithImages {
@@ -71,25 +73,35 @@ async function getProfessionals(): Promise<{
 
     // First get all professionals
     console.warn('[API] Fetching professionals...');
-    const professionals = await User.find({ 
-      isPro: true,
-      status: 'active'
-    }).select({
-      name: 1,
-      image: 1,
-      businessInfo: 1,
-      status: 1,
-      isFavorite: 1,
-      selectedServices: 1
-    }).lean<LeanUser[]>();
+    const query = { isPro: true };
+    console.warn('[API] Query:', query);
+    
+    const professionals = await User.find(query)
+      .select({
+        name: 1,
+        image: 1,
+        businessInfo: 1,
+        status: 1,
+        isFavorite: 1,
+        selectedServices: 1,
+        isPro: 1
+      })
+      .lean<LeanUser[]>();
 
     console.warn('[API] Professionals fetched:', { 
       count: professionals.length,
-      sampleIds: professionals.slice(0, 2).map(p => p._id),
+      samplePros: professionals.slice(0, 2).map(p => ({
+        id: p._id,
+        name: p.name,
+        isPro: p.isPro,
+        status: p.status
+      }))
     });
 
     if (professionals.length === 0) {
-      console.warn('[API] No professionals found in database');
+      // Let's check if there are any users at all
+      const totalUsers = await User.countDocuments({});
+      console.warn('[API] No professionals found. Total users in database:', totalUsers);
       return { professionals: [], categories };
     }
 
