@@ -2,7 +2,6 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { 
-  House,
   PaintBrush,
   Wrench,
   Tree,
@@ -15,7 +14,7 @@ import {
   Fan,
   Toolbox,
   Couch,
-  Brush
+  Warehouse
 } from "@phosphor-icons/react";
 
 interface ServiceCategoryFilterProps {
@@ -23,12 +22,14 @@ interface ServiceCategoryFilterProps {
     slug: string;
     name: string;
   }>;
+  onCategorySelect?: (slug: string | null) => void;
 }
 
-export default function ServiceCategoryFilter({ categories }: ServiceCategoryFilterProps) {
+export default function ServiceCategoryFilter({ categories, onCategorySelect }: ServiceCategoryFilterProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const checkScroll = () => {
     if (scrollContainerRef.current) {
@@ -123,19 +124,44 @@ export default function ServiceCategoryFilter({ categories }: ServiceCategoryFil
           msOverflowStyle: 'none',
         }}
       >
-        <div className="flex space-x-10 px-8 h-full items-center">
+        <div className="flex space-x-10 px-20 h-full items-center">
+          {/* All Professionals category */}
+          <button
+            onClick={() => {
+              setSelectedCategory(null);
+              onCategorySelect?.(null);
+            }}
+            className={`text-xs whitespace-nowrap px-2 text-gray-600 hover:text-gray-900 flex flex-col items-center gap-2 cursor-pointer ${selectedCategory === null ? 'text-gray-900' : ''}`}
+          >
+            <div className="flex flex-col items-center gap-2">
+              {React.createElement(Warehouse, {
+                size: 26,
+                className: `${selectedCategory === null ? 'text-gray-900' : 'text-gray-800'}`
+              })}
+              <span className={`${selectedCategory === null ? 'underline decoration-2 underline-offset-[12px] decoration-black' : 'hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black'}`}>
+                All Professionals
+              </span>
+            </div>
+          </button>
+
           {categories.map((category) => (
             <button
               key={category.slug}
-              className="text-xs whitespace-nowrap px-2 text-gray-600 hover:text-gray-900 flex flex-col items-center gap-2"
+              onClick={() => {
+                setSelectedCategory(category.slug);
+                onCategorySelect?.(category.slug);
+              }}
+              className={`text-xs whitespace-nowrap px-2 text-gray-600 hover:text-gray-900 flex flex-col items-center gap-2 cursor-pointer ${selectedCategory === category.slug ? 'text-gray-900' : ''}`}
             >
-              {React.createElement(getIconForCategory(category.slug), {
-                size: 26,
-                className: "text-gray-800"
-              })}
-              <span className="hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black">
-                {category.name}
-              </span>
+              <div className="flex flex-col items-center gap-2">
+                {React.createElement(getIconForCategory(category.slug), {
+                  size: 26,
+                  className: `${selectedCategory === category.slug ? 'text-gray-900' : 'text-gray-800'}`
+                })}
+                <span className={`${selectedCategory === category.slug ? 'underline decoration-2 underline-offset-[12px] decoration-black' : 'hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black'}`}>
+                  {category.name}
+                </span>
+              </div>
             </button>
           ))}
         </div>
