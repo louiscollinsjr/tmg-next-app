@@ -34,14 +34,24 @@ async function dbConnect() {
       maxPoolSize: 10, // Recommended for serverless deployments
     };
 
-    console.log('Connecting to MongoDB...'); // Debug log
+    // Log the connection attempt and URI (without sensitive data)
+    const sanitizedUri = MONGODB_URI.replace(
+      /mongodb\+srv:\/\/([^:]+):([^@]+)@/,
+      'mongodb+srv://[username]:[password]@'
+    );
+    console.warn('[DB] Connecting to MongoDB...', { uri: sanitizedUri });
+
     cached.promise = mongoose.connect(MONGODB_URI, opts)
       .then((mongoose) => {
-        console.log('MongoDB connected successfully'); // Debug log
+        console.warn('[DB] MongoDB connected successfully');
         return mongoose;
       })
       .catch((error) => {
-        console.error('MongoDB connection error:', error); // Debug log
+        console.warn('[DB] MongoDB connection error:', {
+          name: error.name,
+          message: error.message,
+          code: error.code,
+        });
         throw error;
       });
   }
@@ -50,7 +60,12 @@ async function dbConnect() {
     cached.conn = await cached.promise;
   } catch (e) {
     cached.promise = null;
-    console.error('Failed to connect to MongoDB:', e); // Debug log
+    const error = e as Error;
+    console.warn('[DB] Failed to connect to MongoDB:', {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    });
     throw e;
   }
 
