@@ -1,6 +1,22 @@
 "use client";
 
 import React, { useRef } from 'react';
+import { 
+  House,
+  PaintBrush,
+  Wrench,
+  Tree,
+  Pipe,
+  Lightning,
+  Broom,
+  Bug,
+  Storefront,
+  Icon,
+  Fan,
+  Toolbox,
+  Couch,
+  Brush
+} from "@phosphor-icons/react";
 
 interface ServiceCategoryFilterProps {
   categories: Array<{
@@ -21,6 +37,32 @@ export default function ServiceCategoryFilter({ categories }: ServiceCategoryFil
         behavior: 'smooth'
       });
     }
+  };
+
+  const getIconForCategory = (slug: string): Icon => {
+    const iconMap: { [key: string]: Icon } = {
+      // Essential Services
+      'electrical': Lightning,
+      'plumbing': Pipe,
+      'hvac': Fan,
+      
+      // Major Renovations
+      'construction-remodeling': Toolbox,
+      'interior-design-decor': Couch,
+      
+      // Maintenance
+      'cleaning-maintenance': Broom,
+      'landscaping-outdoor': Tree,
+      'handyman-services': Wrench,
+      
+      // Specialty Services
+      'painting-wall-treatments': PaintBrush,
+      'pest-control': Bug,
+      
+      // Default
+      'other': Storefront,
+    };
+    return iconMap[slug] || Storefront;
   };
 
   return (
@@ -44,13 +86,19 @@ export default function ServiceCategoryFilter({ categories }: ServiceCategoryFil
           msOverflowStyle: 'none',
         }}
       >
-        <div className="flex space-x-8 px-8 h-full items-center">
+        <div className="flex space-x-10 px-8 h-full items-center">
           {categories.map((category) => (
             <button
               key={category.slug}
-              className="text-sm whitespace-nowrap px-2 pb-4 text-gray-600 hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black"
+              className="text-xs whitespace-nowrap px-2 text-gray-600 hover:text-gray-900 flex flex-col items-center gap-1"
             >
-              {category.name}
+              {React.createElement(getIconForCategory(category.slug), {
+                size: 30,
+                className: "text-gray-600"
+              })}
+              <span className="hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black">
+                {category.name}
+              </span>
             </button>
           ))}
         </div>

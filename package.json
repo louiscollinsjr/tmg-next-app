@@ -13,6 +13,7 @@
     "update-favorites": "bun run scripts/updateUserFavorites.ts"
   },
   "dependencies": {
+    "@phosphor-icons/react": "^2.1.7",
     "@swc/helpers": "^0.5.3",
     "@types/bcryptjs": "^2.4.6",
     "bcryptjs": "^2.4.3",
