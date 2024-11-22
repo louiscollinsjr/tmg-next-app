@@ -1,9 +1,15 @@
 export interface SelectedService {
   categoryId: string;
   optionId: string;
+  categoryName?: string;
   _id?: {
     $oid: string;
   };
+}
+
+export interface ContactInfo {
+  phone?: string;
+  email?: string;
 }
 
 export interface DisplayProfessional {
@@ -17,4 +23,5 @@ export interface DisplayProfessional {
   location: string;
   isFavorite: boolean;
   selectedServices?: SelectedService[];
+  contactInfo?: ContactInfo;
 }

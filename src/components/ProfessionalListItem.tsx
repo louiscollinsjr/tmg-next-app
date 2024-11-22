@@ -2,11 +2,7 @@ import { DisplayProfessional } from '@/types/professional';
 import Link from 'next/link';
 import { BsStarFill } from 'react-icons/bs';
 
-interface ProfessionalListItemProps extends DisplayProfessional {
-  rating: number;
-  reviewCount: number;
-  isFavorite: boolean;
-}
+interface ProfessionalListItemProps extends DisplayProfessional {}
 
 export default function ProfessionalListItem({
   id,
@@ -45,14 +41,16 @@ export default function ProfessionalListItem({
         <p className="text-xs text-gray-600 mt-1 truncate">
           {serviceCategories}
         </p>
-        <div className="text-xs text-gray-500 mt-1">
-          {contactInfo?.phone && (
-            <p className="truncate">{contactInfo.phone}</p>
-          )}
-          {contactInfo?.email && (
-            <p className="truncate">{contactInfo.email}</p>
-          )}
-        </div>
+        {contactInfo && (
+          <div className="text-xs text-gray-500 mt-1">
+            {contactInfo.phone && (
+              <p className="truncate">{contactInfo.phone}</p>
+            )}
+            {contactInfo.email && (
+              <p className="truncate">{contactInfo.email}</p>
+            )}
+          </div>
+        )}
       </div>
     </Link>
   );
