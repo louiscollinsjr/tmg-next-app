@@ -7,7 +7,7 @@ import Review from "@/lib/models/Review";
 import Project from "@/lib/models/Project";
 import ServiceCategory from '@/lib/models/ServiceCategory';
 import { Types } from 'mongoose';
-import { DisplayProfessional } from '@/types/professional';
+import { DisplayProfessional, SelectedService } from '@/types/professional';
 
 interface LeanUser {
   _id: Types.ObjectId;
@@ -210,7 +210,7 @@ async function getProfessionals(): Promise<{
           location: pro.businessInfo?.serviceArea?.[0] || '',
           isFavorite: pro.isFavorite || false,
           selectedServices: serializedServices
-        };
+        } as DisplayProfessional;
       }),
       categories
     };
