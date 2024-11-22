@@ -124,7 +124,7 @@ export default function ServiceCategoryFilter({ categories, onCategorySelect }: 
           msOverflowStyle: 'none',
         }}
       >
-        <div className="flex space-x-10 px-20 h-full items-center">
+        <div className="flex space-x-10 px-2 h-full items-center">
           {/* All Professionals category */}
           <button
             onClick={() => {
@@ -135,7 +135,7 @@ export default function ServiceCategoryFilter({ categories, onCategorySelect }: 
           >
             <div className="flex flex-col items-center gap-2">
               {React.createElement(Warehouse, {
-                size: 26,
+                size: 35,
                 className: `${selectedCategory === null ? 'text-gray-900' : 'text-gray-800'}`
               })}
               <span className={`${selectedCategory === null ? 'underline decoration-2 underline-offset-[12px] decoration-black' : 'hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black'}`}>
@@ -155,7 +155,7 @@ export default function ServiceCategoryFilter({ categories, onCategorySelect }: 
             >
               <div className="flex flex-col items-center gap-2">
                 {React.createElement(getIconForCategory(category.slug), {
-                  size: 26,
+                  size: 35,
                   className: `${selectedCategory === category.slug ? 'text-gray-900' : 'text-gray-800'}`
                 })}
                 <span className={`${selectedCategory === category.slug ? 'underline decoration-2 underline-offset-[12px] decoration-black' : 'hover:underline hover:decoration-2 hover:underline-offset-[12px] hover:decoration-black'}`}>
