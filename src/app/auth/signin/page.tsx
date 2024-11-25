@@ -160,20 +160,6 @@ export default function SignIn() {
               />
               <span className="text-gray-700">Continue with Google</span>
             </button>
-
-            <button
-              onClick={() => signIn('github', { callbackUrl: '/' })}
-              className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors font-roboto"
-            >
-              <Image
-                src="/github.svg"
-                alt="GitHub"
-                width={20}
-                height={20}
-                className="w-5 h-5"
-              />
-              <span className="text-gray-700">Continue with GitHub</span>
-            </button>
           </div>
 
           <div className="mt-6 text-center">
