@@ -7,7 +7,22 @@ export default function AuthButton() {
   const { data: session, status } = useSession()
 
   if (status === 'loading') {
-    return <div className="text-xs text-gray-400 opacity-80">Loading...</div>
+    return (
+      <div className="flex items-center gap-6">
+        <button
+          disabled
+          className="text-sm text-gray-400 cursor-wait transition-colors animate-pulse"
+        >
+          Sign in
+        </button>
+        <button
+          disabled
+          className="bg-gray-300 text-white text-sm font-normal px-6 py-2 rounded-xl cursor-wait transition-colors animate-pulse"
+        >
+          Get Started
+        </button>
+      </div>
+    )
   }
 
   if (session) {
