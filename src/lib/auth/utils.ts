@@ -13,8 +13,11 @@ export async function createOrUpdateUser(
     email: authUser.email,
     name: authUser.name,
     image: authUser.image,
-    providers: account ? [account.provider] : [],
-    providerId: account?.providerAccountId,
+    providers: account ? [{
+      name: account.provider,
+      providerId: account.providerAccountId,
+      lastLogin: new Date()
+    }] : [],
   };
 
   try {
@@ -23,8 +26,28 @@ export async function createOrUpdateUser(
 
     if (existingUser) {
       // Update existing user
-      if (account && !existingUser.providers.includes(account.provider)) {
-        existingUser.providers.push(account.provider);
+      if (account) {
+        // Check if this provider already exists
+        const providerExists = existingUser.providers.some(
+          p => p.name === account.provider && p.providerId === account.providerAccountId
+        );
+
+        if (!providerExists) {
+          // Add new provider
+          existingUser.providers.push({
+            name: account.provider,
+            providerId: account.providerAccountId,
+            lastLogin: new Date()
+          });
+        } else {
+          // Update lastLogin for existing provider
+          const providerIndex = existingUser.providers.findIndex(
+            p => p.name === account.provider && p.providerId === account.providerAccountId
+          );
+          if (providerIndex !== -1) {
+            existingUser.providers[providerIndex].lastLogin = new Date();
+          }
+        }
       }
       
       // Update other fields if they've changed
@@ -40,6 +63,16 @@ export async function createOrUpdateUser(
       ...userData,
       isPro: false, // default to free tier
       createdAt: new Date(),
+      preferences: {
+        notifications: {
+          email: true,
+          push: true,
+          marketing: false
+        },
+        visibility: 'public'
+      },
+      status: 'active',
+      lastActive: new Date()
     });
 
     return newUser;

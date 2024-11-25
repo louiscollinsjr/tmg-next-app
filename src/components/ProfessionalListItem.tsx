@@ -31,7 +31,7 @@ export default function ProfessionalListItem({
           <span className="text-xs text-gray-500 ml-1">• {reviewText}</span>
           {isFavorite && (
             <span className="ml-2 px-1.5 py-0.5 text-[10px] font-medium bg-gray-900 text-white rounded">
-              TMG PICK
+              <b>tmg.</b> Choice
             </span>
           )}
         </div>

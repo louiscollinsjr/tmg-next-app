@@ -22,17 +22,11 @@ export default function Navigation() {
           {/* Desktop Menu - Centered */}
           <div className="hidden md:flex flex-grow justify-center">
             <div className="flex items-center space-x-10">
-              <Link href="/explore-designs" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                Explore Designs
-              </Link>
               <Link href="/find-professionals" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                 Find Professionals
               </Link>
-              <Link href="/start-project" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                Start a Project
-              </Link>
-              <Link href="/leave-review" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
-                Leave a Review
+              <Link href="/explore-designs" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                Explore Designs
               </Link>
             </div>
           </div>
@@ -65,28 +59,16 @@ export default function Navigation() {
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1">
             <Link
-              href="/explore-designs"
-              className="block px-3 py-2 text-[#d1d1d1] text-sm hover:text-white transition-colors"
-            >
-              Explore Designs
-            </Link>
-            <Link
               href="/find-professionals"
               className="block px-3 py-2 text-[#d1d1d1] text-sm hover:text-white transition-colors"
             >
               Find Professionals
             </Link>
             <Link
-              href="/start-project"
+              href="/explore-designs"
               className="block px-3 py-2 text-[#d1d1d1] text-sm hover:text-white transition-colors"
             >
-              Start a Project
-            </Link>
-            <Link
-              href="/leave-review"
-              className="block px-3 py-2 text-[#d1d1d1] text-sm hover:text-white transition-colors"
-            >
-              Leave a Review
+              Explore Designs
             </Link>
             <div className="px-3 py-2">
               <AuthButton />

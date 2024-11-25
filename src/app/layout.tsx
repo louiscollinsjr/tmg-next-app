@@ -112,8 +112,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${openSans.variable} ${lato.variable} ${roboto.variable}`}>
-      <body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${openSans.variable} ${lato.variable} ${roboto.variable}`} suppressHydrationWarning>
+      <body suppressHydrationWarning>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
