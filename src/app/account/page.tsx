@@ -35,10 +35,10 @@ export default function AccountPage() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen flex flex-col bg-primary">
+      <div className="min-h-screen flex flex-col bg-zinc-50 font-roboto">
         <Navigation />
         <div className="flex-grow w-full">
-          <div className="text-white max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">Loading...</div>
+          <div className="text-black max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">Loading...</div>
         </div>
         <Footer />
       </div>
@@ -46,13 +46,13 @@ export default function AccountPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-primary">
+    <div className="min-h-screen flex flex-col bg-zinc-50 font-roboto">
       <Navigation />
-      <div className="flex-grow w-full bg-primary pt-32">
+      <div className="flex-grow w-full bg-zinc-50 pt-32">
         <div className="h-full">
-          <div className="bg-primary h-full">
+          <div className="bg-zinc-50 h-full">
             {/* Header */}
-            <div className="bg-primary text-white">
+            <div className="bg-zinc-50 text-black">
               <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="py-4">
                   <h1 className="text-2xl font-semibold">Account Settings</h1>
@@ -61,16 +61,16 @@ export default function AccountPage() {
             </div>
 
             {/* Navigation Tabs */}
-            <div className="bg-primary">
+            <div className="bg-zinc-50">
               <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="border-b border-gray-700">
+                <div className="border-b border-gray-200">
                   <nav className="-mb-px flex space-x-8">
                     <button
                       onClick={() => setActiveTab('profile')}
                       className={`${
                         activeTab === 'profile'
-                          ? 'border-white text-white'
-                          : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
+                          ? 'border-black text-black'
+                          : 'border-transparent text-gray-600 hover:text-black hover:border-gray-300'
                       } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                     >
                       Profile
@@ -79,8 +79,8 @@ export default function AccountPage() {
                       onClick={() => setActiveTab('security')}
                       className={`${
                         activeTab === 'security'
-                          ? 'border-white text-white'
-                          : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
+                          ? 'border-black text-black'
+                          : 'border-transparent text-gray-600 hover:text-black hover:border-gray-300'
                       } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                     >
                       Security
@@ -89,8 +89,8 @@ export default function AccountPage() {
                       onClick={() => setActiveTab('notifications')}
                       className={`${
                         activeTab === 'notifications'
-                          ? 'border-white text-white'
-                          : 'border-transparent text-gray-300 hover:text-white hover:border-gray-300'
+                          ? 'border-black text-black'
+                          : 'border-transparent text-gray-600 hover:text-black hover:border-gray-300'
                       } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
                     >
                       Notifications
@@ -103,7 +103,7 @@ export default function AccountPage() {
             {/* Content */}
             <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-8">
               {activeTab === 'profile' && session?.user?.email && (
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   {/* Basic Profile Info */}
                   <div className="space-y-6 mb-8">
                     <div>
@@ -145,7 +145,7 @@ export default function AccountPage() {
               )}
               
               {activeTab === 'security' && (
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-medium text-gray-900">Change Password</h3>
@@ -204,7 +204,7 @@ export default function AccountPage() {
               )}
 
               {activeTab === 'notifications' && (
-                <div className="bg-gray-50 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6">
                   <div className="space-y-6">
                     <div>
                       <h3 className="text-lg font-medium text-gray-900">Email Notifications</h3>
