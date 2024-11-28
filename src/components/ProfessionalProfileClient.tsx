@@ -5,7 +5,7 @@ import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import RatingStars from '@/components/RatingStars'
 import { formatDate } from '@/utils/date'
-import { FaStar } from 'react-icons/fa'
+import { FaRegHeart, FaHeart } from 'react-icons/fa';
 
 interface DisplayProfessional {
   id: string;
