@@ -1,6 +1,9 @@
 import { DisplayProfessional } from '@/types/professional';
 import Link from 'next/link';
 import { BsStarFill } from 'react-icons/bs';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
+import { useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 interface ProfessionalListItemProps extends DisplayProfessional {}
 
@@ -19,9 +22,44 @@ export default function ProfessionalListItem({
   const displayRating = rating ? rating.toFixed(1) : '0.0';
   const reviewText = `${reviewCount || 0} ${reviewCount === 1 ? 'Review' : 'Reviews'}`;
 
+  const { data: session } = useSession();
+  const [isSaved, setIsSaved] = useState(isFavorite);
+
+  const handleSave = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!session?.user) {
+      // Redirect to sign in or show sign in modal
+      return;
+    }
+
+    try {
+      if (isSaved) {
+        await fetch(`/api/saved-items?itemId=${id}`, {
+          method: 'DELETE',
+        });
+      } else {
+        await fetch('/api/saved-items', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            itemId: id,
+            itemType: 'User',
+          }),
+        });
+      }
+      setIsSaved(!isSaved);
+    } catch (error) {
+      console.error('Error toggling save:', error);
+    }
+  };
+
   return (
-    <Link href={`/professionals/${id}`} className="block">
-      <div className="pr-3 py-3 hover:bg-gray-50 transition-colors h-full">
+    <Link href={`/professionals/${id}`} className="block relative">
+      <div className="pr-3 py-3 hover:bg-gray-50 transition-colors h-full relative">
         <h3 className="text-sm font-bold text-gray-900 truncate">
           {businessName || name}
         </h3>
@@ -51,6 +89,16 @@ export default function ProfessionalListItem({
             )}
           </div>
         )}
+        <button
+          onClick={handleSave}
+          className="absolute bottom-3 right-3 p-2 rounded-full hover:bg-gray-100 transition-colors"
+        >
+          {isSaved ? (
+            <FaHeart className="w-4 h-4 text-red-500" />
+          ) : (
+            <FaRegHeart className="w-4 h-4 text-gray-400" />
+          )}
+        </button>
       </div>
     </Link>
   );
