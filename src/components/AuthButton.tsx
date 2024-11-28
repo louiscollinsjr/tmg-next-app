@@ -8,18 +8,12 @@ export default function AuthButton() {
 
   if (status === 'loading') {
     return (
-      <div className="flex items-center gap-6">
+      <div>
         <button
           disabled
           className="text-sm text-gray-400 cursor-wait transition-colors animate-pulse"
         >
           Sign in
-        </button>
-        <button
-          disabled
-          className="bg-gray-300 text-white text-sm font-normal px-6 py-2 rounded-xl cursor-wait transition-colors animate-pulse"
-        >
-          Get Started
         </button>
       </div>
     )
@@ -30,13 +24,13 @@ export default function AuthButton() {
       <div className="flex items-center gap-6">
         <button
           onClick={() => signOut()}
-          className="text-xs  text-gray-600 hover:text-gray-900 transition-colors"
+          className="text-base text-gray-600 hover:text-gray-900 transition-colors"
         >
           Sign out
         </button>
         <Link 
           href="/account" 
-          className="bg-black text-white text-xs font-semibold px-4 py-1 rounded-full hover:bg-gray-700 transition-colors"
+          className="text-base text-gray-600 hover:text-gray-900 transition-colors"
         >
           Dashboard
         </Link>
@@ -45,18 +39,12 @@ export default function AuthButton() {
   }
 
   return (
-    <div className="flex items-center gap-6">
+    <div>
       <button
         onClick={() => signIn(undefined, { callbackUrl: '/' })}
-        className="text-sm  text-gray-600 hover:text-gray-900 transition-colors"
+        className="text-base text-gray-600 hover:text-gray-900 transition-colors"
       >
         Sign in
-      </button>
-      <button
-        onClick={() => signIn(undefined, { callbackUrl: '/account' })}
-        className="bg-black text-white text-sm font-normal px-6 py-2 rounded-xl hover:bg-gray-700 transition-colors"
-      >
-        Get Started
       </button>
     </div>
   )

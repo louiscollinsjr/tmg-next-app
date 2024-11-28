@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, League_Spartan, Montserrat, Figtree, Lato, Open_Sans, Roboto } from "next/font/google";
+import { Inter, League_Spartan, Montserrat, Figtree, Lato, Open_Sans, Roboto, Courier_Prime } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
@@ -35,6 +35,12 @@ const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
   variable: "--font-roboto",
+});
+
+const courier = Courier_Prime({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-courier',
 });
 
 export const metadata: Metadata = {
@@ -101,7 +107,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0a7aff',
+  themeColor: '#00000',
   width: 'device-width',
   initialScale: 1,
 }
@@ -112,7 +118,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${openSans.variable} ${lato.variable} ${roboto.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${courier.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>

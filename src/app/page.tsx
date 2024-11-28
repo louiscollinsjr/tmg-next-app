@@ -9,16 +9,12 @@ import FAQ from "@/components/FAQ";
 
 export default function Home() {
   return (
-    <>
+    <div className="min-h-screen">
       <Navigation />
-      <div className="min-h-screen bg-zinc-50">
+      <div className="bg-zinc-100">
         <Hero />
-        <ServiceAssistance />
-        <HomeownersCTA />
-        <CommunityPowerCTA />
-        <FAQ />
       </div>
       <Footer />
-    </>
+    </div>
   )
 }

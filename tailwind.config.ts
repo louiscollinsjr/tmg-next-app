@@ -11,6 +11,7 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'burnt-orange': '#D35400',
         primary: {
           DEFAULT: 'rgb(10, 122, 255)',
           blue: 'rgb(10, 122, 255)',
