@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Courier_Prime } from "next/font/google";
+import { Montserrat, Courier_Prime, Tiro_Bangla, Luckiest_Guy } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
 
@@ -12,6 +12,18 @@ const courier = Courier_Prime({
   weight: '400',
   subsets: ['latin'],
   variable: '--font-courier',
+});
+
+const tiroBangla = Tiro_Bangla({
+  weight: '400',
+  subsets: ['bengali'],
+  variable: '--font-tiro-bangla',
+});
+
+const luckiestGuy = Luckiest_Guy({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-luckiest-guy',
 });
 
 export const metadata: Metadata = {
@@ -89,9 +101,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${courier.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${montserrat.variable} ${courier.variable} ${tiroBangla.variable} ${luckiestGuy.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <NextAuthProvider>{children}</NextAuthProvider>
+        <NextAuthProvider>
+          {children}
+        </NextAuthProvider>
       </body>
     </html>
   );

@@ -19,8 +19,8 @@ export default function Navigation() {
           <div className="flex items-center h-[64px]">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="text-burnt-orange text-3xl font-bold hover:text-gray-700 transition-colors">
-                tmg.
+              <Link href="/" className="text-burnt-orange text-3xl font-luckiest-guy hover:text-gray-700 transition-colors">
+                TryMyGuys
               </Link>
             </div>
             
