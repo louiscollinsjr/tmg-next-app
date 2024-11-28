@@ -1,36 +1,42 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-export interface IUserInteraction extends Document {
+interface IUserInteraction extends Document {
   userId: mongoose.Types.ObjectId;
-  type: 'project_view' | 'profile_view' | 'search' | 'save';
-  targetId?: mongoose.Types.ObjectId;
-  targetModel?: 'Project' | 'User';
-  metadata?: any;
-  createdAt: Date;
+  professionalId: mongoose.Types.ObjectId;
+  type: string;
+  timestamp: Date;
+  metadata: Record<string, unknown>;
 }
 
-const UserInteractionSchema = new Schema({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+const userInteractionSchema = new Schema<IUserInteraction>({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  professionalId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Professional',
+    required: true,
+  },
   type: {
     type: String,
-    enum: ['project_view', 'profile_view', 'search', 'save'],
-    required: true
+    required: true,
   },
-  targetId: { type: Schema.Types.ObjectId, refPath: 'targetModel' },
-  targetModel: {
-    type: String,
-    enum: ['Project', 'User'],
-    required: function(this: any): boolean {
-      return this.targetId != null;
-    }
+  timestamp: {
+    type: Date,
+    default: Date.now,
   },
-  metadata: Schema.Types.Mixed,
-  createdAt: { type: Date, default: Date.now, expires: '90d' } // TTL index
+  metadata: {
+    type: Map,
+    of: Schema.Types.Mixed,
+    default: {},
+  },
 });
 
 // Indexes
-UserInteractionSchema.index({ userId: 1, type: 1, createdAt: -1 });
-UserInteractionSchema.index({ targetId: 1, type: 1 });
-UserInteractionSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7776000 }); // 90 days TTL
+userInteractionSchema.index({ userId: 1, type: 1, timestamp: -1 });
+userInteractionSchema.index({ professionalId: 1, type: 1 });
+userInteractionSchema.index({ timestamp: 1 }, { expireAfterSeconds: 7776000 }); // 90 days TTL
 
-export default mongoose.models.UserInteraction || mongoose.model<IUserInteraction>('UserInteraction', UserInteractionSchema);
+export default mongoose.models.UserInteraction || mongoose.model<IUserInteraction>('UserInteraction', userInteractionSchema);

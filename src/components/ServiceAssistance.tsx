@@ -25,10 +25,10 @@ const services = [
 ];
 
 export default function ServiceAssistance() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
 
-  const toggleAccordion = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index);
+  const handleAccordionClick = (index: number) => {
+    setActiveAccordion(activeAccordion === index ? null : index);
   };
 
   return (

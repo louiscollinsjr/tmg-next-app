@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import dbConnect from '@/lib/db/mongodb';
 import User from '@/lib/models/User';
-import { hashPassword } from '@/lib/auth/password';
+import bcrypt from 'bcrypt';
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,20 +27,30 @@ export async function POST(req: NextRequest) {
     }
 
     // Hash password and create user
-    const hashedPassword = await hashPassword(password);
-    const user = await User.create({
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    interface NewUser {
+      email: string;
+      password: string;
+      name?: string;
+      role: string;
+    }
+
+    const newUser: NewUser = {
       email,
-      name,
       password: hashedPassword,
-      providers: ['credentials'],
-    });
+      name,
+      role: 'user'
+    };
+
+    const user = await User.create(newUser);
 
     // Remove password from response
     const userResponse = user.toObject();
     delete userResponse.password;
 
     return NextResponse.json(userResponse, { status: 201 });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Signup error:', error);
     return NextResponse.json(
       { error: 'Failed to create account' },

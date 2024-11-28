@@ -1,40 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, League_Spartan, Montserrat, Figtree, Lato, Open_Sans, Roboto, Courier_Prime } from "next/font/google";
-import localFont from "next/font/local";
+import { Montserrat, Courier_Prime } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
 
 const montserrat = Montserrat({
   subsets: ['latin'],
   variable: '--font-montserrat',
-});
-
-const openSans = Open_Sans({
-  subsets: ['latin'],
-  variable: '--font-opensans',
-});
-
-const lato = Lato({
-  weight: ['100', '300', '400', '700', '900'],
-  subsets: ['latin'],
-  variable: '--font-lato',
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-  variable: "--font-roboto",
 });
 
 const courier = Courier_Prime({
@@ -118,7 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} ${courier.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${montserrat.variable} ${courier.variable}`} suppressHydrationWarning>
       <body suppressHydrationWarning>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>

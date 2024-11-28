@@ -2,6 +2,12 @@ import { Account, Profile, User as AuthUser } from 'next-auth';
 import User from '@/lib/models/User';
 import dbConnect from '@/lib/db/mongodb';
 
+interface Provider {
+  name: string;
+  providerId: string;
+  lastLogin: Date;
+}
+
 export async function createOrUpdateUser(
   authUser: AuthUser,
   account: Account | null,
@@ -29,7 +35,7 @@ export async function createOrUpdateUser(
       if (account) {
         // Check if this provider already exists
         const providerExists = existingUser.providers.some(
-          p => p.name === account.provider && p.providerId === account.providerAccountId
+          (p: Provider) => p.name === account.provider && p.providerId === account.providerAccountId
         );
 
         if (!providerExists) {
@@ -42,7 +48,7 @@ export async function createOrUpdateUser(
         } else {
           // Update lastLogin for existing provider
           const providerIndex = existingUser.providers.findIndex(
-            p => p.name === account.provider && p.providerId === account.providerAccountId
+            (p: Provider) => p.name === account.provider && p.providerId === account.providerAccountId
           );
           if (providerIndex !== -1) {
             existingUser.providers[providerIndex].lastLogin = new Date();

@@ -17,14 +17,12 @@ export async function PUT(request: Request) {
     
     // Here you would typically update the user's profile in your database
     // For now, we'll just return the updated data
-    return NextResponse.json({
-      message: 'Profile updated successfully',
-      user: {
-        ...session.user,
-        name: data.name,
-      },
-    });
-  } catch (error) {
+    const updatedUser = {
+      ...session.user,
+      name: data.name,
+    };
+    return NextResponse.json({ success: true, user: updatedUser });
+  } catch {
     return NextResponse.json(
       { error: 'Failed to update profile' },
       { status: 500 }

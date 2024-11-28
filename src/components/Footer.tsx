@@ -6,7 +6,7 @@ import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import { SiBluesky } from 'react-icons/si';
 
 export default function Footer() {
-  const [location, setLocation] = useState('United States'); // Placeholder location
+  const [location] = useState('United States'); // Placeholder location
 
   // TODO: Implement actual geolocation
   useEffect(() => {

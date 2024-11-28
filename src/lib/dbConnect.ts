@@ -12,20 +12,24 @@ if (!MONGODB_URI) {
  * in development. This prevents connections growing exponentially
  * during API Route usage.
  */
-interface Cached {
+interface MongooseConnection {
   conn: typeof mongoose | null;
   promise: Promise<typeof mongoose> | null;
 }
 
-let cached: Cached = (global as any).mongoose;
+const globalForMongoose = global as unknown as {
+  mongoose: MongooseConnection;
+};
+
+let cached = globalForMongoose.mongoose
 
 if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+  cached = globalForMongoose.mongoose = { conn: null, promise: null }
 }
 
 async function dbConnect() {
   if (cached.conn) {
-    return cached.conn;
+    return cached.conn
   }
 
   if (!cached.promise) {

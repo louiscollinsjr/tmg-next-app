@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import React, { useState } from 'react';
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import RatingStars from '@/components/RatingStars'
@@ -36,7 +36,7 @@ interface Props {
 }
 
 export default function ProfessionalProfileClient({ professional }: Props) {
-  const [showAllPhotos, setShowAllPhotos] = useState(false)
+  const [selectedTab, setSelectedTab] = useState('about');
 
   // Add a null check for the professional object
   if (!professional || !professional.name) {
@@ -88,7 +88,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
             <div className="relative h-[236px] bg-gray-100 rounded-lg" />
             <div className="relative h-[236px] bg-gray-100 rounded-lg" />
             <div className="relative h-[236px] bg-gray-100 rounded-lg" />
-            <div className="relative h-[236px] bg-gray-100 rounded-lg group cursor-pointer" onClick={() => setShowAllPhotos(true)}>
+            <div className="relative h-[236px] bg-gray-100 rounded-lg group cursor-pointer">
               <div className="absolute inset-0 flex items-end justify-end p-4">
                 <button className="text-gray-700 font-medium bg-white px-4 py-2 rounded-lg shadow-sm">
                   View all photos

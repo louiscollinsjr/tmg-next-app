@@ -1,4 +1,4 @@
-import { Types } from 'mongoose';
+import mongoose from 'mongoose';
 import dbConnect from '../dbConnect';
 import User from '../models/User';
 import ServiceCategory from '../models/ServiceCategory';

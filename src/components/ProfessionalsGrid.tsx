@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import ProfessionalCard from './ProfessionalCard';
 import ProfessionalListItem from './ProfessionalListItem';
 import { DisplayProfessional } from '@/types/professional';
 
@@ -12,7 +11,6 @@ interface ProfessionalsGridProps {
 
 export default function ProfessionalsGrid({ professionals, selectedCategory }: ProfessionalsGridProps) {
   const [showAll, setShowAll] = useState(false);
-  const viewMode = 'list';
 
   const filteredProfessionals = selectedCategory
     ? professionals.filter(professional => 

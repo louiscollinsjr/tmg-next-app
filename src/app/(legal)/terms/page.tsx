@@ -9,7 +9,7 @@ export default function TermsOfUse() {
         <section className="mb-8">
           <h2 className="text-2xl font-semibold mb-4">1. Agreement to Terms</h2>
           <p>
-            By accessing or using tmg's website and services, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our services.
+            By accessing or using tmg&apos;s website and services, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our services.
           </p>
         </section>
 

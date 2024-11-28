@@ -12,7 +12,7 @@ interface ProfessionalCardProps {
   businessName: string;
   images: string[];
   rating: number;
-  reviewCount: number;
+  _reviewCount: number;
   specialty: string;
   location: string;
   isFavorite: boolean;
@@ -27,7 +27,7 @@ export default function ProfessionalCard({
   businessName,
   images = [],
   rating,
-  reviewCount,
+  _reviewCount,
   specialty,
   location,
   isFavorite,

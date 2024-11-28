@@ -50,11 +50,15 @@ export async function GET(
       projects,
       reviews
     });
-  } catch (error: any) {
-    console.error('Profile fetch error:', error.message);
-    console.error('Stack trace:', error.stack);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error('Profile fetch error:', error.message);
+      console.error('Stack trace:', error.stack);
+    } else {
+      console.error('Profile fetch error:', error);
+    }
     return NextResponse.json(
-      { error: 'Failed to fetch profile data: ' + error.message },
+      { error: 'Failed to fetch profile' },
       { status: 500 }
     );
   }
