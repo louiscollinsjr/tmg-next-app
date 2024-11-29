@@ -48,7 +48,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
       setIsSuccess(true);
       setSubmitStatus({
         type: 'success',
-        message: 'Successfully joined the waitlist! We\'ll notify you when we launch.',
+        message: 'Successfully joined the waitlist! We&apos;ll notify you when we launch.',
       });
     } catch (error) {
       setSubmitStatus({
@@ -111,7 +111,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
               </div>
             </div>
             <h2 className="text-3xl font-bold mb-4">You have been added to our waitlist!</h2>
-            <p className="text-gray-600 mb-8">Thank you for joining, you'll be the first to know when we are ready!</p>
+            <p className="text-gray-600 mb-8">Thank you for joining, you&apos;ll be the first to know when we are ready!</p>
             <div className="flex justify-center">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -120,7 +120,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
               </div>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              You're not alone, <span className="text-green-600 font-semibold">1,500+</span> people joined!
+              You&apos;re not alone, <span className="text-green-600 font-semibold">1,500+</span> people joined!
             </p>
           </div>
         ) : (

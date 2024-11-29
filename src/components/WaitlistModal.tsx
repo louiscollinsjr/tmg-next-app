@@ -116,8 +116,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               </div>
             </div>
             <h2 className="text-3xl font-bold mb-4">You have been added to our waitlist!</h2>
-            <p className="text-gray-600 mb-8">Thank you for joining, you'll be the first to know when we are ready!</p>
-            <div className="flex justify-center">
+            <p className="text-gray-600 mb-8">Thank you for joining, you&39;ll be the first to know when we are ready!</p>
+            {/* <div className="flex justify-center">
               <div className="flex -space-x-2">
                 {[1, 2, 3, 4, 5].map((i) => (
                   <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
@@ -125,8 +125,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               </div>
             </div>
             <p className="text-sm text-gray-500 mt-2">
-              You're not alone, <span className="text-green-600 font-semibold">1,500+</span> people joined!
-            </p>
+              You&39;re not alone, <span className="text-green-600 font-semibold">1,500+</span> people joined!
+            </p> */}
           </div>
         ) : (
           <>
