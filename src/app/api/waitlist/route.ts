@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 import dbConnect from '@/lib/db/mongodb';
-import User from '@/lib/models/User';
+import Waitlist from '@/lib/models/Waitlist';
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, phone, postCode, isTradesman } = body;
+    const { name, email, phone, postCode, isTradesman, trade } = body;
 
     if (!name || !email) {
       return NextResponse.json(
@@ -16,9 +16,9 @@ export async function POST(req: Request) {
 
     await dbConnect();
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
+    // Check if entry already exists
+    const existingEntry = await Waitlist.findOne({ email });
+    if (existingEntry) {
       return NextResponse.json(
         { error: 'Email already registered' },
         { status: 400 }
@@ -26,21 +26,22 @@ export async function POST(req: Request) {
     }
 
     // Create new waitlist entry
-    const user = await User.create({
+    const waitlistEntry = await Waitlist.create({
       name,
       email,
       phone,
       postCode,
-      role: isTradesman ? 'PROFESSIONAL' : 'USER',
-      status: 'WAITLIST',
+      isTradesman,
+      trade,
+      status: 'pending'
     });
 
     return NextResponse.json({
       message: 'Successfully joined waitlist',
-      user: {
-        id: user._id,
-        name: user.name,
-        email: user.email,
+      entry: {
+        id: waitlistEntry._id,
+        name: waitlistEntry.name,
+        email: waitlistEntry.email,
       },
     });
   } catch (error) {

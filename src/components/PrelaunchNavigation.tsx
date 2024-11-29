@@ -26,14 +26,14 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg tracking-tighter font-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
+                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg tracking-normal font-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
               >
-                Join Waitlist
+                Join waitlist
               </button>
             ) : (
               <Link
                 href="/professionals"
-                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg tracking-tighter font-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
+                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg font-bold tracking-normalfont-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
               >
                 For Professionals
               </Link>
