@@ -19,10 +19,10 @@ export default function ProfessionalsPage() {
         <div className="relative isolate px-6">
           <div className="mx-auto max-w-4xl py-8 md:pt-24">
             <div className="text-left sm:text-center flex flex-col items-start sm:items-center">
-              <h1 className="text-4xl font-bold tracking-tight leading-[1.15] sm:leading-[1.1] text-gray-900 sm:text-6xl w-[80%]"> 
+              <h1 className="text-5xl lg:text-7xl xl:text-8xl 2xl:text-8xl font-bold tracking-tight leading-[1.15] sm:leading-[1.1] text-gray-900"> 
               Your go-to app for <span className="text-burnt-orange">quality jobs, on-demand</span> 
               </h1>
-              <p className="mt-6 text-base leading-2 text-gray-60 w-[80%]">
+              <p className="mt-6 text-base leading-2 text-gray-900 w-[80%]">
               Become part of our trusted professional network. Connect with quality clients, streamline your business management, and enjoy fast, secure payments.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-x-6">
@@ -59,7 +59,7 @@ export default function ProfessionalsPage() {
       </div>
 
       {/* Free to Join Section */}
-      <div className="px-[22px] md:mt-32">
+      <div className="px-[22px] md:~mt-16/32">
         <div className="max-w-5xl mx-auto md:px-[22px]">
           <div className="bg-gradient-to-br from-burnt-orange to-[rgb(255,88,22)] text-white py-20 rounded-3xl">
             <div className="px-4 sm:px-6 lg:px-8">
