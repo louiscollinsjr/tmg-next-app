@@ -20,8 +20,8 @@ kill_port() {
 
 echo "🧹 Starting cleanup process..."
 
-# Kill process on port 3003
-kill_port 3003
+# Kill process on port 3000
+kill_port 3000
 
 # Clear Bun's cache
 echo "🗑️  Clearing Bun's cache..."
