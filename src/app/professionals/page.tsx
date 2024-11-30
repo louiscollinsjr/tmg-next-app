@@ -18,21 +18,26 @@ export default function ProfessionalsPage() {
         {/* Hero Section */}
         <div className="relative isolate px-6">
           <div className="mx-auto max-w-4xl py-8">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                Find Jobs & Get Paid Fast
+            <div className="text-left sm:text-center">
+              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl  w-[80%] sm:w-full"> 
+              Your go-to app for <span className="text-burnt-orange">quality jobs, on-demand</span> 
               </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-600">
-                Join our network of trusted professionals. Get matched with quality clients, 
-                manage your business, and receive payments quickly and securely.
+              <p className="mt-6 text-base leading-2 text-gray-600">
+              Become part of our trusted professional network. Connect with quality clients, streamline your business management, and enjoy fast, secure payments.
               </p>
-              <div className="mt-10 flex items-center justify-center gap-x-6">
+              <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-x-6">
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="rounded-full bg-burnt-orange px-8 py-4 text-lg font-semibold text-white shadow-sm hover:bg-burnt-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burnt-orange"
+                  className="rounded-full bg-burnt-orange px-8 py-4 text-base font-semibold text-white shadow-sm hover:bg-burnt-orange-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-burnt-orange"
                 >
                   Join waitlist
                 </button>
+                <div className="mt-4 sm:mt-0 pl-2 sm:pl-6 sm:pl-8 sm:border-l border-gray-200">
+                  <div className="text-xs text-gray-600">
+                    <p className='font-bold text-left'>Launching early 2025</p>
+                    <p className="text-left">No sign up fees</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -55,7 +60,7 @@ export default function ProfessionalsPage() {
 
       {/* Free to Join Section */}
       <div className="px-[22px] mt-16">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-5xl mx-auto md:px-[22px]">
           <div className="bg-gradient-to-br from-burnt-orange to-[rgb(255,88,22)] text-white py-20 rounded-3xl">
             <div className="px-4 sm:px-6 lg:px-8">
               <div className="text-center mb-12">
@@ -110,8 +115,8 @@ export default function ProfessionalsPage() {
         </div>
       </div>
 
-      <div className="bg-cream py-24">
-        <div className="container mx-auto px-4">
+      <div className="py-24 ">
+        <div className="container mx-auto max-w-5xl p-[22px]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1">
               <div className="flex items-center gap-2 mb-4">
@@ -126,19 +131,19 @@ export default function ProfessionalsPage() {
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
-              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Zm0 2.25h.008v.008h-.008v-.008Z"
+              d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008H16.5v-.008Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Zm0 2.25h.008v.008h-.008v-.008Z"
             />
           </svg>
                 <span className="text-gray-600">Launching early 2025</span>
               </div>
               
-              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black tracking-tight">
                 Sign up today to get early access to <span className="text-burnt-orange">local jobs</span>
               </h2>
 
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="bg-burnt-orange text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-opacity-90 transition-all flex items-center gap-2"
+                className="bg-burnt-orange text-white px-8 py-4 rounded-full font-semibold text-base hover:bg-opacity-90 transition-all flex items-center gap-2"
               >
                 Join waitlist
                 {/* <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

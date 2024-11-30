@@ -1,23 +1,32 @@
 'use client';
 
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+
 interface AppStoreButtonsProps {
   center?: boolean;
 }
 
-export default function AppStoreButtons({ center = false }: AppStoreButtonsProps) {
+export default function AppStoreButtons({ center }: AppStoreButtonsProps) {
   return (
-    <div className={`flex flex-col sm:flex-row items-start gap-4 mt-12 ${center ? 'sm:items-center sm:justify-center' : ''}`}>
-      <div className="flex items-center gap-2 text-gray-500 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-        </svg>
-        Coming soon to App Store
+    <div className={cn("flex gap-6 pt-10", center && "justify-center")}>
+      <div className="w-[135px] md:w-[156px] h-[45px] relative opacity-80 hover:opacity-100 transition-opacity">
+        <Image
+          src="/appstore_comingsoon.svg"
+          alt="Download on the App Store"
+          fill
+          className="object-contain drop-shadow-sm"
+          priority
+        />
       </div>
-      <div className="flex items-center gap-2 text-gray-500 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M9 8.25H7.5a2.25 2.25 0 0 0-2.25 2.25v9a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25v-9a2.25 2.25 0 0 0-2.25-2.25H15m0-3-3-3m0 0-3 3m3-3V15" />
-        </svg>
-        Coming soon to Google Play
+      <div className="w-[135px] md:w-[156px] h-[45px] relative opacity-80 hover:opacity-100 transition-opacity">
+        <Image
+          src="/googleplay.svg"
+          alt="Get it on Google Play"
+          fill
+          className="object-contain drop-shadow-sm"
+          priority
+        />
       </div>
     </div>
   );
