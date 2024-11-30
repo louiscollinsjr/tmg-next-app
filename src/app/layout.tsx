@@ -1,7 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat, Courier_Prime, Tiro_Bangla, Luckiest_Guy } from "next/font/google";
+import { Montserrat, Courier_Prime, Tiro_Bangla, Luckiest_Guy, Roboto } from "next/font/google";
 import "./globals.css";
 import { NextAuthProvider } from "@/components/providers/NextAuthProvider";
+
+const roboto = Roboto({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
 
 const montserrat = Montserrat({
   subsets: ['latin'],
@@ -101,8 +107,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${montserrat.variable} ${courier.variable} ${tiroBangla.variable} ${luckiestGuy.variable}`} suppressHydrationWarning>
-      <body suppressHydrationWarning>
+    <html lang="en" className={`${roboto.variable} ${montserrat.variable} ${courier.variable} ${tiroBangla.variable} ${luckiestGuy.variable}`} suppressHydrationWarning>
+      <body className="min-h-screen font-sans antialiased bg-zinc-100" suppressHydrationWarning>
         <NextAuthProvider>
           {children}
         </NextAuthProvider>

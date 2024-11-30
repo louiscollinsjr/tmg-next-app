@@ -12,11 +12,11 @@ export default function PrelaunchNavigation() {
 
   return (
     <div className="bg-zinc-100">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-[22px] sm:px-6 lg:px-8">
         <div className="flex h-24 justify-between py-8">
           {/* Left side */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl md:text-2xl font-bold font-luckiest-guy tracking-wide text-burnt-orange hover:text-gray-700 transition-colors">
+            <Link href="/" className="text-xl md:text-2xl font-bold font-luckiest-guy tracking-wide text-burnt-orange transition-colors">
               TryMyGuys
             </Link>
           </div>
@@ -26,14 +26,14 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg tracking-normal font-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
+                className="gradient-border-button inline-flex items-center px-4 py-3 text-base md:text-lg tracking-normal font-bold rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
                 Join waitlist
               </button>
             ) : (
               <Link
                 href="/professionals"
-                className="inline-flex items-center px-4 py-3 border border-black text-base md:text-lg font-bold tracking-normalfont-bold rounded-full text-black bg-zinc-100 hover:bg-gray-800 hover:text-white hover:border-transparent transition-colors"
+                className="gradient-border-button inline-flex items-center px-4 py-3 text-base md:text-lg font-bold tracking-normal rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
                 For Professionals
               </Link>
