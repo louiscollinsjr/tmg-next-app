@@ -1,6 +1,7 @@
 import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 import { SiBluesky } from 'react-icons/si';
 import Link from 'next/link';
+import FooterSignInButton from './FooterSignInButton';
 
 export default function PrelaunchFooter() {
   return (
@@ -55,6 +56,8 @@ export default function PrelaunchFooter() {
             <Link href="/legal" className="text-gray-500 hover:text-gray-700 transition-colors">
               Legal
             </Link>
+            <p>|</p>
+            <FooterSignInButton />
           </div>
         </div>
       </div>
