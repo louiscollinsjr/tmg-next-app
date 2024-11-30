@@ -30,7 +30,7 @@ export default function Hero() {
             Launching early 2025
           </span>
         </div>
-        <h1 className="text-5xl sm:text-8xl tracking-tight font-bold text-black mb-4 w-[80%] sm:w-full">
+        <h1 className="text-5xl  lg:text-7xl xl:text-8xl 2xl:text-9xl tracking-tight font-bold text-black mb-4 w-[80%] sm:w-full">
           Find <span className="text-burnt-orange">local</span>, <span className="text-burnt-orange"> professionals</span>{" "}in minutes
           <span className="text-burnt-orange"></span>
         </h1>
@@ -39,7 +39,7 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-burnt-orange rounded-full hover:bg-gray-700 transition-colors w-fit tracking-wider"
+            className="inline-flex items-center justify-center ~px-4/8 ~py-2/4 ~text-base/xl font-medium text-white bg-burnt-orange rounded-full hover:bg-gray-700 transition-colors w-fit tracking-wider "
           >
             Join waitlist{" "}
             <svg
