@@ -26,7 +26,7 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="gradient-border-button inline-flex items-center px-4 py-3 text-base md:text-lg tracking-normal font-bold rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
+                className="gradient-border-button inline-flex items-center px-6 py-3 text-base md:text-lg tracking-normal font-bold rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
                 Join waitlist
               </button>

@@ -31,8 +31,8 @@ export default function PrelaunchFooter() {
 
           {/* Contact Information */}
           <div className="text-right">
-            <h3 className="font-semibold mb-2">Any questions?</h3>
-            <a href="mailto:hello@trymyguys.com" className="text-gray-600 hover:text-gray-800 transition-colors">
+            <h3 className=" mb-2 text-sm">Any questions?</h3>
+            <a href="mailto:hello@trymyguys.com" className="text-gray-600 font-semibold text-base hover:text-gray-800 transition-colors">
               Contact us
             </a>
           </div>

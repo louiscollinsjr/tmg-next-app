@@ -17,12 +17,12 @@ export default function ProfessionalsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
         <div className="relative isolate px-6">
-          <div className="mx-auto max-w-4xl py-8">
-            <div className="text-left sm:text-center">
-              <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl  w-[80%] sm:w-full"> 
+          <div className="mx-auto max-w-4xl py-8 md:pt-24">
+            <div className="text-left sm:text-center flex flex-col items-start sm:items-center">
+              <h1 className="text-4xl font-bold tracking-tight leading-[1.15] sm:leading-[1.1] text-gray-900 sm:text-6xl w-[80%]"> 
               Your go-to app for <span className="text-burnt-orange">quality jobs, on-demand</span> 
               </h1>
-              <p className="mt-6 text-base leading-2 text-gray-600">
+              <p className="mt-6 text-base leading-2 text-gray-60 w-[80%]">
               Become part of our trusted professional network. Connect with quality clients, streamline your business management, and enjoy fast, secure payments.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-x-6">
@@ -32,7 +32,7 @@ export default function ProfessionalsPage() {
                 >
                   Join waitlist
                 </button>
-                <div className="mt-4 sm:mt-0 pl-2 sm:pl-6 sm:pl-8 sm:border-l border-gray-200">
+                <div className="mt-4 sm:mt-0 pl-2 sm:pl-8 sm:border-l border-gray-200">
                   <div className="text-xs text-gray-600">
                     <p className='font-bold text-left'>Launching early 2025</p>
                     <p className="text-left">No sign up fees</p>
@@ -59,7 +59,7 @@ export default function ProfessionalsPage() {
       </div>
 
       {/* Free to Join Section */}
-      <div className="px-[22px] mt-16">
+      <div className="px-[22px] md:mt-32">
         <div className="max-w-5xl mx-auto md:px-[22px]">
           <div className="bg-gradient-to-br from-burnt-orange to-[rgb(255,88,22)] text-white py-20 rounded-3xl">
             <div className="px-4 sm:px-6 lg:px-8">
@@ -115,7 +115,7 @@ export default function ProfessionalsPage() {
         </div>
       </div>
 
-      <div className="py-24 ">
+      <div className="py-24 md:mt-16">
         <div className="container mx-auto max-w-5xl p-[22px]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="flex-1">
