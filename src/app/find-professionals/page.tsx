@@ -64,15 +64,15 @@ async function getProfessionals(): Promise<{
       selectedServices: 1
     }).lean<LeanUser[]>();
 
-    console.log('Found professionals:', {
-      count: professionals.length,
-      sample: professionals.slice(0, 2).map(pro => ({
-        id: pro._id.toString(),
-        name: pro.name,
-        image: pro.image || 'none',
-        businessInfo: pro.businessInfo || 'none'
-      }))
-    });
+    // console.log('Found professionals:', {
+    //   count: professionals.length,
+    //   sample: professionals.slice(0, 2).map(pro => ({
+    //     id: pro._id.toString(),
+    //     name: pro.name,
+    //     image: pro.image || 'none',
+    //     businessInfo: pro.businessInfo || 'none'
+    //   }))
+    // });
 
     if (professionals.length === 0) {
       console.log('No professionals found. Database query returned empty array.');
@@ -154,13 +154,13 @@ async function getProfessionals(): Promise<{
         const proRating = ratingsMap.get(pro._id.toString());
         const projectImages = projectImagesMap.get(pro._id.toString()) || [];
         
-        // Debug log for image data
-        console.log('Processing professional:', {
-          id: pro._id.toString(),
-          name: pro.name,
-          profileImage: pro.image || 'none',
-          projectImagesCount: projectImages.length
-        });
+        // // Debug log for image data
+        // console.log('Processing professional:', {
+        //   id: pro._id.toString(),
+        //   name: pro.name,
+        //   profileImage: pro.image || 'none',
+        //   projectImagesCount: projectImages.length
+        // });
         
         // Extract URLs from project images and ensure they are valid URLs
         const projectImageUrls = projectImages
@@ -178,13 +178,13 @@ async function getProfessionals(): Promise<{
         // Add project images
         images.push(...projectImageUrls);
         
-        console.log('Final images array:', {
-          professional: pro.name,
-          imagesCount: images.length,
-          hasProfileImage: !!pro.image,
-          projectImagesCount: projectImageUrls.length,
-          images
-        });
+        // console.log('Final images array:', {
+        //   professional: pro.name,
+        //   imagesCount: images.length,
+        //   hasProfileImage: !!pro.image,
+        //   projectImagesCount: projectImageUrls.length,
+        //   images
+        // });
         
         // Get unique category IDs and serialize the selectedServices
         const serializedServices = pro.selectedServices?.map(service => ({
