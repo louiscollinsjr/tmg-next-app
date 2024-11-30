@@ -89,6 +89,7 @@ export default function SignIn() {
                   name="name"
                   id="name"
                   required
+                  autoComplete="name"
                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                   placeholder="John Doe"
                 />
@@ -104,6 +105,7 @@ export default function SignIn() {
                 name="email"
                 id="email"
                 required
+                autoComplete="email"
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                 placeholder="you@example.com"
               />
@@ -119,6 +121,7 @@ export default function SignIn() {
                 id="password"
                 required
                 minLength={8}
+                autoComplete={isSignUp ? "new-password" : "current-password"}
                 className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-black/5 font-roboto"
                 placeholder="••••••••"
               />
