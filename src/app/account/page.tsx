@@ -96,7 +96,7 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mt-6 p-4 text-xs">
+        <div className="grid grid-cols-3 gap-4 mt-6 p-4 text-xs md:w-[35%]">
           <div className="text-left">
           <div className="text-gray-600">Projects</div>
             <div className="text-lg font-bold">{stats.projectCount}</div>
@@ -132,6 +132,8 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
           )}
         </div>
       </div>
+
+      
     </div>
   );
 };

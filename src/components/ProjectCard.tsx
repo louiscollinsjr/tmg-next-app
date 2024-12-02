@@ -19,7 +19,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
   return (
     <div className="bg-[#f2f3EE] rounded-lg p-6 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start mb-4 text-[#64635f">
         <div>
           <h3 className="text-sm font-normal mb-2">{project.title}</h3>
           <p className="text-xs text-[#64635f] line-clamp-2 mb-3">{project.description}</p>
@@ -36,10 +36,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <div className="flex justify-between items-center text-sm">
        
         <div className="flex items-center gap-3">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${statusColor}`}>
+          <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize`}>
             {project.status || '--'}
           </span>
-          <span className="text-gray-500 font-xs">
+          <span className="font-xs text-[#64635f]">
             {formatDistanceToNow(new Date(project.createdAt), { addSuffix: true })}
           </span>
         </div>
