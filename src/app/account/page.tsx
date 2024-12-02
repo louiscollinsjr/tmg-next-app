@@ -10,7 +10,9 @@ import RatingStars from '@/components/RatingStars';
 import { getUserStats, UserStats } from '../actions/getUserStats';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
 import { getUserProjects, ProjectData } from '../actions/getUserProjects';
+import { getUserReviews, ReviewData } from '../actions/getUserReviews';
 import ProjectCard from '@/components/ProjectCard';
+import ReviewCard from '@/components/ReviewCard';
 
 interface ExtendedSession extends Session {
   user: {
@@ -34,17 +36,22 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
     isPro: false
   });
   const [projects, setProjects] = useState<ProjectData[]>([]);
+  const [reviews, setReviews] = useState<ReviewData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
       if (user.email) {
         try {
-          const [userStats, userProjects] = await Promise.all([
+          console.log('Fetching data for user:', user.email); // Debug log
+          const [userStats, userProjects, userReviews] = await Promise.all([
             getUserStats(user.email),
-            getUserProjects(user.email)
+            getUserProjects(user.email),
+            getUserReviews(user.email)
           ]);
+          console.log('Fetched reviews:', userReviews); // Debug log
           setStats(userStats);
           setProjects(userProjects);
+          setReviews(userReviews);
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -62,7 +69,7 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
   };
 
   return (
-    <div className="pt-32">
+    <div className="md:pt-32 px-2">
       <div className="rounded-2xl p-1 shadow-sm">
         <div className="flex items-center space-x-4">
           <div className="relative pt-3">
@@ -120,7 +127,7 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
       {/* Projects Section */}
       <div className="mt-8">
         <h3 className="text-2xl font-semibold mb-4">My Projects</h3>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
           {projects.length > 0 ? (
             projects.map(project => (
               <ProjectCard key={project._id} project={project} />
@@ -133,6 +140,23 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
         </div>
       </div>
 
+      {/* Reviews Section */}
+      <div className="mt-12">
+        <h3 className="text-2xl font-semibold mb-4">My Reviews</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+          {reviews && reviews.length > 0 ? (
+            reviews.map(review => (
+              <ReviewCard key={review._id} review={review} />
+            ))
+          ) : (
+            <div className="col-span-full">
+              <p className="text-gray-500 text-center py-8">
+                No reviews yet. Start reviewing projects to build your reputation!
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
       
     </div>
   );

@@ -1,60 +1,61 @@
 'use client'
 
-import { formatDistanceToNow } from 'date-fns'
-
-interface ReviewData {
-  id: string
-  title: string
-  content: string
-  rating: number
-  createdAt: string
-  userImage?: string
-  userName: string
-}
+import { formatDistanceToNow, format } from 'date-fns'
+import { ReviewData } from '@/app/actions/getUserReviews'
+import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import RatingStars from './RatingStars'
 
 interface ReviewCardProps {
   review: ReviewData
 }
 
 const ReviewCard = ({ review }: ReviewCardProps) => {
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, index) => (
-      <span key={index} className={`text-lg ${index < rating ? 'text-yellow-400' : 'text-gray-300'}`}>
-        ★
-      </span>
-    ))
-  }
-
   return (
     <div className="bg-[#f2f3EE] rounded-lg p-6 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start mb-4 text-[#64635f]">
-        <div className="flex-1">
-          <div className="flex items-center gap-3 mb-2">
-            {review.userImage ? (
+      <div className="flex flex-col text-[#64635f]">
+        <div className="flex items-center justify-between mb-1">
+          <div className="flex items-center gap-2">
+            <RatingStars rating={review.rating} size="xs" />
+            <span className="text-sm font-medium">{review.title}</span>
+          </div>
+          {/* {review.metadata.verifiedPurchase && (
+            <div className="flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
+              <CheckCircleIcon className="w-3 h-3" />
+              <span>Verified</span>
+            </div>
+          )} */}
+        </div>
+        <p className="text-xs text-[#64635f] line-clamp-3 mb-3">
+        Reviewed on {format(new Date(review.createdAt), 'MMMM d, yyyy')}
+        </p>
+        <p className="text-xs text-[#64635f] line-clamp-3 mb-3">{review.content}</p>
+
+        {review.images.length > 0 && (
+          <div className="flex gap-2 mb-3">
+            {review.images.slice(0, 3).map((image, index) => (
               <img
-                src={review.userImage}
-                alt={review.userName}
-                className="w-10 h-10 rounded-full object-cover"
+                key={index}
+                src={image}
+                alt={`Review image ${index + 1}`}
+                className="w-16 h-16 object-cover rounded-lg"
               />
-            ) : (
-              <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-                {review.userName.charAt(0)}
+            ))}
+            {review.images.length > 3 && (
+              <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center text-sm text-gray-500">
+                +{review.images.length - 3}
               </div>
             )}
-            <div>
-              <h3 className="text-sm font-medium">{review.userName}</h3>
-              <div className="flex">{renderStars(review.rating)}</div>
-            </div>
           </div>
-          <h4 className="text-sm font-normal mb-2">{review.title}</h4>
-          <p className="text-xs text-[#64635f] line-clamp-3 mb-3">{review.content}</p>
-        </div>
-      </div>
+        )}
 
-      <div className="flex justify-end items-center text-sm">
-        <span className="text-xs text-[#64635f]">
-          {formatDistanceToNow(new Date(review.createdAt), { addSuffix: true })}
-        </span>
+        <div className="flex justify-between items-center text-xs mt-auto">
+          <div className="flex items-center gap-2">
+            <span className="text-gray-500">
+              {review.helpful.count} people found this helpful
+            </span>
+          </div>
+          
+        </div>
       </div>
     </div>
   )

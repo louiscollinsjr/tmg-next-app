@@ -2,6 +2,7 @@
 
 import { ProjectData } from '@/app/actions/getUserProjects'
 import { formatDistanceToNow } from 'date-fns'
+import { ArchiveBoxArrowDownIcon } from '@heroicons/react/24/outline'
 
 interface ProjectCardProps {
   project: ProjectData
@@ -18,7 +19,13 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   const statusColor = statusColors[project.status as keyof typeof statusColors] || statusColors.open
 
   return (
-    <div className="bg-[#f2f3EE] rounded-lg p-6 hover:shadow-md transition-shadow">
+    <div className="bg-[#f2f3EE] rounded-lg p-6 hover:shadow-md transition-shadow relative">
+      <button 
+        className="absolute top-3 right-3 p-1.5 hover:bg-gray-100 rounded-full transition-colors"
+        title="Archive project"
+      >
+        <ArchiveBoxArrowDownIcon className="w-4 h-4 text-gray-500" />
+      </button>
       <div className="flex justify-between items-start mb-4 text-[#64635f">
         <div>
           <h3 className="text-sm font-normal mb-2">{project.title}</h3>
@@ -36,10 +43,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       <div className="flex justify-between items-center text-sm">
        
         <div className="flex items-center gap-3">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium capitalize`}>
+          <span className={`py-1 rounded-full text-xs font-medium capitalize  text-[#64635f]`}>
             {project.status || '--'}
           </span>
-          <span className="font-xs text-[#64635f]">
+          <span className="text-xs text-[#64635f]">
             {formatDistanceToNow(new Date(project.createdAt), { addSuffix: true })}
           </span>
         </div>
