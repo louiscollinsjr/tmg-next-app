@@ -37,6 +37,7 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
   });
   const [projects, setProjects] = useState<ProjectData[]>([]);
   const [reviews, setReviews] = useState<ReviewData[]>([]);
+  const session = useSession();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -126,8 +127,8 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
 
       {/* Projects Section */}
       <div className="mt-8">
-        <h3 className="text-2xl font-semibold mb-4">My Projects</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <h3 className="text-2xl font-semibold mb-8">My Projects</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
           {projects.length > 0 ? (
             projects.map(project => (
               <ProjectCard key={project._id} project={project} />
@@ -142,11 +143,15 @@ const ProfileCard = ({ user }: { user: ExtendedSession['user'] }) => {
 
       {/* Reviews Section */}
       <div className="mt-12">
-        <h3 className="text-2xl font-semibold mb-4">My Reviews</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+        <h3 className="text-2xl font-semibold mb-8">My Reviews</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
           {reviews && reviews.length > 0 ? (
             reviews.map(review => (
-              <ReviewCard key={review._id} review={review} />
+              <ReviewCard 
+                key={review._id} 
+                review={review}
+                userName={session?.data?.user?.name || 'Anonymous User'}
+              />
             ))
           ) : (
             <div className="col-span-full">

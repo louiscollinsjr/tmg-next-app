@@ -2,21 +2,26 @@
 
 import { formatDistanceToNow, format } from 'date-fns'
 import { ReviewData } from '@/app/actions/getUserReviews'
-import { CheckCircleIcon } from '@heroicons/react/24/solid'
+import { CheckCircleIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import RatingStars from './RatingStars'
 
 interface ReviewCardProps {
   review: ReviewData
+  userName?: string
 }
 
-const ReviewCard = ({ review }: ReviewCardProps) => {
+const ReviewCard = ({ review, userName = 'Anonymous User' }: ReviewCardProps) => {
   return (
     <div className="bg-[#f2f3EE] rounded-lg p-6 hover:shadow-md transition-shadow">
       <div className="flex flex-col text-[#64635f]">
+        <div className="flex items-center gap-2 mb-2">
+          <UserCircleIcon className="w-5 h-5" />
+          <span className="text-xs font-bold">{userName}</span>
+        </div>
         <div className="flex items-center justify-between mb-1">
           <div className="flex items-center gap-2">
             <RatingStars rating={review.rating} size="xs" />
-            <span className="text-sm font-medium">{review.title}</span>
+            <span className="text-sm font-semibold">{review.title}</span>
           </div>
           {/* {review.metadata.verifiedPurchase && (
             <div className="flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">
@@ -26,7 +31,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
           )} */}
         </div>
         <p className="text-xs text-[#64635f] line-clamp-3 mb-3">
-        Reviewed on {format(new Date(review.createdAt), 'MMMM d, yyyy')}
+          Reviewed on {format(new Date(review.createdAt), 'MMMM d, yyyy')}
         </p>
         <p className="text-xs text-[#64635f] line-clamp-3 mb-3">{review.content}</p>
 
@@ -54,7 +59,6 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
               {review.helpful.count} people found this helpful
             </span>
           </div>
-          
         </div>
       </div>
     </div>

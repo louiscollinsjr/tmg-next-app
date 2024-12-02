@@ -28,7 +28,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       </button>
       <div className="flex justify-between items-start mb-4 text-[#64635f">
         <div>
-          <h3 className="text-sm font-normal mb-2">{project.title}</h3>
+          <h3 className="text-sm font-semibold mb-2">{project.title}</h3>
           <p className="text-xs text-[#64635f] line-clamp-2 mb-3">{project.description}</p>
         </div>
         {project.imageUrl && (
