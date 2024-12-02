@@ -13,6 +13,7 @@
     "update-favorites": "bun run scripts/updateUserFavorites.ts"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@phosphor-icons/react": "^2.1.7",
     "@swc/helpers": "^0.5.3",
     "@types/bcrypt": "^5.0.2",
@@ -20,6 +21,7 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
     "fluid-tailwind": "^1.0.4",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.2",
