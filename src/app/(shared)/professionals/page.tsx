@@ -2,8 +2,7 @@
 
 import NavigationWrapper from '@/components/NavigationWrapper';
 import ProfessionalWaitlistModal from '@/components/ProfessionalWaitlistModal';
-import PrelaunchFooter from '@/components/PrelaunchFooter';
-import PrelaunchNavigation from '@/components/PrelaunchNavigation';
+
 import AppStoreButtons from '@/components/AppStoreButtons';
 import { useState } from 'react';
 
