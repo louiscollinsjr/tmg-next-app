@@ -228,7 +228,7 @@ export default async function FindProfessionals() {
 
   return (
     <>
-      <Navigation />
+    
       <div className="min-h-screen bg-zinc-50">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
@@ -274,7 +274,7 @@ export default async function FindProfessionals() {
           <ClientProfessionals professionals={professionals} categories={categories} />
         </div>
       </div>
-      <Footer />
+    
     </>
   );
 }

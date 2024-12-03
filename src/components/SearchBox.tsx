@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { MagnifyingGlass } from "@phosphor-icons/react";
 
 export default function SearchBox() {
   const phrases = [
@@ -71,17 +72,20 @@ export default function SearchBox() {
 
   return (
     <div className="relative w-full py-12">
-      <div className="relative flex items-start w-full overflow-hidden rounded-2xl bg-gray-100 p-2">
-        <textarea
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          placeholder={placeholderText}
-          className="w-full font-bold px-4 text-3xl text-gray-900 placeholder-gray-300 bg-transparent outline-none resize-none h-42 leading-tight"
-          rows={3}
-        />
-      </div>
+     <div className="relative flex items-start w-full overflow-hidden rounded-2xl bg-gray-50 p-2">
+  <div className="absolute left-2 top-[2x] p-2 px-4 rounded-full bg-gray-300">
+    <MagnifyingGlass size={20} weight="bold" className="text-white" />
+  </div>
+  <textarea
+    value={inputValue}
+    onChange={(e) => setInputValue(e.target.value)}
+    onFocus={handleFocus}
+    onBlur={handleBlur}
+    placeholder={placeholderText}
+    className="w-full font-bold pl-16 pr-4 text-3xl text-gray-900 placeholder-gray-300 bg-transparent outline-none resize-none h-42 leading-tight"
+    rows={3}
+  />
+</div>
     </div>
   );
 }

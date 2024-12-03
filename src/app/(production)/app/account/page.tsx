@@ -183,14 +183,14 @@ const AccountPage = () => {
 
   return (
     <div>
-      <Navigation />
+     
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <ProfileCard user={session?.user || {}} />
         </div>
         
       </div>
-      <Footer />
+     
     </div>
   );
 };

@@ -1,10 +1,8 @@
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 
 export default function ExploreDesigns() {
   return (
     <>
-      <Navigation />
+     
       <div className="min-h-screen bg-zinc-50 -mt-[64px] pt-[64px]">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
@@ -35,7 +33,7 @@ export default function ExploreDesigns() {
 
         {/* Content will go here */}
       </div>
-      <Footer />
+     
     </>
   );
 }
