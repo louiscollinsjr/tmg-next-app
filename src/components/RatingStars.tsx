@@ -21,13 +21,13 @@ export default function RatingStars({ rating, size = 'md' }: RatingStarsProps) {
   return (
     <div className="flex">
       {[...Array(fullStars)].map((_, i) => (
-        <StarIcon key={`full-${i}`} className={`text-yellow-400 ${sizes[size]}`} />
+        <StarIcon key={`full-${i}`} className={`text-black-400 ${sizes[size]}`} />
       ))}
       {hasHalfStar && (
-        <StarIcon key="half" className={`text-yellow-400 ${sizes[size]} opacity-50`} />
+        <StarIcon key="half" className={`text-black-400 ${sizes[size]} opacity-50`} />
       )}
       {[...Array(emptyStars)].map((_, i) => (
-        <StarOutlineIcon key={`empty-${i}`} className={`text-yellow-400 ${sizes[size]}`} />
+        <StarOutlineIcon key={`empty-${i}`} className={`text-black-400 ${sizes[size]}`} />
       ))}
     </div>
   )
