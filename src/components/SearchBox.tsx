@@ -5,10 +5,10 @@ import { MagnifyingGlass } from "@phosphor-icons/react";
 
 export default function SearchBox() {
   const phrases = [
-    "Search for a plumber...",
+    "I need a plumber...",
     "I need a plumber to fish my wedding ring out of the garbage disposal...",
-    "A carpenter to rebuild trust after my IKEA furniture assembly",
-    "Search for electricians...",
+    "A carpenter to rebuild my confidenceafter my IKEA furniture assembly",
+    "We need a electrician...",
     "Roof expert to stop my attic from becoming an indoor swimming pool...",
     "Lawn ninja to defeat my suburban jungle...",
   ];
@@ -73,7 +73,7 @@ export default function SearchBox() {
   return (
     <div className="relative w-full py-12">
      <div className="relative flex items-start w-full overflow-hidden rounded-2xl bg-gray-50 p-2">
-  <div className="absolute left-2 top-[2x] p-2 px-4 rounded-full bg-gray-300">
+  <div className="absolute left-2 top-[2x] p-2 px-4[] rounded-full bg-gray-300">
     <MagnifyingGlass size={20} weight="bold" className="text-white" />
   </div>
   <textarea
