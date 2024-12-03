@@ -1,9 +1,10 @@
-
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 
 export default function LeaveReview() {
   return (
     <>
-    
+      <Navigation />
       <div className="min-h-screen bg-zinc-50 -mt-[64px] pt-[64px]">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
@@ -85,7 +86,7 @@ export default function LeaveReview() {
           Your review helps others make informed decisions and encourages professionals to maintain high standards. Let&apos;s work together to build trust!
         </p>
       </div>
-   
+      <Footer />
     </>
   );
 }

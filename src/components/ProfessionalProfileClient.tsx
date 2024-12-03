@@ -1,11 +1,9 @@
 'use client'
 
 import React, { useState } from 'react';
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import RatingStars from '@/components/RatingStars'
 import { formatDate } from '@/utils/date'
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+
 
 interface DisplayProfessional {
   id: string;
@@ -45,7 +43,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
 
   return (
     <>
-      <Navigation />
+      
       <div className="min-h-screen bg-zinc-50 pt-24">
         {/* Header */}
         <div>
@@ -186,7 +184,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
           </div>
         </div>
       </div>
-      <Footer />
+      
     </>
   )
 }

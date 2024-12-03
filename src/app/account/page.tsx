@@ -3,12 +3,14 @@
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
 import type { Session } from 'next-auth';
 import RatingStars from '@/components/RatingStars';
-import { getUserStats, UserStats } from '../../../(production)/actions/getUserStats';
-import { getUserProjects, ProjectData } from '../../../(production)/actions/getUserProjects';
-import { getUserReviews, ReviewData } from '../../../(production)/actions/getUserReviews';
+import { getUserStats, UserStats } from '../actions/getUserStats';
 import { CheckCircleIcon } from '@heroicons/react/24/solid';
+import { getUserProjects, ProjectData } from '../actions/getUserProjects';
+import { getUserReviews, ReviewData } from '../actions/getUserReviews';
 import ProjectCard from '@/components/ProjectCard';
 import ReviewCard from '@/components/ReviewCard';
 
@@ -181,14 +183,14 @@ const AccountPage = () => {
 
   return (
     <div>
-     
+      <Navigation />
       <div className="min-h-screen bg-gray-50">
         <div className="max-w-[61.25rem] mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <ProfileCard user={session?.user || {}} />
         </div>
         
       </div>
-     
+      <Footer />
     </div>
   );
 };
