@@ -1,15 +1,9 @@
-import Hero from '@/components/Hero';
-import PrelaunchNavigation from '@/components/PrelaunchNavigation';
-import PrelaunchFooter from '@/components/PrelaunchFooter';
+import PreLaunchHero from "@/components/PrelaunchLanding";
 
-export default function Home() {
+export default function PrelaunchPage() {
   return (
-    <>
-      <PrelaunchNavigation />
-      <main>
-        <Hero />
-      </main>
-      <PrelaunchFooter />
-    </>
+    <main>
+      <PreLaunchHero />
+    </main>
   );
 }

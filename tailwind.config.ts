@@ -24,7 +24,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        'burnt-orange': '#D35400',
+        'burnt-orange': '#FF5816',
+        'burnt-orange-dark': '#E54E14',
+        'jason-aqua': '#51c4cb',
         primary: {
           DEFAULT: 'rgb(10, 122, 255)',
           blue: 'rgb(10, 122, 255)',
@@ -40,6 +42,7 @@ export default {
         lato: ['var(--font-lato)'],
         roboto: ['var(--font-roboto)'],
         'luckiest-guy': ['var(--font-luckiest-guy)'],
+        'playfair-display': ['var(--font-playfair-display)'],
       },
     },
   },

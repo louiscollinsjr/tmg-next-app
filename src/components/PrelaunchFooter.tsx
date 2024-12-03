@@ -1,4 +1,4 @@
-import { FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
+import { FaInstagram, FaTwitter } from 'react-icons/fa';
 import { SiBluesky } from 'react-icons/si';
 import Link from 'next/link';
 import FooterSignInButton from './FooterSignInButton';

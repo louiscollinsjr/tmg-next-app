@@ -80,7 +80,7 @@ export default function ProfessionalCard({
   const currentImage = imageError ? DEFAULT_IMAGE : displayImages[currentImageIndex];
 
   return (
-    <Link href={`/professionals/${id}`} className="block group relative">
+    <Link href={`/app/professionals/${id}`} className="block group relative">
       {/* Image Container */}
       <div className="relative w-[312px] h-[298px] overflow-hidden rounded-xl bg-gray-200">
         <Image

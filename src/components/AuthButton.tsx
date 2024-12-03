@@ -29,7 +29,7 @@ export default function AuthButton() {
           Sign out
         </button>
         <Link 
-          href="/account" 
+          href="/app/account" 
           className="text-base text-gray-600 hover:text-gray-900 transition-colors"
         >
           Dashboard

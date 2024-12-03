@@ -92,7 +92,7 @@ export default function ServiceCategoryFilter({ categories, onCategorySelect }: 
   };
 
   return (
-    <div className="relative mx-auto" style={{ width: '980px' }}>
+    <div className="relative mx-auto ">
       {/* Left gradient overlay */}
       {canScrollLeft && (
         <div className="absolute left-0 top-0 w-16 h-full bg-gradient-to-r from-zinc-50 to-transparent z-10" />

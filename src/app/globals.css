@@ -20,6 +20,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.backdrop-blur {
+  will-change: transform;
+}
+
 .gradient-border-button {
   position: relative;
   isolation: isolate;
@@ -37,7 +41,8 @@ body {
     90deg,
     #F4F4F5,
     #E64A2E,
-    #F3F1E5
+    #51c4cb
+    /* #F3F1E5 */
   );
   border-radius: 9999px;
   z-index: -1;

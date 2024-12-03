@@ -33,7 +33,7 @@ export default function FooterSignInButton() {
         {isOpen && (
           <div className="absolute bottom-full mb-2 w-48 bg-white rounded-lg shadow-lg py-1 text-sm">
             <Link
-              href="/account"
+              href="/app/account"
               className="block px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
               onClick={() => setIsOpen(false)}
             >

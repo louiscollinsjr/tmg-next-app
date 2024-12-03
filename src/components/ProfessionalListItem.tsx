@@ -58,7 +58,7 @@ export default function ProfessionalListItem({
   };
 
   return (
-    <Link href={`/professionals/${id}`} className="block relative">
+    <Link href={`/app/professionals/${id}`} className="block relative">
       <div className="pr-3 py-3 hover:bg-gray-50 transition-colors h-full relative">
         <h3 className="text-sm font-bold text-gray-900 truncate">
           {businessName || name}

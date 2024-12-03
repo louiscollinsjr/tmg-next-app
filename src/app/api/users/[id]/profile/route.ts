@@ -15,10 +15,12 @@ export async function GET(
     
     // Fetch user data - try both ObjectId and email
     let user;
-    if (mongoose.Types.ObjectId.isValid(params.id)) {
+    try {
+      // Try to create an ObjectId - if it fails, it's not a valid ObjectId
+      new mongoose.Types.ObjectId(params.id);
       user = await User.findById(params.id).select('-password -__v');
-    } else {
-      // Try to find by email
+    } catch {
+      // If ObjectId creation fails, try finding by email
       user = await User.findOne({ email: params.id }).select('-password -__v');
     }
 
