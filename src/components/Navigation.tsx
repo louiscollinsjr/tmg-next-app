@@ -19,7 +19,7 @@ export default function Navigation() {
           <div className="flex items-center h-[64px]">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="text-burnt-orange text-3xl font-luckiest-guy hover:text-gray-700 transition-colors relative z-[100]">
+              <Link href="/app" className="text-burnt-orange text-3xl font-luckiest-guy hover:text-gray-700 transition-colors relative z-[100]">
                 TryMyGuys
               </Link>
             </div>
@@ -33,6 +33,9 @@ export default function Navigation() {
                 </Link>
                 <Link href="/app/explore-designs" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                   Explore Designs
+                </Link>
+                <Link href="/app/help" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                  Help Center
                 </Link>
               </div>
             </div>
@@ -73,6 +76,13 @@ export default function Navigation() {
             className="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
           >
             Explore Designs
+          </Link>
+          <Link
+            href="/app/help"
+            onClick={handleLinkClick}
+            className="block px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-50"
+          >
+            Help Center
           </Link>
           <div className="w-full py-4 border-b border-gray-100">
             <AuthButton />
