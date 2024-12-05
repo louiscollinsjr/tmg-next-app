@@ -8,14 +8,25 @@ interface ProfessionalWaitlistModalProps {
   onClose: () => void;
 }
 
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  postCode: string;
+  company: string;
+  trade: Trade | '';
+  customTrade: string;
+}
+
 export default function ProfessionalWaitlistModal({ isOpen, onClose }: ProfessionalWaitlistModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
     postCode: '',
     company: '',
-    trade: '' as Trade | '',
+    trade: '',
+    customTrade: '',
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +47,11 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, isProfessional: true }),
+        body: JSON.stringify({
+          ...formData,
+          trade: formData.trade === 'Other' && formData.customTrade ? formData.customTrade : formData.trade,
+          isProfessional: true
+        }),
       });
 
       const data = await response.json();
@@ -71,6 +86,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
         postCode: '',
         company: '',
         trade: '',
+        customTrade: '',
       });
       setIsSuccess(false);
       setSubmitStatus(null);
@@ -197,7 +213,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
                   required
                   className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-burnt-orange focus:ring-burnt-orange sm:text-sm py-3 px-4 bg-white appearance-none cursor-pointer text-gray-900"
                   value={formData.trade}
-                  onChange={(e) => setFormData({ ...formData, trade: e.target.value as Trade })}
+                  onChange={(e) => setFormData({ ...formData, trade: e.target.value as Trade | '' })}
                   style={{
                     backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
                     backgroundRepeat: 'no-repeat',
@@ -211,9 +227,22 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
                       {trade}
                     </option>
                   ))}
+                  <option value="Other" className="text-gray-900">Other</option>
                 </select>
               </div>
-
+              {formData.trade === 'Other' && (
+                <div>
+                  <input
+                    type="text"
+                    id="customTrade"
+                    required
+                    placeholder="Please specify your trade *"
+                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-burnt-orange focus:ring-burnt-orange sm:text-sm py-3 px-4"
+                    value={formData.customTrade}
+                    onChange={(e) => setFormData({ ...formData, customTrade: e.target.value })}
+                  />
+                </div>
+              )}
               <div className="flex justify-center mt-8">
                 <button
                   type="submit"

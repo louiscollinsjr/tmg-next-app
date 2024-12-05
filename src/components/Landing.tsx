@@ -26,7 +26,7 @@ export default function Landing() {
             </p>
             <div className="mt-10 flex items-center gap-x-6">
               <a
-                href="/app/professionals"
+                href="/app/start-project"
                 className="rounded-xl bg-zinc-100 px-8 py-4 text-base font-semibold text-[#013553] shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white font-lato"
               >
                 Start your project
