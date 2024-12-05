@@ -227,7 +227,6 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
                       {trade}
                     </option>
                   ))}
-                  <option value="Other" className="text-gray-900">Other</option>
                 </select>
               </div>
               {formData.trade === 'Other' && (
