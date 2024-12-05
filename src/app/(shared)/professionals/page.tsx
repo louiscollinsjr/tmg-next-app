@@ -11,7 +11,7 @@ export default function ProfessionalsPage() {
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-100">
-      <NavigationWrapper forcePrelaunch={true} />
+      
       
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Hero Section */}
