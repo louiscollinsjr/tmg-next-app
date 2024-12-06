@@ -9,9 +9,9 @@ export default function Hero() {
 
   return (
     <>
-      <main className="max-w-5xl mx-auto p-8 sm:px-6 lg:px-8 min-h-[calc(80vh-64px)] text-left sm:text-center flex flex-col justify-center font-roboto">
+      <main className="max-w-7xl mx-auto p-8 sm:px-6 lg:px-8 min-h-[calc(80vh-64px)] text-left sm:text-center flex flex-col justify-center font-roboto">
         {/* Main Content */}
-        <div className="max-w-3xl mx-auto">
+        <div className=" mx-auto">
           <div className="flex items-center justify-start sm:justify-center gap-2 mb-4 text-gray-600 pb-3">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +32,7 @@ export default function Hero() {
             </span>
           </div>
           <h1 className="text-5xl  lg:text-7xl xl:text-8xl 2xl:text-9xl tracking-tight font-bold text-black mb-4 w-[80%] sm:w-full">
-            Find <span className="text-burnt-orange">local</span>, <span className="text-burnt-orange"> professionals</span>{" "}in minutes
+            Find <span className="text-burnt-orange">local</span>, <span className="text-burnt-orange"> trusted tradespeople</span>{" "}in minutes
             <span className="text-burnt-orange"></span>
           </h1>
 

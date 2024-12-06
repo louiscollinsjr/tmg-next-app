@@ -35,7 +35,7 @@ export default function PrelaunchNavigation() {
                 href="/professionals"
                 className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-sm/2xl font-bold tracking-normal rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
-                For Professionals
+                For Tradespeople
               </Link>
             )}
           </div>
