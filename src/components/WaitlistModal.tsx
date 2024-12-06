@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import WaitlistSuccessModal from './WaitlistSuccessModal';
 
 interface WaitlistFormData {
   name: string;
@@ -107,27 +108,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
         </button>
 
         {isSuccess ? (
-          <div className="text-center">
-            <div className="mb-6 flex justify-center">
-              <div className="bg-green-100 rounded-full p-4">
-                <svg className="h-12 w-12 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-            </div>
-            <h2 className="text-3xl font-bold mb-4">You have been added to our waitlist!</h2>
-            <p className="text-gray-600 mb-8">Thank you for joining, you&39;ll be the first to know when we are ready!</p>
-            {/* <div className="flex justify-center">
-              <div className="flex -space-x-2">
-                {[1, 2, 3, 4, 5].map((i) => (
-                  <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white" />
-                ))}
-              </div>
-            </div>
-            <p className="text-sm text-gray-500 mt-2">
-              You&39;re not alone, <span className="text-green-600 font-semibold">1,500+</span> people joined!
-            </p> */}
-          </div>
+         <WaitlistSuccessModal onClose={handleClose} />
         ) : (
           <>
             <h2 className="text-2xl font-bold mb-8 font-luckiest-guy text-center tracking-wide">Join waitlist</h2>
