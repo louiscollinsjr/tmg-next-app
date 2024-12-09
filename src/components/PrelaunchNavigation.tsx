@@ -11,8 +11,8 @@ export default function PrelaunchNavigation() {
   const isProfessionalsPage = pathname === '/professionals';
 
   return (
-    <div className="bg-zinc-100">
-      <div className="mx-auto max-w-7xl px-[22px] ~pt-6/8">
+    <div className="bg-zinc-100 max-w-screen-8xl">
+      <div className="mx-auto ~px-6/56 ~pt-6/8">
         <div className="flex h-24 justify-between ~pt-2/12">
           {/* Left side */}
           <div className="flex items-center">
@@ -26,7 +26,7 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/3xl md:~text-3xl/4xl tracking-normal font-bold rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all font-roboto"
+                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/3xl md:~text-3xl/4xl tracking-wide font-bold rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all font-roboto"
               >
                 Join waitlist
               </button>
