@@ -18,7 +18,7 @@ export default function ProfessionalsPage() {
           <div className="mx-auto max-w-7xl py-8 ~pt-24/64">
             <div className="text-left sm:text-center flex flex-col items-start sm:items-center">
               <h1 className="~text-5xl/7xl  md:~text-6xl/9xl tracking-tight font-bold text-slate-800 leading-[1.15] sm:leading-[1.1]"> 
-              Your go-to app for <span className="text-burnt-orange">quality jobs, on-demand</span> 
+              Your go-to app for <span className="bg-gradient-to-r from-orange-gradient-start to-orange-gradient-end bg-clip-text text-transparent">quality jobs, on-demand</span> 
               </h1>
               <p className="~mt-6/20 ~text-base/3xl leading-2 text-gray-900 w-[80%]">
               Become part of our trusted professional network. Connect with quality clients, streamline your business management, and enjoy fast, secure payments.
@@ -131,7 +131,7 @@ export default function ProfessionalsPage() {
               </div>
               
               <h2 className="~text-5xl/9xl md:~max-w-screen-9xl font-bold  mb-6 text-black tracking-tight">
-                Sign up today to get early access to <span className="text-burnt-orange">local jobs</span>
+                Sign up today to get early access to <span className="bg-gradient-to-r from-orange-gradient-start to-orange-gradient-end bg-clip-text text-transparent">local jobs</span>
               </h2>
 
               <button
