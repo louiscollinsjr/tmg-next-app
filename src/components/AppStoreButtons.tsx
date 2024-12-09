@@ -9,7 +9,7 @@ interface AppStoreButtonsProps {
 
 export default function AppStoreButtons({ center }: AppStoreButtonsProps) {
   return (
-    <div className={cn("flex flex-col sm:flex-row gap-6 pt-10 items-start", center && "sm:items-center sm:justify-center")}>
+    <div className={cn("flex flex-col sm:flex-row gap-6 ~pt-10/40 items-start", center && "sm:items-center sm:justify-center")}>
       <div className="~w-40/96 ~h-14/32 relative opacity-80 hover:opacity-100 transition-opacity">
         <Image
           src="/appstore.svg"
