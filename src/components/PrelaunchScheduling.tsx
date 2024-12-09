@@ -10,9 +10,9 @@ export default function PrelaunchScheduling({ onOpenModal }: PrelaunchScheduling
       <div className="container mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
           
-          <div className="w-full h-[780px] rounded-xl bg-slate-300"></div>
+          <div className=" w-full h-[780px] rounded-xl bg-cover bg-left-top bg-no-repeat" style={{ backgroundImage: 'url("/images/plumber.jpeg")' }}></div>
 
-          <div className="space-y-6">
+          <div className="space-y-6 md:pl-24">
             <h2 className="~text-5xl/7xl  md:~text-6xl/9xl tracking-tight font-bold text-slate-800">
               Get the work <span className="text-burnt-orange">you want</span> when you want it
             </h2>
