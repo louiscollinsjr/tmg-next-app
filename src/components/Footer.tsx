@@ -26,12 +26,12 @@ const Footer = memo(
                 <a href="https://bsky.app/profile/trymyguys.bsky.social" target="_blank" rel="noopener noreferrer" className="text-gray-800/80 hover:text-white transition-colors">
                   <SiBluesky className="w-4 h-4" />
                 </a>
-                <a href="https://twitter.com/trymyguys" target="_blank" rel="noopener noreferrer" className="text-gray-800/80 hover:text-white transition-colors">
+                {/* <a href="https://twitter.com/trymyguys" target="_blank" rel="noopener noreferrer" className="text-gray-800/80 hover:text-white transition-colors">
                   <FaTwitter className="w-4 h-4" />
                 </a>
                 <a href="https://linkedin.com/company/trymyguys" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-white transition-colors">
                   <FaLinkedinIn className="w-4 h-4" />
-                </a>
+                </a> */}
               </div>
             </div>
 

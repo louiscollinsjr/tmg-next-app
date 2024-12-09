@@ -37,7 +37,11 @@ export default function Navigation() {
                 <Link href="/app/help" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
                   Help Center
                 </Link>
+                <div className="ml-auto text-sm text-gray-600 hover:text-gray-900 transition-colors">
+                <AuthButton />
               </div>
+              </div>
+             
             </div>
 
             {/* Mobile Menu Button */}

@@ -26,13 +26,13 @@ interface WaitlistSuccessModalProps {
           </button>
           <div className="absolute inset-0">
             <div className="absolute inset-0" 
-              style={{ 
+              style={{
                 backgroundImage: `radial-gradient(circle at center, var(--tw-gradient-from) 0.5rem, transparent 0.5rem), 
                                 radial-gradient(circle at center, var(--tw-gradient-from) 0.25rem, transparent 0.25rem)`,
                 backgroundSize: '4rem 4rem, 2rem 2rem',
                 backgroundPosition: '0 0, 1rem 1rem',
                 backgroundRepeat: 'repeat',
-                '--tw-gradient-from': 'rgb(255 137 53 / 0.1)'
+                ['--tw-gradient-from' as string]: 'rgb(255 137 53 / 0.1)'
               }} 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-zinc-100 via-zinc-100/90 to-transparent" />

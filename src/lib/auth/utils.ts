@@ -9,7 +9,12 @@ interface Provider {
 }
 
 export async function createOrUpdateUser(
-  authUser: AuthUser,
+  authUser: {
+    id?: string;
+    email?: string | null;
+    name?: string | null;
+    image?: string | null;
+  },
   account: Account | null,
   profile?: Profile
 ) {

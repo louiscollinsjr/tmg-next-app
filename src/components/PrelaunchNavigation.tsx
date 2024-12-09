@@ -15,9 +15,9 @@ export default function PrelaunchNavigation() {
       <div className="mx-auto max-w-7xl px-[22px] ~pt-6/8">
         <div className="flex h-24 justify-between ~pt-2/12">
           {/* Left side */}
-          <div className="flex items-center pt-2">
-            <Link href="/" className="~text-2xl/4xl font-bold font-luckiest-guy tracking-wide text-burnt-orange transition-colors">
-              TryMyGuys
+          <div className="flex items-center">
+            <Link href="/" className="~text-3xl/4xl md:~text-4xl/512*50xl  font-bold font-bebas-neue tracking-wide text-burnt-orange transition-colors">
+              TRYMYGUYS.
             </Link>
           </div>
 
@@ -26,14 +26,14 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/2xl tracking-normal font-bold rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
+                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/3xl md:~text-3xl/4xl tracking-normal font-bold rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
                 Join waitlist
               </button>
             ) : (
               <Link
                 href="/professionals"
-                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-sm/2xl font-bold tracking-normal rounded-full text-black bg-zinc-200 hover:bg-zinc-300 transition-all"
+                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-3/4 ~text-sm/2xl md:~text-2xl/4xl font-bold tracking-normal rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all"
               >
                 For Tradespeople
               </Link>

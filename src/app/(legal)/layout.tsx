@@ -7,7 +7,7 @@ export default function LegalLayout({
   return (
     <>
  
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-zinc-100">
         {children}
       </main>
     </>

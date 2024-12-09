@@ -32,6 +32,8 @@ export default {
           blue: 'rgb(10, 122, 255)',
           light: 'rgb(86, 181, 254)'
         },
+        'orange-gradient-start': '#ff4a27',
+        'orange-gradient-end': '#ff6827',
       },
       fontFamily: {
         sans: ['var(--font-montserrat)'],
@@ -43,6 +45,7 @@ export default {
         roboto: ['var(--font-roboto)'],
         'luckiest-guy': ['var(--font-luckiest-guy)'],
         'playfair-display': ['var(--font-playfair-display)'],
+        'bebas-neue': ['var(--font-bebas-neue)'],
       },
     },
   },

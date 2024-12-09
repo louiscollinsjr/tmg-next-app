@@ -24,13 +24,13 @@ export default function AuthButton() {
       <div className="flex items-center gap-6">
         <button
           onClick={() => signOut()}
-          className="text-base text-gray-600 hover:text-gray-900 transition-colors"
+          className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
         >
           Sign out
         </button>
         <Link 
           href="/app/account" 
-          className="text-base text-gray-600 hover:text-gray-900 transition-colors"
+          className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
         >
           Dashboard
         </Link>
@@ -42,7 +42,7 @@ export default function AuthButton() {
     <div>
       <button
         onClick={() => signIn(undefined, { callbackUrl: '/' })}
-        className="text-base text-gray-600 hover:text-gray-900 transition-colors"
+        className="text-sm text-gray-600 hover:text-gray-900 transition-colors"
       >
         Sign in
       </button>
