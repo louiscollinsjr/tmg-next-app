@@ -10,21 +10,21 @@ interface AppStoreButtonsProps {
 export default function AppStoreButtons({ center }: AppStoreButtonsProps) {
   return (
     <div className={cn("flex flex-col sm:flex-row gap-6 pt-10 items-start", center && "sm:items-center sm:justify-center")}>
-      <div className="w-[135px] md:w-[156px] h-[45px] relative opacity-80 hover:opacity-100 transition-opacity">
+      <div className="~w-40/96 ~h-14/32 relative opacity-80 hover:opacity-100 transition-opacity">
         <Image
-          src="/appstore_comingsoon.svg"
+          src="/appstore.svg"
           alt="Download on the App Store"
           fill
-          className="object-contain drop-shadow-sm"
+          className="object-contain drop-shadow-sm "
           priority
         />
       </div>
-      <div className="w-[135px] md:w-[156px] h-[45px] relative opacity-80 hover:opacity-100 transition-opacity">
+      <div className="~w-40/96 ~h-14/32 relative opacity-80 hover:opacity-100 transition-opacity">
         <Image
           src="/googleplay.svg"
           alt="Get it on Google Play"
           fill
-          className="object-contain drop-shadow-sm"
+         className="object-contain drop-shadow-sm w-full h-auto"
           priority
         />
       </div>
