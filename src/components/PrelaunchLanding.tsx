@@ -42,20 +42,7 @@ export default function Hero() {
               className="inline-flex items-center justify-center ~px-5/10 ~py-4/8 ~text-base/3xl md:~text-3xl/5xl font-medium text-white bg-burnt-orange rounded-full hover:bg-gray-700 transition-colors w-fit tracking-wider "
             >
               Join waitlist{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={2.5}
-                stroke="currentColor"
-                className="~size-5/10 ~ml-3/8"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
-                />
-              </svg>
+
             </button>
           </div>
           <div className="sm:mt-16">

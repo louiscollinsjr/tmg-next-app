@@ -26,14 +26,14 @@ export default function PrelaunchNavigation() {
             {isProfessionalsPage ? (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/3xl md:~text-3xl/4xl tracking-normal font-bold rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all"
+                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-2/4 ~text-base/3xl md:~text-3xl/4xl tracking-normal font-bold rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all font-roboto"
               >
                 Join waitlist
               </button>
             ) : (
               <Link
                 href="/professionals"
-                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-3/4 ~text-sm/2xl md:~text-2xl/4xl font-bold tracking-normal rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all"
+                className="gradient-border-button inline-flex items-center  ~px-4/8 ~py-3/4 ~text-sm/2xl md:~text-2xl/4xl font-bold tracking-normal rounded-full text-slate-800 bg-zinc-200 hover:bg-zinc-300 transition-all font-roboto"
               >
                 For Tradespeople
               </Link>
