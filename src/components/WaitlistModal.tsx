@@ -111,7 +111,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
          <WaitlistSuccessModal onClose={handleClose} />
         ) : (
           <>
-            <h2 className="text-2xl font-bold mb-8 font-luckiest-guy text-center tracking-wide">Join waitlist</h2>
+            <h2 className="text-2xl font-bold mb-8 font-robototext-center tracking-wide">Join waitlist</h2>
 
             {submitStatus?.type === 'error' && (
               <div className="mb-4 p-4 rounded bg-red-50 text-red-800">

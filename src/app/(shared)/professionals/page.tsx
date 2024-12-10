@@ -2,7 +2,7 @@
 
 import ProfessionalWaitlistModal from '@/components/ProfessionalWaitlistModal';
 import PrelaunchScheduling from '@/components/PrelaunchScheduling';
-
+import PricingTiers from '@/components/PricingTiers';
 import AppStoreButtons from '@/components/AppStoreButtons';
 import { useState } from 'react';
 
@@ -106,6 +106,10 @@ export default function ProfessionalsPage() {
       </div>
 
 
+      
+      
+
+      <PricingTiers />
       
 
       <div className="py-24 md:mt-16">

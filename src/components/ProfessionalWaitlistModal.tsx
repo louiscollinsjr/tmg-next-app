@@ -122,7 +122,7 @@ export default function ProfessionalWaitlistModal({ isOpen, onClose }: Professio
           <WaitlistSuccessModal onClose={handleClose} />
         ) : (
           <>
-            <h2 className="text-2xl font-bold mb-8 font-luckiest-guy text-center tracking-wide">Join waitlist</h2>
+            <h2 className="text-2xl font-bold mb-8 font-roboto text-center tracking-wide">Join waitlist</h2>
 
             {submitStatus?.type === 'error' && (
               <div className="mb-4 p-4 rounded bg-red-50 text-red-800">

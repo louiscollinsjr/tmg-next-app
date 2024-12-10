@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { 
-  PaintBrush,
+  PaintBrushBroad,
   Wrench,
   Tree,
   Pipe,
@@ -82,7 +82,7 @@ export default function ServiceCategoryFilter({ categories, onCategorySelect }: 
       'handyman-services': Wrench,
       
       // Specialty Services
-      'painting-wall-treatments': PaintBrush,
+      'painting-wall-treatments': PaintBrushBroad,
       'pest-control': Bug,
       
       // Default
