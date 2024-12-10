@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import AuthButton from './AuthButton';
 
@@ -12,15 +13,26 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 px-4">
+    <nav className="fixed top-0 w-full z-50 px-4 py-8">
       {/* Header Bar - Always Visible */}
       <div className={`backdrop-blur-sm bg-zinc-100/75 relative z-[60] ${isMenuOpen ? 'bg-zinc-100' : ''}`}>
         <div className="max-w-5xl mx-auto px-4 sm:px-[22px]">
-          <div className="flex items-center h-[64px]">
+          <div className="flex items-center h-[96px]">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/app" className="text-burnt-orange text-3xl font-luckiest-guy hover:text-gray-700 transition-colors relative z-[100]">
-                TryMyGuys
+              <Link href="/app" className="relative z-[100] block">
+                <Image 
+                  src="/images/tmg_flags.svg" 
+                  alt="TryMyGuys"
+                  width={240}
+                  height={96}
+                  className="w-auto h-48 select-none"
+                  style={{
+                    imageRendering: 'auto',
+                    shapeRendering: 'auto'
+                  }}
+                  priority
+                />
               </Link>
             </div>
             

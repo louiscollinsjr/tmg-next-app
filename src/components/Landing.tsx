@@ -2,10 +2,11 @@
 
 import ServiceCategoryGrid from '@/components/ServiceCategoryGrid';
 import SearchBox from '@/components/SearchBox';
+import Image from 'next/image';
 
 export default function Landing() {
   return (
-    <section className="relative isolate bg-zinc-100 pt-40">
+    <section className="relative isolate bg-zinc-100 pt-56">
       <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:grid lg:grid-cols-12 gap-8 lg:px-0 lg:py-0 rounded-3xl bg-white -500">
         <div 
           className="lg:col-span-5 h-full rounded-3xl rounded-r-3xl relative p-12 overflow-hidden"
@@ -17,7 +18,14 @@ export default function Landing() {
         >
           <div className="absolute inset-0 bg-black/30" /> {/* Dark overlay */}
           <div className="relative z-10 min-h-[470px]">
-            <span className="top-0 left-0 text-white tracking-wider text-base font-bold font-roboto p-1">trymyguys.</span>
+            <Image 
+              src="/images/tmg_flags.png"
+              alt="TryMyGuys"
+              width={240}
+              height={96}
+              className="w-auto h-12 select-none"
+              priority
+            />
             <h1 className="text-7xl font-semibold tracking-tight text-white sm:text-5xl font-playfair-display mt-20">
               Your Home, Your Project, Our Experts.
             </h1>

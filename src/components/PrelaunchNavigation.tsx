@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import ProfessionalWaitlistModal from './ProfessionalWaitlistModal';
+import Image from 'next/image';
 
 export default function PrelaunchNavigation() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,9 +17,16 @@ export default function PrelaunchNavigation() {
         <div className="flex h-24 justify-between ~pt-2/12">
           {/* Left side */}
           <div className="flex items-center">
-            <Link href="/" className="~text-3xl/4xl md:~text-4xl/512*50xl  font-bold font-bebas-neue tracking-wide text-burnt-orange transition-colors">
-              TRYMYGUYS.
-            </Link>
+          <Link href="/" className="relative z-[100] block">
+                <Image 
+                  src="/images/tmg_flags.png"
+                  alt="TryMyGuys"
+                  width={240}
+                  height={96}
+                  className="w-auto ~h-20/32 select-none"
+                  priority
+                />
+              </Link>
           </div>
 
           {/* Right side */}

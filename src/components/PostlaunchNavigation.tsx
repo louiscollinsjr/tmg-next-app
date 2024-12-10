@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { signIn, signOut, useSession } from 'next-auth/react';
 
 export default function PostlaunchNavigation() {
@@ -13,8 +14,15 @@ export default function PostlaunchNavigation() {
           <div className="flex items-center h-[64px]">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <Link href="/" className="text-burnt-orange text-3xl font-luckiest-guy hover:text-gray-700 transition-colors">
-                TryMyGuys
+              <Link href="/" className="relative z-[100] block">
+                <Image 
+                  src="/images/tmg_flags.png"
+                  alt="TryMyGuys"
+                  width={240}
+                  height={96}
+                  className="w-auto h-12 select-none"
+                  priority
+                />
               </Link>
             </div>
 
