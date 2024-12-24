@@ -7,12 +7,12 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import type { Session } from 'next-auth';
 import RatingStars from '@/components/RatingStars';
-import { getUserStats, UserStats } from '../actions/getUserStats';
-import { CheckCircleIcon } from '@heroicons/react/24/solid';
-import { getUserProjects, ProjectData } from '../actions/getUserProjects';
-import { getUserReviews, ReviewData } from '../actions/getUserReviews';
+import { getUserStats, UserStats } from '@/app/actions/getUserStats';
+import { getUserProjects, ProjectData } from '@/app/actions/getUserProjects';
+import { getUserReviews, ReviewData } from '@/app/actions/getUserReviews';
 import ProjectCard from '@/components/ProjectCard';
 import ReviewCard from '@/components/ReviewCard';
+import { CheckCircleIcon } from '@heroicons/react/24/solid';
 
 interface ExtendedSession extends Session {
   user: {
