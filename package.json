@@ -13,6 +13,7 @@
     "update-favorites": "bun run scripts/updateUserFavorites.ts"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@phosphor-icons/react": "^2.1.7",
     "@swc/helpers": "^0.5.3",

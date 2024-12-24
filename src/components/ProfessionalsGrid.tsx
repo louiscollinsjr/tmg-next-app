@@ -61,7 +61,7 @@ export default function ProfessionalsGrid({ professionals, selectedCategory }: P
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10">
           {displayedProfessionals.map((professional) => (
             <ProfessionalListItem
               key={professional.id}

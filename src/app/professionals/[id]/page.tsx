@@ -1,7 +1,10 @@
 import { dbConnect } from '@/lib/db'
-import { User } from '@/models/User'
-import { Review } from '@/models/Review'
+import User from '@/lib/models/User'
+import Review from '@/lib/models/Review'
 import ProfessionalProfileClient from '@/components/ProfessionalProfileClient'
+import { DisplayProfessional, Review as ReviewType, SelectedService, LeanUser } from '@/types/professional'
+import { Types } from 'mongoose'
+import { Document } from 'mongoose'
 
 interface PageProps {
   params: {
@@ -15,25 +18,33 @@ interface Service {
   _id?: any; // MongoDB adds this field
 }
 
-interface DisplayProfessional {
-  id: string;
-  name: string;
-  businessName: string;
-  images: string[];
+interface MongoReviewResponse {
+  author: Types.ObjectId;
+  content: string;
+  createdAt: Date;
+}
+
+interface MongoReview extends Document {
+  _id: Types.ObjectId;
+  project: Types.ObjectId;
+  owner: Types.ObjectId;
+  contractor: Types.ObjectId;
   rating: number;
-  reviewCount: number;
-  specialty: string;
-  location: string;
-  isFavorite: boolean;
-  selectedServices: Service[];
-  reviews: {
-    id: string;
-    rating: number;
-    comment: string;
-    authorName: string;
-    projectType: string;
-    createdAt: string;
-  }[];
+  title: string;
+  content: string;
+  images?: Array<{
+    url: string;
+    caption?: string;
+  }>;
+  status?: 'published' | 'pending' | 'reported' | 'removed';
+  helpful?: {
+    count: number;
+    users: Types.ObjectId[];
+  };
+  responses?: MongoReviewResponse[];
+  createdAt: Date;
+  updatedAt?: Date;
+  __v: number;
 }
 
 export default async function ProfessionalProfilePage({ params }: PageProps) {
@@ -42,52 +53,98 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
   await dbConnect()
 
   try {
-    const professional = await User.findById(params.id)
+    const rawProfessional = (await User.findById(params.id).lean()) as unknown
     
-    if (!professional) {
+    if (!rawProfessional || typeof rawProfessional !== 'object') {
       throw new Error('Professional not found')
     }
 
-    // Get reviews for this professional
-    const reviews = await Review.find({ professionalId: params.id })
-    const rating = reviews.length > 0
+    const professional = {
+      ...rawProfessional as Record<string, any>,
+      name: (rawProfessional as any).name || 'Unknown Professional',
+      status: (rawProfessional as any).status || 'active'
+    } as LeanUser
+
+    const rawReviews = await Review.find({ contractor: params.id })
+      .sort({ createdAt: -1 })
+      .lean()
+
+    const reviews = rawReviews as MongoReview[];
+
+    const formattedReviews: ReviewType[] = reviews.map(review => {
+      const defaultHelpful = { count: 0, users: [] };
+      
+      return {
+        _id: review._id.toString(),
+        project: review.project.toString(),
+        owner: review.owner.toString(),
+        contractor: review.contractor.toString(),
+        rating: review.rating,
+        title: review.title,
+        content: review.content,
+        images: review.images || [],
+        status: review.status || 'published',
+        helpful: review.helpful || defaultHelpful,
+        responses: (review.responses || []).map((response: MongoReviewResponse) => ({
+          author: response.author.toString(),
+          content: response.content,
+          createdAt: response.createdAt
+        })),
+        createdAt: review.createdAt,
+        updatedAt: review.updatedAt || review.createdAt
+      };
+    });
+
+    const averageRating = reviews.length > 0
       ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
       : 0
 
-    // Transform and serialize the data
-    const serializedServices = professional.selectedServices?.map((service: Service) => ({
-      categoryId: service.categoryId,
-      optionId: service.optionId,
-    })) || []
-
-    // Serialize reviews
-    const serializedReviews = reviews.map(review => ({
-      id: review._id.toString(),
-      rating: review.rating,
-      comment: review.comment,
-      authorName: review.authorName,
-      projectType: review.projectType,
-      createdAt: review.createdAt.toISOString(),
-    }))
-
-    // Transform the data to match the DisplayProfessional interface
     const displayProfessional: DisplayProfessional = {
       id: professional._id.toString(),
-      name: professional.name || '',
-      businessName: professional.businessName || '',
-      images: professional.images || [],
-      rating,
+      name: professional.name,
+      businessName: professional.businessInfo?.companyName || professional.name,
+      images: [], // TODO: Add project images
+      rating: Math.round(averageRating * 10) / 10,
       reviewCount: reviews.length,
-      specialty: professional.specialty || '',
-      location: professional.location || '',
-      isFavorite: false,
-      selectedServices: serializedServices,
-      reviews: serializedReviews
+      specialty: professional.businessInfo?.specialties?.[0] || '',
+      location: professional.businessInfo?.serviceArea?.[0] || '',
+      isFavorite: professional.isFavorite || false,
+      selectedServices: professional.selectedServices?.map(service => ({
+        categoryId: service.categoryId,
+        optionId: service.optionId,
+        _id: service._id
+      })) || [],
+      businessInfo: {
+        companyName: professional.businessInfo?.companyName || professional.name,
+        specialties: professional.businessInfo?.specialties || [],
+        serviceArea: professional.businessInfo?.serviceArea || [],
+        email: professional.businessInfo?.email || '',
+        phone: professional.businessInfo?.phone || ''
+      },
+      reviews: formattedReviews,
+      contactInfo: {
+        email: professional.businessInfo?.email || '',
+        phone: professional.businessInfo?.phone
+      },
+      createdAt: professional.createdAt?.toISOString() || new Date().toISOString(),
+      email: professional.businessInfo?.email || ''
     }
 
-    return <ProfessionalProfileClient professional={displayProfessional} />
+    return (
+      <main>
+        <ProfessionalProfileClient professional={displayProfessional} />
+      </main>
+    )
+
   } catch (error) {
     console.error('Error fetching professional:', error)
-    return <div>Error loading professional profile</div>
+    return (
+      <main>
+        <div className="text-center py-12">
+          <h1 className="text-2xl font-semibold text-gray-900">Professional not found</h1>
+          <p className="mt-2 text-gray-600">The professional you&apos;re looking for could not be found.</p>
+        </div>
+      </main>
+    )
   }
 }

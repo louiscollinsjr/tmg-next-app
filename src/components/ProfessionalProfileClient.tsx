@@ -8,7 +8,9 @@ import { formatDate } from '@/utils/date'
 interface DisplayProfessional {
   id: string;
   name: string;
-  businessName: string;
+  businessInfo: {
+    companyName: string;
+  };
   images: string[];
   rating: number;
   reviewCount: number;
@@ -44,7 +46,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
   return (
     <>
       
-      <div className="min-h-screen bg-zinc-50 pt-24">
+      <div className="min-h-screen bg-zinc-50 pt-64">
         {/* Header */}
         <div>
           <div className="mx-auto px-4 sm:px-6 lg:px-8 py-6" style={{ maxWidth: '980px' }}>
@@ -54,7 +56,12 @@ export default function ProfessionalProfileClient({ professional }: Props) {
                   {professional.name.split(' ').map(name => name[0]).join('')}
                 </div>
                 <div>
-                  <h1 className="text-4xl font-medium text-gray-900 font-roboto">{professional.name}</h1>
+                  <h1 className="text-4xl font-medium text-gray-900 font-roboto">
+                    {professional.businessInfo?.companyName || professional.name}
+                  </h1>
+                  {professional.businessInfo?.companyName && (
+                    <p className="text-lg text-gray-600 mt-1">{professional.name}</p>
+                  )}
                   <div className="flex items-center gap-4 mt-2">
                     <h2 className="text-lg text-gray-600 font-roboto">{professional.specialty}</h2>
                     <span className="text-gray-400">•</span>
@@ -103,7 +110,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
             <div className="lg:col-span-3 space-y-8">
               {/* Description */}
               <div className="prose max-w-none">
-                <p className="text-gray-600">{professional.businessName}</p>
+                <p className="text-gray-600">{professional.businessInfo?.companyName || professional.name}</p>
               </div>
 
               {/* Business Details */}
@@ -123,6 +130,18 @@ export default function ProfessionalProfileClient({ professional }: Props) {
                 <div className='border-0 border-gray-200 pb-10'>
                   <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Service Area</h3>
                   <p className="text-gray-600">50 mile radius of San Francisco</p>
+                </div>
+                <div className='border-0 border-gray-200 pb-10'>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Selected Services</h3>
+                  <ul className="list-none list-inside text-gray-600 space-y-6">
+                    {professional.selectedServices.map((service, index) => (
+                      <li key={service.optionId || index}>
+                        {service.optionId.split('-').map(word => 
+                          word.charAt(0).toUpperCase() + word.slice(1)
+                        ).join(' ')}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>

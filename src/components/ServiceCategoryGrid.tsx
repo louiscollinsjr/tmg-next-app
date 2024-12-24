@@ -36,17 +36,17 @@ const categories = [
 
 export default function ServiceCategoryGrid({ onCategorySelect }: ServiceCategoryGridProps) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-11 gap-x-16">
       {categories.map((category) => {
         const IconComponent = category.icon;
         return (
           <button
             key={category.slug}
             onClick={() => onCategorySelect?.(category.slug)}
-            className="flex flex-col items-center justify-center p-2 rounded-xl border border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all"
+            className="flex flex-col items-center justify-center p-2 rounded-xl border-0 border-gray-100 hover:border-gray-200 hover:shadow-sm transition-all"
           >
             <IconComponent className="w-8 h-8 text-[#013553] mb-3" weight="duotone" />
-            <span className="text-sm text-gray-700 text-center">{category.name}</span>
+            <span className="text-xs text-gray-700 text-center">{category.name}</span>
           </button>
         );
       })}

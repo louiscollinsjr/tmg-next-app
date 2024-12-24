@@ -1,10 +1,9 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
 import { NextAuthProvider } from '@/components/providers/NextAuthProvider';
 import { fontVariables } from '@/config/fonts';
-import PrelaunchLayout from './(prelaunch)/layout';
-import ProductionLayout from './(production)/layout';
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
 import './globals.css';
 
 export default function RootLayout({
@@ -12,18 +11,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const pathname = usePathname();
-  const isProduction = pathname?.includes('/(production)') || pathname?.startsWith('/app');
-
   return (
     <html lang="en" className={fontVariables}>
       <body suppressHydrationWarning>
         <NextAuthProvider>
-          {isProduction ? (
-            children
-          ) : (
-            <PrelaunchLayout>{children}</PrelaunchLayout>
-          )}
+          <div className="bg-zinc-100 font-montserrat min-h-screen flex flex-col">
+            <Navigation />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+          </div>
         </NextAuthProvider>
       </body>
     </html>

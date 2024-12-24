@@ -1,9 +1,12 @@
-import PreLaunchHero from "@/components/PrelaunchLanding";
+import Landing from "@/components/Landing";
+import { getProfessionals } from "./actions";
 
-export default function PrelaunchPage() {
+export default async function HomePage() {
+  const data = await getProfessionals();
+  
   return (
     <main>
-      <PreLaunchHero />
+      <Landing initialData={data} />
     </main>
   );
 }

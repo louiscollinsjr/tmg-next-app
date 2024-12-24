@@ -1,63 +1,38 @@
-'use client';
+'use client'
 
-import ServiceCategoryGrid from '@/components/ServiceCategoryGrid';
-import SearchBox from '@/components/SearchBox';
-import Image from 'next/image';
+import ClientProfessionals from "@/components/ClientProfessionals";
+import { ProfessionalsData } from '@/types/professional';
+import SearchBox from './SearchBox';
 
-export default function Landing() {
+interface LandingProps {
+  initialData: ProfessionalsData;
+}
+
+export default function Landing({ initialData }: LandingProps) {
   return (
-    <section className="relative isolate bg-zinc-100 pt-56">
-      <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:grid lg:grid-cols-12 gap-8 lg:px-0 lg:py-0 rounded-3xl bg-white -500">
-        <div 
-          className="lg:col-span-5 h-full rounded-3xl rounded-r-3xl relative p-12 overflow-hidden"
-          style={{
-            backgroundImage: "url('/images/mattwardgroup_Current_Market_Trends_Median_Hom_in_Gainesville_F.png')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        >
-          <div className="absolute inset-0 bg-black/30" /> {/* Dark overlay */}
-          <div className="relative z-10 min-h-[470px]">
-            <Image 
-              src="/images/tmg_flags.png"
-              alt="TryMyGuys"
-              width={240}
-              height={96}
-              className="w-auto h-12 select-none"
-              priority
-            />
-            <h1 className="text-7xl font-semibold tracking-tight text-white sm:text-5xl font-playfair-display mt-20">
-              Your Home, Your Project, Our Experts.
+    <div className="min-h-screen bg-zinc-50">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="max-w-5xl mx-auto px-4 sm:px-[22px] py-24 pt-64">
+          <div className="text-center">
+            <h1 className="font-roboto text-4xl md:text-6xl font-medium text-gray-900 tracking-tight mb-6">
+              Find Trusted Professionals
             </h1>
-            <p className="mt-6 text-sm leading-6 w-[85%] text-white/80 py-2">
-              Connect with skilled professionals for all your home service needs. Quality work, reliable service, and peace of mind - all in one place.
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-8 font-roboto">
+              Connect with experienced, community-recommended professionals for your home improvement projects
             </p>
-            <div className="mt-10 flex items-center gap-x-6">
-              <a
-                href="/app/start-project"
-                className="rounded-xl bg-zinc-100 px-8 py-4 text-base font-semibold text-[#013553] shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white font-lato"
-              >
-                Start your project
-              </a>
-              <a href="/app/about" className="text-sm font-normal leading-6 text-white/80 hover:text-white">
-                Learn more <span aria-hidden="true">→</span>
-              </a>
-            </div>
+            <SearchBox />
           </div>
         </div>
-        <div className="lg:col-span-7 mt-16 lg:mt-0">
-          <div className="relative overflow-hidden rounded-xl p-8 shadow-sm w-full pt-24">
-           
-            <h2 className="text-2xl font-medium mb-8 mt-12 text-gray-900">What are you looking for?</h2>
-            <div className="w-full py-8">
-              <ServiceCategoryGrid 
-                onCategorySelect={(slug) => console.log(slug)}
-              />
-            </div>
-            <SearchBox /> 
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Professionals Grid */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-[22px] pb-24">
+        <ClientProfessionals 
+          professionals={initialData.professionals}
+          categories={initialData.categories}
+        />
+      </section>
+    </div>
   );
 }

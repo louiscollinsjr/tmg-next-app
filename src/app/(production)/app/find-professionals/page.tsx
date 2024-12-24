@@ -22,6 +22,7 @@ interface LeanUser {
     _id?: Types.ObjectId;
   }>;
   isFavorite?: boolean;
+  createdAt?: Date;
 }
 
 interface ProjectWithImages {
@@ -59,7 +60,8 @@ async function getProfessionals(): Promise<{
       businessInfo: 1,
       status: 1,
       isFavorite: 1,
-      selectedServices: 1
+      selectedServices: 1,
+      createdAt: 1
     }).lean<LeanUser[]>();
 
     // console.log('Found professionals:', {
@@ -207,7 +209,8 @@ async function getProfessionals(): Promise<{
           specialty,
           location: pro.businessInfo?.serviceArea?.[0] || '',
           isFavorite: pro.isFavorite || false,
-          selectedServices: serializedServices
+          selectedServices: serializedServices,
+          createdAt: pro.createdAt?.toISOString() || new Date().toISOString() // Fallback to current date if not available
         };
       }),
       categories
@@ -230,7 +233,7 @@ export default async function FindProfessionals() {
       <div className="min-h-screen bg-zinc-50">
         {/* Hero Section */}
         <section className="relative overflow-hidden">
-          <div className="max-w-5xl mx-auto px-4 sm:px-[22px] py-24">
+          <div className="max-w-5xl mx-auto px-4 sm:px-[22px] bg-red-200">
             <div className="text-center">
               <h1 className="font-roboto text-4xl md:text-6xl font-medium text-gray-900 tracking-tight mb-6">
                 Find Trusted Professionals

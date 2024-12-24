@@ -46,6 +46,7 @@ export default {
         'luckiest-guy': ['var(--font-luckiest-guy)'],
         'playfair-display': ['var(--font-playfair-display)'],
         'bebas-neue': ['var(--font-bebas-neue)'],
+        'source-serif': ['var(--font-source-serif)'],
       },
     },
   },

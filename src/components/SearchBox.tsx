@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { MagnifyingGlass } from "@phosphor-icons/react";
 
 export default function SearchBox() {
@@ -12,27 +12,27 @@ export default function SearchBox() {
     "Roof expert to stop my attic from becoming an indoor swimming pool...",
     "Lawn ninja to defeat my suburban jungle...",
   ];
-  
-  const [placeholderText, setPlaceholderText] = useState('');
+
+  const [placeholderText, setPlaceholderText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
-  
+
   useEffect(() => {
     if (!isFocused) {
       const typingSpeed = 100;
       const deletingSpeed = 50;
       const pauseDuration = 2000;
-      
+
       const typewriterEffect = () => {
         const currentPhrase = phrases[phraseIndex];
-        
+
         if (!isDeleting) {
           if (charIndex < currentPhrase.length) {
             setPlaceholderText(currentPhrase.substring(0, charIndex + 1));
-            setCharIndex(prev => prev + 1);
+            setCharIndex((prev) => prev + 1);
           } else {
             setTimeout(() => setIsDeleting(true), pauseDuration);
             return;
@@ -40,7 +40,7 @@ export default function SearchBox() {
         } else {
           if (charIndex > 0) {
             setPlaceholderText(currentPhrase.substring(0, charIndex - 1));
-            setCharIndex(prev => prev - 1);
+            setCharIndex((prev) => prev - 1);
           } else {
             setIsDeleting(false);
             setPhraseIndex((prev) => (prev + 1) % phrases.length);
@@ -60,7 +60,7 @@ export default function SearchBox() {
 
   const handleFocus = () => {
     setIsFocused(true);
-    setPlaceholderText('');
+    setPlaceholderText("");
   };
 
   const handleBlur = () => {
@@ -71,21 +71,26 @@ export default function SearchBox() {
   };
 
   return (
-    <div className="relative w-full py-12">
-     <div className="relative flex items-start w-full overflow-hidden rounded-2xl bg-gray-50 p-2">
-  <div className="absolute left-2 top-[2x] p-2 px-4[] rounded-full bg-gray-300">
-    <MagnifyingGlass size={20} weight="bold" className="text-white" />
-  </div>
-  <textarea
-    value={inputValue}
-    onChange={(e) => setInputValue(e.target.value)}
-    onFocus={handleFocus}
-    onBlur={handleBlur}
-    placeholder={placeholderText}
-    className="w-full font-bold pl-16 pr-4 text-3xl text-gray-900 placeholder-gray-300 bg-transparent outline-none resize-none h-42 leading-tight"
-    rows={3}
-  />
-</div>
+    <div className="relative w-full py-2 pb-16" style={{
+      backgroundImage: 'linear-gradient(to right, transparent, rgb(229 231 235) 15%, rgb(229 231 235) 85%, transparent)',
+      backgroundPosition: 'bottom',
+      backgroundSize: '100% 1px',
+      backgroundRepeat: 'no-repeat'
+    }}>
+      <div className="relative flex items-start w-full overflow-hidden rounded-2xl bg-white p-4 border border-gray-100 shadow-sm">
+        <div className="absolute left-[12px] top-[12px] p-4 rounded-full bg-orange-500">
+          <MagnifyingGlass size={20} weight="bold" className="text-white" />
+        </div>
+        <textarea
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          placeholder={placeholderText}
+          className="w-full font-bold pl-16 pr-4 text-3xl text-gray-900 placeholder-gray-300 bg-transparent outline-none resize-none h-42 leading-tight"
+          rows={3}
+        />
+      </div>
     </div>
   );
 }
