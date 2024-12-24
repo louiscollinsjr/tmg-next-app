@@ -6,10 +6,23 @@ import { DisplayProfessional, Review as ReviewType, SelectedService, LeanUser } 
 import { Types } from 'mongoose'
 import { Document } from 'mongoose'
 
+interface Props {
+  professional: DisplayProfessional;
+}
+
 interface PageProps {
   params: {
     id: string
   }
+}
+
+interface Review {
+  id: string;
+  rating: number;
+  comment: string;
+  authorName: string;
+  projectType: string;
+  createdAt: string;
 }
 
 interface Service {
@@ -73,6 +86,10 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
 
     const formattedReviews: ReviewType[] = reviews.map(review => {
       const defaultHelpful = { count: 0, users: [] };
+      const helpful = review.helpful ? {
+        count: review.helpful.count,
+        users: review.helpful.users.map(userId => userId.toString())
+      } : defaultHelpful;
       
       return {
         _id: review._id.toString(),
@@ -84,7 +101,7 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
         content: review.content,
         images: review.images || [],
         status: review.status || 'published',
-        helpful: review.helpful || defaultHelpful,
+        helpful,
         responses: (review.responses || []).map((response: MongoReviewResponse) => ({
           author: response.author.toString(),
           content: response.content,
@@ -94,6 +111,15 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
         updatedAt: review.updatedAt || review.createdAt
       };
     });
+
+    const reviewsForDisplay: Review[] = formattedReviews.map(review => ({
+      id: review._id,
+      rating: review.rating,
+      comment: review.content,
+      authorName: review.owner,
+      projectType: 'Project',
+      createdAt: review.createdAt.toISOString()
+    }));
 
     const averageRating = reviews.length > 0
       ? reviews.reduce((acc, review) => acc + review.rating, 0) / reviews.length
@@ -112,19 +138,11 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
       selectedServices: professional.selectedServices?.map(service => ({
         categoryId: service.categoryId,
         optionId: service.optionId,
-        _id: service._id
+        _id: service._id ? { $oid: service._id.toString() } : undefined
       })) || [],
-      businessInfo: {
-        companyName: professional.businessInfo?.companyName || professional.name,
-        specialties: professional.businessInfo?.specialties || [],
-        serviceArea: professional.businessInfo?.serviceArea || [],
-        email: professional.businessInfo?.email || '',
-        phone: professional.businessInfo?.phone || ''
-      },
-      reviews: formattedReviews,
       contactInfo: {
         email: professional.businessInfo?.email || '',
-        phone: professional.businessInfo?.phone
+        phone: professional.businessInfo?.phone || ''
       },
       createdAt: professional.createdAt?.toISOString() || new Date().toISOString(),
       email: professional.businessInfo?.email || ''
@@ -132,7 +150,10 @@ export default async function ProfessionalProfilePage({ params }: PageProps) {
 
     return (
       <main>
-        <ProfessionalProfileClient professional={displayProfessional} />
+        <ProfessionalProfileClient 
+          professional={displayProfessional} 
+          reviews={reviewsForDisplay}
+        />
       </main>
     )
 

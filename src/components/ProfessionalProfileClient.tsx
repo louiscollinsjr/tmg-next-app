@@ -3,39 +3,23 @@
 import React, { useState } from 'react';
 import RatingStars from '@/components/RatingStars'
 import { formatDate } from '@/utils/date'
+import { DisplayProfessional } from '@/types/professional'
 
-
-interface DisplayProfessional {
+interface Review {
   id: string;
-  name: string;
-  businessInfo: {
-    companyName: string;
-  };
-  images: string[];
   rating: number;
-  reviewCount: number;
-  specialty: string;
-  location: string;
-  isFavorite: boolean;
-  selectedServices: {
-    categoryId: string;
-    optionId: string;
-  }[];
-  reviews: {
-    id: string;
-    rating: number;
-    comment: string;
-    authorName: string;
-    projectType: string;
-    createdAt: string;
-  }[];
+  comment: string;
+  authorName: string;
+  projectType: string;
+  createdAt: string;
 }
 
 interface Props {
   professional: DisplayProfessional;
+  reviews?: Review[];
 }
 
-export default function ProfessionalProfileClient({ professional }: Props) {
+export default function ProfessionalProfileClient({ professional, reviews = [] }: Props) {
   const [selectedTab, setSelectedTab] = useState('about');
 
   // Add a null check for the professional object
@@ -57,9 +41,9 @@ export default function ProfessionalProfileClient({ professional }: Props) {
                 </div>
                 <div>
                   <h1 className="text-4xl font-medium text-gray-900 font-roboto">
-                    {professional.businessInfo?.companyName || professional.name}
+                    {professional.businessName || professional.name}
                   </h1>
-                  {professional.businessInfo?.companyName && (
+                  {professional.businessName && (
                     <p className="text-lg text-gray-600 mt-1">{professional.name}</p>
                   )}
                   <div className="flex items-center gap-4 mt-2">
@@ -110,33 +94,33 @@ export default function ProfessionalProfileClient({ professional }: Props) {
             <div className="lg:col-span-3 space-y-8">
               {/* Description */}
               <div className="prose max-w-none">
-                <p className="text-gray-600">{professional.businessInfo?.companyName || professional.name}</p>
+                <p className="text-gray-600">{professional.businessName}</p>
               </div>
 
               {/* Business Details */}
               <div className="space-y-6">
                 <div className='border-y border-gray-200 py-10'>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Certifications</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Contact Information</h3>
                   <ul className="list-none list-inside text-gray-600 space-y-6">
-                    <li>Master Electrician License</li>
-                    <li>Certified Energy Auditor</li>
-                    <li>OSHA Safety Certified</li>
+                    {professional.contactInfo?.email && (
+                      <li>Email: {professional.contactInfo.email}</li>
+                    )}
+                    {professional.contactInfo?.phone && (
+                      <li>Phone: {professional.contactInfo.phone}</li>
+                    )}
                   </ul>
                 </div>
+        
                 <div className='border-b border-gray-200 pb-10'>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto ">Experience</h3>
-                  <p className="text-gray-600">15 years in business</p>
-                </div>
-                <div className='border-0 border-gray-200 pb-10'>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Service Area</h3>
-                  <p className="text-gray-600">50 mile radius of San Francisco</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Location</h3>
+                  <p className="text-gray-600">{professional.location}</p>
                 </div>
                 <div className='border-0 border-gray-200 pb-10'>
                   <h3 className="text-lg font-semibold text-gray-900 mb-6 font-roboto">Selected Services</h3>
                   <ul className="list-none list-inside text-gray-600 space-y-6">
-                    {professional.selectedServices.map((service, index) => (
+                    {professional.selectedServices?.map((service, index) => (
                       <li key={service.optionId || index}>
-                        {service.optionId.split('-').map(word => 
+                        {service.categoryName || service.optionId.split('-').map(word => 
                           word.charAt(0).toUpperCase() + word.slice(1)
                         ).join(' ')}
                       </li>
@@ -179,7 +163,7 @@ export default function ProfessionalProfileClient({ professional }: Props) {
         <div className="bg-zinc-50">
           <div className="mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200" style={{ maxWidth: '980px' }}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
-              {professional.reviews.map((review) => (
+              {reviews.map((review) => (
                 <div key={review.id}>
                   <div className="flex items-start justify-between mb-2">
                     <div className="flex items-start gap-3">
